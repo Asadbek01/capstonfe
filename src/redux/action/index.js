@@ -1,0 +1,6 @@
+export const GET_BOOKS = "ADD_TO_BOOKS"
+export const GET_BOOKS_ERROR = "GET_BOOKS_ERROR"
+export const GET_BOOKS_LOADING = "GET_BOOKS_LOADING"    
+export const ADD_TO_CART = "ADD_TO_CART"
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART"
+export const SET_USER_NAME = "SET_USER_NAME "
