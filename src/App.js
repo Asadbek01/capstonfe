@@ -1,12 +1,25 @@
 import './App.css';
-import { Header } from './Component/view/Header';
+import { MainHomePage } from './Component/view/MainHomePage';
+import { Footer } from './Component/view/Footer';
+import { MyNavbar } from './Component/view/Navbar';
+import { BrowserRouter } from 'react-router-dom';
+import { Container, Row } from 'react-bootstrap';
+import CartIndicator from './Component/view/CartIndicator';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-    </div>
-  );
+<BrowserRouter>
+      <MyNavbar />
+<Container>
+  <Row>
+      <MainHomePage />
+      <Footer />
+   
+  </Row>
+
+    </Container>
+    </BrowserRouter>
+  )
 }
 
 export default App;

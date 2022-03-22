@@ -1,6 +1,7 @@
 import React from 'react'
+import CartIndicator from './CartIndicator'
 // import '../../assets/'
-export const Header = () => {
+export const MyNavbar = () => {
   return (
     <>
      <nav class="navbar row">
@@ -27,10 +28,12 @@ export const Header = () => {
       </div>
 
       <div class="col-12 col-md-3 mt-4 mt-md-0 text-center">
-        <button class="btn" id="login_btn">Login</button>
+        <div className='d-flex ml-5'>
 
-        <span id="cart" class="ml-3">Cart</span>
-        <span class="ml-1" id="cart_count">2</span>
+        <button class="btn ml-3 " id="login_btn">Login</button>
+         <span className='ml-3'><CartIndicator /> </span>    
+        </div>
+
       </div>
     </nav>
     </>
