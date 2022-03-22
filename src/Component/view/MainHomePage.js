@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 export const MainHomePage = () => {
   return (
   
@@ -15,7 +16,7 @@ export const MainHomePage = () => {
             />
             <div className="card-body d-flex flex-column ">
               <h5 className="card-title">
-                <a href="" className='ml-2'>Book description goes in here</a>
+                <a href="" className='ml-2'>History of Poland</a>
               </h5>
               <div className="ratings mt-auto">
                 <div className="rating-outer">

@@ -2,24 +2,21 @@ import './App.css';
 import { MainHomePage } from './Component/view/MainHomePage';
 import { Footer } from './Component/view/Footer';
 import { MyNavbar } from './Component/view/Navbar';
-import { BrowserRouter } from 'react-router-dom';
+import { CartPage } from './Component/view/CartPage';
+import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import { Container, Row } from 'react-bootstrap';
-import CartIndicator from './Component/view/CartIndicator';
 
 function App() {
   return (
-<BrowserRouter>
-      <MyNavbar />
-<Container>
-  <Row>
-      <MainHomePage />
-      <Footer />
-   
-  </Row>
-
-    </Container>
-    </BrowserRouter>
-  )
+  <BrowserRouter> 
+   <MyNavbar />
+   <Routes>
+     <Route path='/' element={<MainHomePage/>}/>
+     <Route path='/cart' element={<CartPage />}/>
+   </Routes>
+   <Footer />
+  </BrowserRouter>
+    )
 }
 
 export default App;

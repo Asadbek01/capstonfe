@@ -39,20 +39,19 @@
 
  /* Navbar */
  nav {
-  background-color: #73a7eb;
+  background-color: #7A9E9F;
   padding: 1rem 1rem;
 }
 
-#search_btn {
-  background-color:blue;
-}
+
 
 .input-group {
   width: 90%;
   margin-right: 35%;
 }
 .logo_img{
-  width: 50%;
+  width: 70%;
+  padding-left: 50px;
 }
 #search_field {
   height: 2.4rem;
@@ -61,7 +60,7 @@
 
 #login_btn,
 #view_btn {
-  background-color: blue;
+ 
   padding: 0.4rem 1.8rem;
   font-family: calibri;
 }
