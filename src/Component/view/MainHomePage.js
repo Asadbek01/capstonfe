@@ -1,10 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getBooksAction } from '../../redux/action'
 
 
 export const MainHomePage = () => {
+
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getBooksAction())
+  }, [])
+  const booksFromReduxStore = useSelector((state) => state.book.data)
+
   return (
-  
-  <div className='container-fluid'>
+    <>
+    {
+     booksFromReduxStore && booksFromReduxStore.map(data =>{
+
+        
+        <div className='container-fluid'>
          <h1 id="products_heading">Latest Books</h1>
          <section  id="products" className="container mt-5">
       <div className="row">
@@ -13,10 +28,10 @@ export const MainHomePage = () => {
             <img
               className="card-img-top mx-auto"
               src="https://cdn.pixabay.com/photo/2017/01/13/13/30/book-1977283__340.png"
-            />
+              />
             <div className="card-body d-flex flex-column ">
               <h5 className="card-title">
-                <a href="" className='ml-2'>History of Poland</a>
+                <a href="" className='ml-2'>{data.category}</a>
               </h5>
               <div className="ratings mt-auto">
                 <div className="rating-outer">
@@ -32,5 +47,8 @@ export const MainHomePage = () => {
       </div>
     </section>
   </div>
+            })
+}
+  </>
   )
 }

@@ -4,10 +4,6 @@ import { BookReducer } from "../reducer/bookReducer";
 import cartReducer from "../reducer/CartReducer";
 import userReducer from "../reducer/userReducer";
 
-
-
-
-
 const composeFunction =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
