@@ -51,7 +51,6 @@ const Login = () => {
     <>
           {register? (
             <>
-            <MyNavbar />
 <MainHomePage />
 </>
 ) : (

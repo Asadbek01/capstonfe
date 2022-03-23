@@ -6,14 +6,16 @@ import { CartPage } from './Component/view/CartPage';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import { Container, Row } from 'react-bootstrap';
 import Login from './Component/view/LoginPage';
+import SignUp from './Component/view/SignUpPage';
 
 function App() {
   return (
   <BrowserRouter> 
    <MyNavbar />
    <Routes>
-   <Route path='/' element={<Login/>}/>
-     <Route path='/home' element={<MainHomePage/>}/>
+   <Route path='/login' element={<Login/>}/>
+   <Route path='/signUp' element={<SignUp/>}/>
+     <Route path='/' element={<MainHomePage/>}/>
      <Route path='/cart' element={<CartPage />}/>
    </Routes>
    <Footer />
