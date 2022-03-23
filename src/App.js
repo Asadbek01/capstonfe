@@ -5,13 +5,15 @@ import { MyNavbar } from './Component/view/Navbar';
 import { CartPage } from './Component/view/CartPage';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import { Container, Row } from 'react-bootstrap';
+import Login from './Component/view/LoginPage';
 
 function App() {
   return (
   <BrowserRouter> 
    <MyNavbar />
    <Routes>
-     <Route path='/' element={<MainHomePage/>}/>
+   <Route path='/' element={<Login/>}/>
+     <Route path='/home' element={<MainHomePage/>}/>
      <Route path='/cart' element={<CartPage />}/>
    </Routes>
    <Footer />
