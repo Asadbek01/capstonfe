@@ -1,54 +1,58 @@
+// jest supertest
+
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getBooksAction } from '../../redux/action'
+import { getBooks } from '../../redux/action'
 
 
 export const MainHomePage = () => {
 
+  const books = useSelector((state) => state.book.data)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getBooksAction())
-  }, [])
-  const booksFromReduxStore = useSelector((state) => state.book.data)
-
+    dispatch(getBooks())
+  }, [dispatch])
+  
   return (
-    <>
-    {
-     booksFromReduxStore && booksFromReduxStore.map(data =>{
-
-        
+    
+    
         <div className='container-fluid'>
          <h1 id="products_heading">Latest Books</h1>
          <section  id="products" className="container mt-5">
       <div className="row">
-        <div className="col-sm-12 col-md-6 col-lg-3 my-3">
+    {
+      books && books.map((book, i) =>(
+        <>
+        
+        <div key ={i._id}className="col-sm-12 col-md-6 col-lg-3 my-3">
           <div className="card p-3 rounded">
             <img
               className="card-img-top mx-auto"
-              src="https://cdn.pixabay.com/photo/2017/01/13/13/30/book-1977283__340.png"
+              src={book.images[0].imgUrl}
               />
             <div className="card-body d-flex flex-column ">
               <h5 className="card-title">
-                <a href="" className='ml-2'>{data.category}</a>
+                <a href="" className='ml-2'>{book.title}</a>
               </h5>
               <div className="ratings mt-auto">
                 <div className="rating-outer">
                   <div className="rating-inner"></div>
                 </div>
-                <span id="no_of_reviews">(5 Reviews)</span>
+                <span id="no_of_reviews">({book.ratings} Reviews)</span>
               </div>
-              <p className="card-text">$45.67</p>
+              <p className="card-text">${book.price}</p>
               <a href="#" id="view_btn" className="btn btn-block rounded-pill">View Details</a>
             </div>
           </div>
         </div>
+        </>
+      ))
+}
       </div>
     </section>
   </div>
-            })
-}
-  </>
+  
   )
 }

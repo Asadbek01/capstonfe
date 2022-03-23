@@ -6,7 +6,7 @@ const cartReducer = (state = InitialState.cart, action) => {
     case ADD_TO_CART:
       return {
         ...state,
-        cartBook: [...state.cartBook, action.payload],
+        cartBooks: [...state.cartBooks, action.payload],
       }
 
     case REMOVE_FROM_CART:
@@ -17,9 +17,9 @@ const cartReducer = (state = InitialState.cart, action) => {
         //     (book, i) => i !== action.payload
         //   ),
         // ALSO SLICE :D
-        cartBook: [
-          ...state.cartBook.slice(0, action.payload),
-          ...state.cartBook.slice(action.payload + 1),
+        cartBooks: [
+          ...state.cartBooks.slice(0, action.payload),
+          ...state.cartBooks.slice(action.payload + 1),
         ],
       }
 
