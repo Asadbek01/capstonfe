@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CartIndicator from './CartIndicator'
 // import '../../assets/'
 export const MyNavbar = () => {
+  const [registered, setRegistered] = useState(true)
   const navigate = useNavigate()
 
   return (
+    
     <>
+   
      <nav className="navbar row">
       <div className="col-12 col-md-3">
         <div className="navbar-brand">
@@ -36,9 +39,18 @@ export const MyNavbar = () => {
 
       <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
         <div className='d-flex ml-5'>
+        {registered ? (
+          // setRegistered(false)
 
-        <button onClick={()=>navigate("/login")} className="btn ml-3 btn-primary" id="login_btn">Login</button>
-         <span className='ml-3'><CartIndicator /> </span>    
+          <span className='ml-3'><CartIndicator /> </span>   
+          ) : (
+            <>
+            <span className='ml-3'><CartIndicator /> </span>   
+            <button onClick={()=>navigate("/login")} className="btn ml-3 btn-primary" id="login_btn">Login</button>
+            </>
+            // <span className='ml-3'><CartIndicator /> </span>   
+            )
+        }
         </div>
 
       </div>

@@ -10,7 +10,8 @@ const composeFunction =
 export const InitialState ={
     book:{
         data: [],
-        isError: false
+        isError: false,
+        isLoading: true
     },
     cart: {
         cartBooks: []
