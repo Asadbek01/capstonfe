@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Form, Button,  Row, Col, Navbar } from "react-bootstrap";
+import { Form, Button,  Row, Col, Navbar, Container } from "react-bootstrap";
 import { MainHomePage } from "./MainHomePage.js";
 import { MyNavbar } from "./Navbar";
 import { useNavigate } from "react-router";
- import { BsGoogle } from "react-icons/bs";
+ import { FcGoogle } from "react-icons/fc";
 const Login = () => {
     const navigate = useNavigate()
     const [ register, setRegister] = useState(false)
@@ -50,15 +50,25 @@ const Login = () => {
   return (
     <>
           {register? (
-            <>
-<MainHomePage />
+            <>      
+<MainHomePage  />
 </>
 ) : (
+  <Container>
         <Row className="d-flex justify-content-center mt-4">
           <Col md={4} xs={6} sm={3}>
               <div className="register-form">
-                <Button className="btn-light mb-2" style={{ width: "40%" }}><a href="http://localhost:3002/user/googleLogin"><BsGoogle className="mr-2" />Google Login</a></Button>
+                <Button className="mb-3 rounded-pill ml-4"
+                 style={{ width: "80%"  }}
+                 variant="outline-primary"
+                 ><a href="http://localhost:3002/user/googleLogin" className="text-info"><FcGoogle className="mr-2" style={{color: "white"}} />Google Login</a></Button>
               <Form onSubmit={handleSubmit}>
+              <div className="d-flex font-weight-bold mr-2">
+              <hr  style={{width: "30%"}} /> 
+              or
+              <hr  style={{width: "30%",}} /> 
+              </div>
+
                   <div>
                 <h2 className="text-center pb-2">
                   Welcome Back
@@ -99,10 +109,7 @@ const Login = () => {
               handleInput('rememberMe', e.target.checked)
             }}
             />
-        
-
-                <Button
-                
+          <Button 
                 variant="primary"
                   type="submit"
                 //   style={{ width: "25%" }}
@@ -122,12 +129,13 @@ const Login = () => {
 
               </div>
             
+              <p className="mt-4 text-center">Don't have an account? <a href="/signUp">Sign Up</a></p>
               </Form>
-<p className="mt-4">Don't have an account? <a href="/signUp">Sign Up</a></p>
             </div>
       
       </Col>
       </Row>
+      </Container>
       ) }
       </>
       );

@@ -13,30 +13,35 @@ export const SET_USER_NAME = "SET_USER_NAME "
 //   })
 
 
-export const getBooks = () =>
-    async (dispatch) => {
-        try {
-            const { data } =  await axios.get('http://localhost:3002/product')
-            
-            dispatch({
-                type: GET_BOOKS,
-                payload: data,
-            })
-            dispatch({
-                type: GET_BOOKS_LOADING,
-            })
+export const getBooks = () =>{
+ return (dispatch) => {
+         setTimeout( async() => {
 
-        } catch (error) {
-            dispatch({
-                type: GET_BOOKS_ERROR,
-            })
-            dispatch({
-                type: GET_BOOKS_LOADING,
-            })
-
-        }
+            try {
+                const { data } =  await axios.get('http://localhost:3002/product')
+                
+                dispatch({
+                    type: GET_BOOKS,
+                    payload: data,
+                })
+                dispatch({
+                    type: GET_BOOKS_LOADING,
+                })
+                
+            } catch (error) {
+                dispatch({
+                    type: GET_BOOKS_ERROR,
+                    payload: error.message
+                })
+                dispatch({
+                    type: GET_BOOKS_LOADING,
+                    IsLoading: true
+                })
+                
+            }
+        }, 1000)
     }
-
+}
 // export const getBooksAction = () => {
 //     return (dispatch, getState) => {
 

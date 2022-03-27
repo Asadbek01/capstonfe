@@ -1,7 +1,12 @@
 import React from 'react'
+import { Alert } from 'react-bootstrap'
 
-export const Products = ({book, i}) => {
+export const Products = ({book}) => {
+  // const [isLoading, setIsLoading] = useState(true)
+
   return (
+    <>
+   
     <div className="col-sm-12 col-md-6 col-lg-3 my-3">
     <div className="card p-3 rounded">
       <img
@@ -23,5 +28,6 @@ export const Products = ({book, i}) => {
       </div>
     </div>
   </div>
+    </>
     )
 }

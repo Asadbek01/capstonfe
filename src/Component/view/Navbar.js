@@ -39,18 +39,10 @@ export const MyNavbar = () => {
 
       <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
         <div className='d-flex ml-5'>
-        {registered ? (
-          // setRegistered(false)
-
-          <span className='ml-3'><CartIndicator /> </span>   
-          ) : (
-            <>
+         
             <span className='ml-3'><CartIndicator /> </span>   
             <button onClick={()=>navigate("/login")} className="btn ml-3 btn-primary" id="login_btn">Login</button>
-            </>
-            // <span className='ml-3'><CartIndicator /> </span>   
-            )
-        }
+           
         </div>
 
       </div>

@@ -12,7 +12,7 @@ export const BookReducer = (state = InitialState.book, action) =>{
             case GET_BOOKS_ERROR :
             return {
                 ...state,
-                isError: true
+                errorCode: action.payload
             }
             case GET_BOOKS_LOADING:
       return {
