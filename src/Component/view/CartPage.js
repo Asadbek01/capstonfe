@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { removeFromCartAction } from '../../redux/action'
 
 export const CartPage = () => {
-  const products = useSelector(state => state.book.data)
+  const products = useSelector(state => state.book.stock)
   const  dispatch = useDispatch()
   return (
     <Row>
@@ -13,7 +13,7 @@ export const CartPage = () => {
       <ul style={{ listStyle: "none" }}>
         {products.map((book, i) => (
           <li key={i} className="my-4">
-            <Button variant="danger" onClick={() =>  dispatch(removeFromCartAction(i))}>
+            <Button variant="danger" onClick={() => dispatch(removeFromCartAction(i))}>
               remove
             </Button>
             <img

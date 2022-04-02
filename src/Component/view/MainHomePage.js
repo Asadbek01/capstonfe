@@ -11,7 +11,7 @@ import { Alert, Col, Spinner } from 'react-bootstrap'
 export const MainHomePage = () => {
   const [bookSelected, setBookSelected] = useState(null)
 
-  const books = useSelector((state) => state.book.data)
+  const books = useSelector((state) => state.book.stock)
   const errorCode = useSelector((state) => state.book.errorCode)
   const isLoading = useSelector((state) => state.book.isLoading)
   

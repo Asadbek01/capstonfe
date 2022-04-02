@@ -1,14 +1,16 @@
 import React from 'react'
 import { Alert } from 'react-bootstrap'
 
-export const Products = ({book}) => {
+export const Products = ({book, bookSelected,changeBook}) => {
   // const [isLoading, setIsLoading] = useState(true)
 
   return (
     <>
    
     <div className="col-sm-12 col-md-6 col-lg-3 my-3">
-    <div className="card p-3 rounded">
+    <div   className={bookSelected?.id === book.id ? "border-thick mt-3" : "mt-3"}
+    onClick={() => changeBook(book)}
+    style={{ cursor: "pointer" }}>
       <img
         className="card-img-top mx-auto"
         src={book.images[0].imgUrl}

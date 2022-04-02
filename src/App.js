@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import { Container, Row } from 'react-bootstrap';
 import Login from './Component/view/LoginPage';
 import SignUp from './Component/view/SignUpPage';
+import BookDetail from './Component/view/bookDetail';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
    <Route path='/signUp' element={<SignUp/>}/>
      <Route path='/' element={<MainHomePage/>}/>
      <Route path='/cart' element={<CartPage />}/>
-   </Routes>
+     <Route path = "/detail" element={<BookDetail />} />
+    </Routes>
    <Footer />
   </BrowserRouter>
     )

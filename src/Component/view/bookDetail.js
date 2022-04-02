@@ -1,8 +1,8 @@
 import { Component } from "react";
 import { Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import { connect } from 'react-redux'
-import { addToCartAction } from "../redux/actions";
+import { useDispatch } from "react-redux";
+import { addToCartAction } from '../../redux/action' 
 
 
 
@@ -24,11 +24,11 @@ class BookDetail extends Component {
   render() {
     return (
       <div className="mt-3">
-        {this.state.book ? (
+        
           <>
             <Row>
               <Col sm={12}>
-                <h1>{this.state.book.title}</h1>
+                <h1>{}</h1>
               </Col>
             </Row>
             <Row className="mt-3">
@@ -36,7 +36,7 @@ class BookDetail extends Component {
                 <div className="mt-3">
                   <img
                     className="book-cover"
-                    src={this.state.book.imageUrl}
+                    
                     alt="book selected"
                   />
                 </div>
@@ -50,28 +50,24 @@ class BookDetail extends Component {
                   <span className="font-weight-bold">Price:</span>
                   {this.state.book.price}
                 </p>
-                {
-                  this.props.username ? (
+                
                     <Button color="primary" onClick={() => {
                        // book is the book object, with price, title, description
-                   dispatch(addToCartAction(book))(this.state.book)
+                   useDispatch(addToCartAction(this.state.book))
                     }}>
                       ADD TO CART
                     </Button>
-                  ) : (
-                    <div>Please log in to purchase this book</div>
-                  )
-                }
+               
+                  
+                
               </Col>
             </Row>
           </>
-        ) : (
           <Row>
             <Col sm={12}>
               <h3>Please select a book!</h3>
             </Col>
           </Row>
-        )}
       </div>
     );
   }

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 const CartIndicator = () => {
   const navigate = useNavigate()
-  const cartLength = useSelector(state => state.book.data.length)
+  const cartLength = useSelector(state => state.book.stock.length)
 
   return (
     <div className='ml-auto mt-2'>
