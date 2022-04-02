@@ -13,9 +13,7 @@ export const InitialState ={
         errorCode: null,
         isLoading: true
     },
-    cart: {
-        cartBooks: []
-    },
+  
 
     user: {
         name: ''

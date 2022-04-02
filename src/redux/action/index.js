@@ -7,11 +7,14 @@ export const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 export const SET_USER_NAME = "SET_USER_NAME "
 
 
-// export const addToCartAction = (bookToAdd) => ({
-//     type: ADD_TO_CART,
-//     payload: bookToAdd,
-//   })
-
+export const addToCartAction = (bookToAdd) => ({
+    type: ADD_TO_CART,
+    payload: bookToAdd,
+  })
+  export const removeFromCartAction = (index) => ({
+    type: REMOVE_FROM_CART,
+    payload: index,
+  })
 
 export const getBooks = () =>{
  return (dispatch) => {

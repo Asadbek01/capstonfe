@@ -1,52 +1,10 @@
 // import {  useState } from 'react'
 // import { Form, Button} from 'react-bootstrap'
 // import {Row, Col, Container} from 'react-bootstrap'
-// import { MainHomePage } from './MainHomePage'
+
 
 // const SignUp = () => {
-//   const [isRegistered, setIsRegistered] = useState(false)
-//   const [reservation, setReservation] = useState({
-//     name: '',
-//     email: '',
-//     password: ""
-//   })
-
-//   const handleInput = (fieldName, value) => {
-//     setReservation({
-//       ...reservation,
-//       [fieldName]: value,
-//     })
-//   }
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault()
-//     console.log(reservation)
-//     try {
-//       let response = await fetch(
-//         'http://localhost:3002/user/register',
-//         {
-//           method: 'POST',
-//           body: JSON.stringify(reservation),
-//           headers: {
-//             'Content-type': 'application/json',
-//           },
-//         }
-//       )
-//       if (response.ok) {
-//         setIsRegistered(true)
-//         setReservation({
-//           name: '',
-//           email: '',
-//           password: ""
-
-//         })
-//       } else {
-//         alert('ERROR')
-//       }
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
+//  
 
 //   return (
 //     <>
@@ -60,7 +18,7 @@
    
 //          <h2 className='mt-5'>Sign Up</h2>
          
-//          <Form onSubmit={handleSubmit} className="mt-5">
+//          <Form onSubmit= className="mt-5">
 //            <Form.Group className='d-flex '>
 //              <Form.Label  className='text-danger' > <strong className='h5 mr-5'>Name:</strong></Form.Label>
 //              <Form.Control
@@ -80,10 +38,7 @@
 //                type='email'yy
 //                placeholder='Input your email'
 //                className=" d-block ml-auto mb-2 rounded-pill"
-//                value={reservation.email}
-//                onChange={(e) => {
-//                  handleInput('email', e.target.value)
-//                }}
+//               
               
 //              />
 //            </Form.Group>
@@ -94,10 +49,7 @@
 //                type='password'
 //                placeholder='Input your password'
 //                className=" d-block mx-auto mb-2 rounded-pill"
-//                value={reservation.password}
-//                onChange={(e) => {
-//                  handleInput('password', e.target.value)
-//                }}
+//               
 //                required
 //              />
 //            </Form.Group>
@@ -137,19 +89,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useState } from 'react';
+import { MainHomePage } from './MainHomePage'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -172,9 +115,59 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
+  const [isRegistered, setIsRegistered] = useState(false)
+    const [reservation, setReservation] = useState({
+      name: '',
+      lastname: '',
+      email: '',
+      password: ""
+    })
+  
+    const handleInput = (fieldName, value) => {
+      setReservation({
+        ...reservation,
+        [fieldName]: value,
+      })
+    }
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault()
+      console.log(reservation)
+      try {
+        let response = await fetch(
+          'http://localhost:3002/user/register',
+          {
+            method: 'POST',
+            body: JSON.stringify(reservation),
+            headers: {
+              'Content-type': 'application/json',
+            },
+          }
+        )
+        if (response.ok) {
+          setIsRegistered(true)
+          setReservation({
+            name: '',
+            lastname: '',
+            email: '',
+            password: ""
+  
+          })
+        } else {
+          alert('ERROR')
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
   const classes = useStyles();
 
   return (
+    <>
+    {
+            isRegistered ? (
+              <MainHomePage />
+            ): (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -184,7 +177,9 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate
+        onSubmit={handleSubmit}
+        >
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -196,6 +191,10 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                value={reservation.name}
+                onChange={(e) => {
+                handleInput('name', e.target.value)
+                 }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -207,6 +206,10 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                value={reservation.lastname}
+                onChange={(e) => {
+                handleInput('lastname', e.target.value)
+                 }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -218,6 +221,10 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={reservation.email}
+                   onChange={(e) => {
+                    handleInput('email', e.target.value)
+          }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -230,6 +237,10 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={reservation.password}
+                   onChange={(e) => {
+                   handleInput('password', e.target.value)
+                               }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -250,7 +261,7 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
@@ -258,9 +269,12 @@ export default function SignUp() {
         </form>
       </div>
       <Box mt={5}>
-        <Copyright />
+      
       </Box>
     </Container>
+    )
+  }
+    </>
   );
 }
 
