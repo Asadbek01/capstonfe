@@ -1,7 +1,6 @@
 import { createStore, compose, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import { BookReducer } from "../reducer/bookReducer";
-import { CartReducer } from "../reducer/cartReducer";
+import { BookDetailReducer, BookReducer } from "../reducer/bookReducer";
 
 
 const composeFunction =
@@ -15,14 +14,15 @@ export const InitialState ={
     },
 
     cart:{
-        cartBooks: []
-    }
+        cartBooks: [],
+        errorCode: null,
+    },
   
 }
 
 const MixtureReducer = combineReducers({
     book: BookReducer,
-    cart: CartReducer
+    cart: BookDetailReducer
   
 })
 

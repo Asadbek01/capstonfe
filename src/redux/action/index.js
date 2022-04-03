@@ -5,7 +5,8 @@ export const GET_BOOKS_LOADING = "GET_BOOKS_LOADING"
 export const ADD_TO_CART = "ADD_TO_CART"
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 export const SET_USER_NAME = "SET_USER_NAME "
-
+export const GET_BOOKS_DETAIL = "GET_BOOKS_DETAIL"
+export const GET_BOOKS_DETAIL_ERROR = "GET_BOOKS_DETAIL_ERROR"
 
 export const addToCartAction = (bookToAdd) => ({
     type: ADD_TO_CART,
@@ -45,6 +46,34 @@ export const getBooks = () =>{
         }, 1000)
     }
 }
+
+
+export const getBooksDetail = (id) =>
+    async (dispatch) => {
+               try {
+                   const { data } =  await axios.get(`http://localhost:3002/product/${id}`)
+                   
+                   dispatch({
+                       type: GET_BOOKS_DETAIL,
+                       payload: data,
+                   })
+                //    dispatch({
+                //        type: GET_BOOKS_LOADING,
+                //    })
+                   
+               } catch (error) {
+                   dispatch({
+                       type: GET_BOOKS_DETAIL_ERROR,
+                       payload: error.message
+                   })
+                //    dispatch({
+                //        type: GET_BOOKS_LOADING,
+                //        IsLoading: true
+                //    })
+                   
+               }
+       
+   }
 // export const getBooksAction = () => {
 //     return (dispatch, getState) => {
 

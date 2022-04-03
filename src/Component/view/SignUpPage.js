@@ -157,7 +157,7 @@ export default function SignUp() {
           alert('ERROR')
         }
       } catch (error) {
-        console.log(error)
+        alert('ERROR', error.message)
       }
     }
   const classes = useStyles();

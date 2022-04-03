@@ -59,7 +59,7 @@ export const MainHomePage = () => {
         book= {book}
        bookSelected={bookSelected}
        changeBook={changeBook}
-        key={uniqid()}
+        key={i._id}
        
 
         />
