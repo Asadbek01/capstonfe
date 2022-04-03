@@ -26,7 +26,7 @@ export const Products = ({book, bookSelected,changeBook}) => {
           <span id="no_of_reviews">({book.ratings} Reviews)</span>
         </div>
         <p className="card-text">${book.price}</p>
-        <a href="#" id="view_btn" className="btn btn-block rounded-pill">View Details</a>
+        <a href="/detail" id="view_btn" className="btn btn-block rounded-pill">View Details</a>
       </div>
     </div>
   </div>

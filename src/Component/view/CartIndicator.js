@@ -13,7 +13,7 @@ const CartIndicator = () => {
     <div className='ml-auto mt-2'>
       <Button color='primary' onClick={() => navigate('/cart')}>
         <FaShoppingCart />
-        <span className='ml-2'>{cartLength}</span>
+        <span className='ml-2'>{}</span>
       </Button>
     </div>
   )

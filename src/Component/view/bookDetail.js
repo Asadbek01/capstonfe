@@ -17,7 +17,8 @@ class BookDetail extends Component {
     if (prevProps.bookSelected !== this.props.bookSelected) {
       this.setState({
         book: this.props.bookSelected,
-      });
+    });
+    console.log( this.props.bookSelected);
     }
   }
 
@@ -44,11 +45,11 @@ class BookDetail extends Component {
               <Col sm={8}>
                 <p>
                   <span className="font-weight-bold">Description:</span>
-                  {this.state.book.description}
+               
                 </p>
                 <p>
                   <span className="font-weight-bold">Price:</span>
-                  {this.state.book.price}
+                  {/* {this.state.book.price} */}
                 </p>
                 
                     <Button color="primary" onClick={() => {
@@ -58,16 +59,10 @@ class BookDetail extends Component {
                       ADD TO CART
                     </Button>
                
-                  
-                
               </Col>
             </Row>
           </>
-          <Row>
-            <Col sm={12}>
-              <h3>Please select a book!</h3>
-            </Col>
-          </Row>
+        
       </div>
     );
   }
