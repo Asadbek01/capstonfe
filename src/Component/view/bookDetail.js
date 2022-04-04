@@ -2,7 +2,7 @@ import React ,{useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getBooksDetail } from '../../redux/action'
 import { useParams } from 'react-router-dom'
-
+import { Carousel } from 'react-bootstrap'
 
 const BookDetail = () => {
     const BookWithSpesificId = useSelector(state => state.cart.cartBooks)
@@ -16,10 +16,24 @@ const BookDetail = () => {
     <div className="container container-fluid">
 
     <div className="row f-flex justify-content-around">
-
-            <div className="col-12 col-lg-5 img-fluid" id="product_image">
-                {/* <img src={BookWithSpesificId.images.imgUrl}  height="500" width="500" /> */}
+    <Carousel fade>
+  <Carousel.Item>
+  <div className="col-12 col-lg-5 img-fluid" id="product_image">
+                <img  className="d-block " src={BookWithSpesificId.images[0].imgUrl}  height="500" width="500" />
             </div>
+  </Carousel.Item>
+  <Carousel.Item>
+  <div className="col-12 col-lg-5 img-fluid" id="product_image">
+                <img  className="d-block " src={BookWithSpesificId.images[0].imgUrl}  height="500" width="500" />
+            </div>
+  </Carousel.Item>
+  <Carousel.Item>
+  <div className="col-12 col-lg-5 img-fluid" id="product_image">
+                <img  className="d-block " src={BookWithSpesificId.images[0].imgUrl}  height="500" width="500" />
+            </div>
+  </Carousel.Item>
+</Carousel>
+
 
             <div className="col-12 col-lg-5 mt-5">
                 <h3>{BookWithSpesificId.subtitle}</h3>
