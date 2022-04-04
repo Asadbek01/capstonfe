@@ -4,6 +4,7 @@ import { MainHomePage } from "./MainHomePage.js";
 import { MyNavbar } from "./Navbar";
 import { useNavigate } from "react-router";
  import { FcGoogle } from "react-icons/fc";
+import CartIndicator from "./CartIndicator.js";
 const Login = () => {
     const navigate = useNavigate()
     const [ register, setRegister] = useState(false)
@@ -51,9 +52,17 @@ const Login = () => {
     <>
           {register? (
             <>      
+             <div className='d-flex ml-5'>
+<span className='ml-3'><CartIndicator /> </span> 
+        </div>
 <MainHomePage  />
+
 </>
 ) : (
+  <>
+  <div className='d-flex justify-content-end '>
+<button onClick={()=>navigate("/login")} className="btn btn-primary" id="login_btn">Login</button>
+</div>
   <Container>
         <Row className="d-flex justify-content-center mt-4">
           <Col md={4} xs={6} sm={3}>
@@ -136,6 +145,7 @@ const Login = () => {
       </Col>
       </Row>
       </Container>
+      </>
       ) }
       </>
       );
