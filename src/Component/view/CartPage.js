@@ -5,13 +5,13 @@ import { useSelector } from 'react-redux'
 import { removeFromCartAction } from '../../redux/action'
 
 export const CartPage = () => {
-  const products = useSelector(state => state.book.stock)
+  const book = useSelector(state => state.cart.cartBooks)
   const  dispatch = useDispatch()
   return (
     <Row>
     <Col sm={12}>
       <ul style={{ listStyle: "none" }}>
-        {products.map((book, i) => (
+        {book.map((book, i) => (
           <li key={i} className="my-4">
             <Button variant="danger" onClick={() => dispatch(removeFromCartAction(i))}>
               remove
@@ -29,7 +29,7 @@ export const CartPage = () => {
     <Row>
       <Col sm={12} className="font-weight-bold">
         TOTAL:{" "}
-        {products.reduce(
+        {book.reduce(
           (acc, currentValue) => acc + parseFloat(currentValue.price),
           0
         )}

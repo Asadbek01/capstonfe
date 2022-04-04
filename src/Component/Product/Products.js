@@ -1,14 +1,16 @@
 import React from 'react'
 import { Alert } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 export const Products = ({book, bookSelected,changeBook}) => {
+  
   // const [isLoading, setIsLoading] = useState(true)
-
   return (
     <>
    
     <div className="col-sm-12 col-md-6 col-lg-3 my-3">
-    <div   className={bookSelected?.id === book.id ? "border-thick mt-3" : "mt-3"}
+    <div   className={bookSelected?.id === book._id ? "border-thick mt-3" : "mt-3"}
     onClick={() => changeBook(book)}
     style={{ cursor: "pointer" }}>
       <img
@@ -17,7 +19,7 @@ export const Products = ({book, bookSelected,changeBook}) => {
         />
       <div className="card-body d-flex flex-column ">
         <h5 className="card-title">
-          <a href="" className='ml-2'>{book.title}</a>
+       <Link to = {`/detail/${book._id}`} className='ml-2'>{book.title}</Link>
         </h5>
         <div className="ratings mt-auto">
           <div className="rating-outer">
@@ -26,7 +28,7 @@ export const Products = ({book, bookSelected,changeBook}) => {
           <span id="no_of_reviews">({book.ratings} Reviews)</span>
         </div>
         <p className="card-text">${book.price}</p>
-        <a href="/detail/:623b54e9842e3d3023078afd" id="view_btn" className="btn btn-block rounded-pill">View Details</a>
+       <Link to = {`/detail/${book._id}`} id='view_btn' className="btn btn-block rounded-pill">View Details</Link>
       </div>
     </div>
   </div>

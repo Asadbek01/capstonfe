@@ -7,8 +7,7 @@ import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import { Container, Row } from 'react-bootstrap';
 import Login from './Component/view/LoginPage';
 import SignUp from './Component/view/SignUpPage';
-import { BookDetail } from './Component/view/BookDetail';
-
+import BookDetail  from "./Component/view/BookDetail"
 function App() {
   return (
   <BrowserRouter> 

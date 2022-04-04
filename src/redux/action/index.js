@@ -51,6 +51,7 @@ export const getBooks = () =>{
 export const getBooksDetail = (id) =>
     async (dispatch) => {
                try {
+                   
                    const { data } =  await axios.get(`http://localhost:3002/product/${id}`)
                    
                    dispatch({

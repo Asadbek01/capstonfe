@@ -1,37 +1,39 @@
 import React ,{useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getBooksDetail } from '../../redux/action'
+import { useParams } from 'react-router-dom'
 
 
-
-export const BookDetail = (id) => {
-//     const dispatch = useDispatch()
-// const product = useSelector(state => state.cart.cartBooks)
-//     useEffect(()=> {
-//    dispatch(getBooksDetail(id.params.id))
-//     }, [dispatch])
+const BookDetail = () => {
+    const BookWithSpesificId = useSelector(state => state.cart.cartBooks)
+    const dispatch = useDispatch()
+    
+    const params = useParams()  
+    useEffect(() => {
+        dispatch(getBooksDetail(params.id ))
+    }, [dispatch, params.id])
   return (
     <div className="container container-fluid">
 
     <div className="row f-flex justify-content-around">
+
             <div className="col-12 col-lg-5 img-fluid" id="product_image">
-                <img src="https://i5.walmartimages.com/asr/1223a935-2a61-480a-95a1-21904ff8986c_1.17fa3d7870e3d9b1248da7b1144787f5.jpeg?odnWidth=undefined&odnHeight=undefined&odnBg=ffffff" alt="sdf" height="500" width="500" />
+                {/* <img src={BookWithSpesificId.images.imgUrl}  height="500" width="500" /> */}
             </div>
 
             <div className="col-12 col-lg-5 mt-5">
-                <h3>onn. 32” className HD (720P) LED Roku Smart TV (100012589)</h3>
-                <p id="product_id">Product # sklfjdk35fsdf5090</p>
+                <h3>{BookWithSpesificId.subtitle}</h3>
+                <p id="product_id">{BookWithSpesificId.title}</p>
 
                 <hr />
-
                 <div className="rating-outer">
                     <div className="rating-inner"></div>
                 </div>
-                <span id="no_of_reviews">(5 Reviews)</span>
+                <span id="no_of_reviews">({BookWithSpesificId.numReviews} Reviews)</span>
 
                 <hr />
 
-                <p id="product_price">$108.00</p>
+                <p id="product_price">${BookWithSpesificId.price}</p>
                 <div className="stockCounter d-inline">
                     <span className="btn btn-danger minus">-</span>
 
@@ -43,15 +45,13 @@ export const BookDetail = (id) => {
 
                 <hr />
 
-                <p>Status: <span id="stock_status">In Stock</span></p>
+                <p>Status: <span id="stock_status"className={BookWithSpesificId.stock > 0 ? 'text-success' : 'text-danger'}>{ BookWithSpesificId.stock > 0 ? "In Stock" : "out Of stock"}</span></p>
 
                 <hr />
 
                 <h4 className="mt-2">Description:</h4>
                 <p>Binge on movies and TV episodes, news, sports, music and more! We insisted on 720p High Definition for this 32" LED TV, bringing out more lifelike color, texture and detail. We also partnered with Roku to bring you the best possible content with thousands of channels to choose from, conveniently presented through your own custom home screen.</p>
-                <hr />
-                <p id="product_seller mb-3">Sold by: <strong>Amazon</strong></p>
-				
+                <hr />				
 				<button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal">
                             Submit Your Review
                 </button>
@@ -98,3 +98,5 @@ export const BookDetail = (id) => {
    
   )
 }
+
+export default BookDetail
