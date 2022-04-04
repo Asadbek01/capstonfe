@@ -38,12 +38,7 @@ export const MyNavbar = () => {
       </div>
 
       <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-        <div className='d-flex ml-5'>
-         
-            <span className='ml-3'><CartIndicator /> </span>   
-            <button onClick={()=>navigate("/login")} className="btn ml-3 btn-primary" id="login_btn">Login</button>
-           
-        </div>
+       
 
       </div>
     </nav>

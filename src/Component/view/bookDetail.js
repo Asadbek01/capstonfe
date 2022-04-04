@@ -1,6 +1,15 @@
-import React from 'react'
+import React ,{useState, useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getBooksDetail } from '../../redux/action'
 
-export const BookDetail = () => {
+
+
+export const BookDetail = (id) => {
+//     const dispatch = useDispatch()
+// const product = useSelector(state => state.cart.cartBooks)
+//     useEffect(()=> {
+//    dispatch(getBooksDetail(id.params.id))
+//     }, [dispatch])
   return (
     <div className="container container-fluid">
 
@@ -87,5 +96,5 @@ export const BookDetail = () => {
    </div>
 </div>
    
-  )}
-
+  )
+}
