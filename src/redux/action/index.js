@@ -22,7 +22,7 @@ export const getBooks = () =>{
          setTimeout( async() => {
 
             try {
-                const { data } =  await axios.get('http://localhost:3002/product')
+                const { data } =  await axios.get('http://localhost:3002/books')
                 
                 dispatch({
                     type: GET_BOOKS,
@@ -52,7 +52,7 @@ export const getBooksDetail = (id) =>
     async (dispatch) => {
                try {
                    
-                   const { data } =  await axios.get(`http://localhost:3002/product/${id}`)
+                   const { data } =  await axios.get(`http://localhost:3002/books/${id}`)
                    
                    dispatch({
                        type: GET_BOOKS_DETAIL,

@@ -1,4 +1,5 @@
 import './App.css';
+import "../src/Component/Product/index.css"
 import { MainHomePage } from './Component/view/MainHomePage';
 import { Footer } from './Component/view/Footer';
 import { MyNavbar } from './Component/view/Navbar';
@@ -8,6 +9,7 @@ import { Container, Row } from 'react-bootstrap';
 import Login from './Component/view/LoginPage';
 import SignUp from './Component/view/SignUpPage';
 import BookDetail  from "./Component/view/BookDetail"
+import "bootstrap/dist/css/bootstrap.min.css"
 function App() {
   return (
   <BrowserRouter> 
