@@ -1,9 +1,9 @@
 import './App.css';
 import "./Component/BooksStore/index.css"
+import "./Component/view/Footer/index.css"
 import { MainHomePage } from './Component/BooksStore/MainHomePage';
 // import '../../css/MainHomePage.css'
 
-import { Footer } from './Component/view/Footer';
 import { MyNavbar } from './Component/BooksStore/Navbar';
 import { CartPage } from './Component/BooksStore/CartPage';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
@@ -12,6 +12,7 @@ import Login from './Component/view/LoginPage';
 import SignUp from './Component/view/SignUpPage';
 import BookDetail  from "./Component/BooksStore/BookDetail"
 import "bootstrap/dist/css/bootstrap.min.css"
+import { Footer } from './Component/view/Footer/Footer';
 function App() {
   return (
   <BrowserRouter> 
