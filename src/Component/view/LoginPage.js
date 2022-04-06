@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Form, Button,  Row, Col, Navbar, Container } from "react-bootstrap";
-import { MainHomePage } from "./MainHomePage.js";
-import { MyNavbar } from "./Navbar";
+import { MainHomePage } from "../BooksStore/MainHomePage.js";
 import { useNavigate } from "react-router";
  import { FcGoogle } from "react-icons/fc";
-import CartIndicator from "./CartIndicator.js";
 const Login = () => {
     const navigate = useNavigate()
     const [ register, setRegister] = useState(false)
@@ -58,9 +56,7 @@ const Login = () => {
 ) : (
   <>
             
-  <div className=''>
-<Button onClick={()=>navigate("/login")} variant="outline-primary" className="my-2 mx-auto" id="login_btn">Login</Button>
-</div>
+         
   <Container>
         <Row className="d-flex justify-content-center mt-4">
           <Col md={4} xs={6} sm={3}>

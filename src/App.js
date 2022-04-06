@@ -1,14 +1,14 @@
 import './App.css';
-import "../src/Component/Product/index.css"
-import { MainHomePage } from './Component/view/MainHomePage';
+import "./Component/BooksStore/index.css"
+import { MainHomePage } from './Component/BooksStore/MainHomePage';
 import { Footer } from './Component/view/Footer';
-import { MyNavbar } from './Component/view/Navbar';
-import { CartPage } from './Component/view/CartPage';
+import { MyNavbar } from './Component/BooksStore/Navbar';
+import { CartPage } from './Component/BooksStore/CartPage';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import { Container, Row } from 'react-bootstrap';
 import Login from './Component/view/LoginPage';
 import SignUp from './Component/view/SignUpPage';
-import BookDetail  from "./Component/view/BookDetail"
+import BookDetail  from "./Component/BooksStore/BookDetail"
 import "bootstrap/dist/css/bootstrap.min.css"
 function App() {
   return (

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import CartIndicator from './CartIndicator'
+import CartIndicator from '../view/CartIndicator'
 // import '../../assets/'
 export const MyNavbar = () => {
   const [registered, setRegistered] = useState(true)
@@ -38,12 +39,23 @@ export const MyNavbar = () => {
         </div>
       </div>
 
+        { registered ? (
       <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
         <div className='d-flex ml-5'>
-<span className='ml-3'><CartIndicator /> </span> 
+          <span className='ml-3'><CartIndicator /> </span> 
+          <Button onClick={()=>  navigate("/login") }  variant="primary" className="ml-4" >Login</Button>
         </div>
-
       </div>
+        
+        ):(
+          <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
+          <div className='d-flex ml-5'>
+  <span className='ml-3'><CartIndicator /> </span> 
+          </div>
+        </div>
+        )
+       
+      }
     </nav>
     </>
   )
