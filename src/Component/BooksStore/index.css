@@ -1,4 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
+:root{
+    --green:#27ae60;
+    --dark-color:#219150;
+    --black:#444;
+    --light-color:#666;
+    --border:.1rem solid rgba(0,0,0,.1);
+    --border-hover:.1rem solid var(--black);
+    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+}
 
 .row .card {
   width: 250px;
@@ -7,4 +17,56 @@
 
 /* .card_book{
   /* box-shadow; */
+ /* home */
+ .home{
+  background: url(../../../public/assets/image/banner-bg.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 
+.home .row{
+  display:flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap:1.5rem;
+}
+
+.home .row .content{
+  flex:1 1 42rem;
+}
+
+.home .row .books-slider{
+  flex:1 1 42rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.home .row .books-slider a img{
+  height: 25rem;
+}
+
+.home .row .books-slider a:hover img{
+  transform: scale(.9);
+}
+
+.home .row .books-slider .stand{
+  width:100%;
+  margin-top: -2rem;
+}
+
+.home .row .content h3{
+  color:var(--black);
+  font-size: 4.5rem;
+}
+
+.home .row .content p{
+  color:var(--light-color);
+  font-size: 1.4rem;
+  line-height: 2;
+  padding:1rem 0;
+}
+
+/* for carousel */
+.carus_img{
+  height: 100px;
+}

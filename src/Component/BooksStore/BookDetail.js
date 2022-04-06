@@ -13,54 +13,50 @@ const BookDetail = () => {
         dispatch(getBooksDetail(params.id ))
     }, [dispatch, params.id])
   return (
-    <section className="product">
-	<div className="product__photo">
-		<div className="photo-container ml-5">
-			<div className="photo-main">
-				<div className="controls">
-					<i className="material-icons">share</i>
+    <div className="container container-fluid">
+
+    <div className="row f-flex justify-content-around">
+
+            <div className="col-12 col-lg-5 img-fluid" id="product_image">
+				
+                {/* <img src={BookWithSpesificId.images[0].imgUrl}  height="500" width="500" /> */}
+            </div>
+
+            <div className="col-12 col-lg-5 mt-5">
+                <h3>{BookWithSpesificId.subtitle}</h3>
+                <p id="product_id">{BookWithSpesificId.title}</p>
+
+                <hr />
+
+                <div className="rating-outer">
+                    <div className="rating-inner"></div>
+                </div>
+                <span id="no_of_reviews">({BookWithSpesificId.numReviews} Reviews)</span>
+
+                <hr />
+
+                <p id="product_price">${BookWithSpesificId.price}</p>
+                <div className="stockCounter d-inline">
+                    <span className="btn btn-danger minus">-</span>
+					<input type="number" className="form-control count d-inline" value="1" readOnly />
+                    <span className="btn btn-primary plus">+</span>
+
+                <hr />
+
+                <p>Status: <span id="stock_status"className={BookWithSpesificId.stock > 0 ? 'text-success' : 'text-danger'}>{ BookWithSpesificId.stock > 0 ? "In Stock" : "out Of stock"}</span></p>
+
+                <hr />
+
+                <h4 className="mt-2">Description:</h4>
+                <p>{BookWithSpesificId.description}</p>
+                <hr />				
+				<button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal">
+                            Submit Your Review
+                </button>
 				</div>
-				{/* <img src={BookWithSpesificId.images[0].imgUrl}  alt="green apple slice" /> */}
-			</div>
-			<div className="photo-album">
-				<ul>
-					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="green apple" /></li>
-					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303532/codepen/delicious-apples/half-apple.png" alt="half apple" /></li>
-					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303160/codepen/delicious-apples/green-apple-flipped.png" alt="green apple" /></li>
-					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303708/codepen/delicious-apples/apple-top.png" alt="apple top" /></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div className="product__info ml-5">
-		<div className="title">
-			<h1>{BookWithSpesificId.title}</h1>
-			<span>COD: 45999</span>
-		</div>
-		<div className="price">
-			 <span>$7.93</span>
-		</div>
-		<div className="variant">
-			<h3>SELECT A COLOR</h3>
-			<ul>
-				<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="green apple" /></li>
-				<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302752/codepen/delicious-apples/yellow-apple.png" alt="yellow apple" /></li>
-				<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302427/codepen/delicious-apples/orange-apple.png" alt="orange apple" /></li>
-				<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302285/codepen/delicious-apples/red-apple.png" alt="red apple" /></li>
-			</ul>
-		</div>
-		<div className="description">
-			<h3>BENEFITS</h3>
-			<ul>
-				<li>Apples are nutricious</li>
-				<li>Apples may be good for weight loss</li>
-				<li>Apples may be good for bone health</li>
-				<li>They're linked to a lowest risk of diabetes</li>
-			</ul>
-		</div>
-		<button className="buy--btn">ADD TO CART</button>
-	</div>
-</section>
+				</div>
+				</div>
+				</div>
   )
 }
 export default BookDetail;

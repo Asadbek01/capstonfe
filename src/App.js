@@ -1,6 +1,8 @@
 import './App.css';
 import "./Component/BooksStore/index.css"
 import { MainHomePage } from './Component/BooksStore/MainHomePage';
+// import '../../css/MainHomePage.css'
+
 import { Footer } from './Component/view/Footer';
 import { MyNavbar } from './Component/BooksStore/Navbar';
 import { CartPage } from './Component/BooksStore/CartPage';
