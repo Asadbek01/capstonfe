@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    marginLeft: theme.spacing(25)
   },
 }));
 
@@ -58,7 +59,7 @@ export default function SignUp() {
       console.log(reservation)
       try {
         let response = await fetch(
-          'http://localhost:3002/user/register',
+          'http://localhost:3002/users/register',
           {
             method: 'POST',
             body: JSON.stringify(reservation),
@@ -94,11 +95,9 @@ export default function SignUp() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
+       
         <Typography component="h1" variant="h5">
-          Sign up
+          Create an Account
         </Typography>
         <form className={classes.form} noValidate
         onSubmit={handleSubmit}
@@ -166,19 +165,13 @@ export default function SignUp() {
                                }}
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
           </Grid>
           <Button
             type="submit"
-            fullWidth
             variant="contained"
-            color="primary"
+           color='primary'
             className={classes.submit}
+            style={{width: "50%"}}
           >
             Sign Up
           </Button>

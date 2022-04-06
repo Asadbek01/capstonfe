@@ -50,8 +50,9 @@
   margin-right: 35%;
 }
 .logo_img{
-  width: 70%;
-  padding-left: 50px;
+  max-width: 50%;
+  height: auto;
+  /* padding-left: 50px; */
 }
 #search_field {
   height: 2.4rem;

@@ -14,9 +14,10 @@ export const MyNavbar = () => {
       <div className="col-12 col-md-3">
         <div className="navbar-brand">
          <img src='./assets/logo_nav-1.png'
-          className='logo_img' 
+          className=' responsive logo_img ml-5' 
           onClick={()=> navigate("/")}
           style={{cursor: "pointer"}}
+          alt="logo"
           />
         </div>
       </div>

@@ -13,7 +13,6 @@ const BookDetail = () => {
         dispatch(getBooksDetail(params.id ))
     }, [dispatch, params.id])
   return (
-      <>
     <section className="product">
 	<div className="product__photo">
 		<div className="photo-container ml-5">
@@ -21,7 +20,7 @@ const BookDetail = () => {
 				<div className="controls">
 					<i className="material-icons">share</i>
 				</div>
-				<img src={BookWithSpesificId.images[0].imgUrl}  alt="green apple slice" />
+				{/* <img src={BookWithSpesificId.images[0].imgUrl}  alt="green apple slice" /> */}
 			</div>
 			<div className="photo-album">
 				<ul>
@@ -62,9 +61,6 @@ const BookDetail = () => {
 		<button className="buy--btn">ADD TO CART</button>
 	</div>
 </section>
-
-</>
-
   )
 }
 export default BookDetail;
