@@ -6,6 +6,7 @@ import { Carousel } from 'react-bootstrap'
 
 const BookDetail = () => {
     const BookWithSpesificId = useSelector(state => state.cart.cartBooks)
+    // console
     const dispatch = useDispatch()
     
     const params = useParams()  
@@ -17,9 +18,10 @@ const BookDetail = () => {
 
     <div className="row f-flex justify-content-around">
 
-            <div className="col-12 col-lg-5 img-fluid" id="product_image">
+            <div className="col-12 col-lg-5 mt-5  img-fluid card mr-5" 
+            id="product_image ">
 				
-                {/* <img src={BookWithSpesificId.images[0].imgUrl}  height="500" width="500" /> */}
+                <img src={BookWithSpesificId.images[0].imgUrl}  height="100%"  />
             </div>
 
             <div className="col-12 col-lg-5 mt-5">
