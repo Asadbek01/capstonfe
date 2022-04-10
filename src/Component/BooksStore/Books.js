@@ -1,8 +1,9 @@
 import React from 'react'
 import { Alert, Button } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
-export const Products = ({book, bookSelected,changeBook}) => {
+export const Books = ({book, bookSelected,changeBook}) => {
   // const [isLoading, setIsLoading] = useState(true)
+  console.log(book)
   const navigate = useNavigate()
 
   return (
@@ -34,7 +35,6 @@ export const Products = ({book, bookSelected,changeBook}) => {
         variant="outline-success"
         className='ml-2'
         onClick={()=> navigate(`/detail/${book._id}`)}>View</Button>
-        {/* <Link to=`} variant="outline-primary" className="btn btn-block rounded-pill">View Details</Link> */}
       </div>
       </div>
     </div>

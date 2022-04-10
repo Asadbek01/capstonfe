@@ -61,22 +61,22 @@ const Login = () => {
         <Row className="d-flex justify-content-center mt-4">
           <Col md={4} xs={6} sm={3}>
               <div className="register-form">
-                <Button className="mb-3 rounded-pill ml-4"
-                 style={{ width: "80%"  }}
+                <Button className="mb-3 rounded-pill ml-5"
+                 style={{ width: "75%"  }}
                  variant="outline-primary"
                  ><a href="http://localhost:3002/users/googleLogin" className="text-info"><FcGoogle className="mr-2" style={{color: "white"}} />Google Login</a></Button>
               <Form onSubmit={handleSubmit}>
-              <div className="d-flex font-weight-bold mr-2">
-              <hr  style={{width: "30%"}} /> 
-              or
-              <hr  style={{width: "30%",}} /> 
+              <div className="d-flex font-weight-bold ml-5" >
+              <hr  style={{width: "100px" }} className='mr-2 ml-2' /> 
+                  or
+              <hr  style={{width: "100px"}}className='mr-2 ml-2' /> 
               </div>
 
                   <div>
                 <h2 className="text-center pb-2">
                   Welcome Back
                 </h2>
-                 <img className="LoginImage pb-3" src="https://www.freeiconspng.com/uploads/person-icon-8.png" />
+                 {/* <img className="LoginImage pb-3" src="https://www.freeiconspng.com/uploads/person-icon-8.png" /> */}
                   </div>
                 <Form.Group className="pb-3">
                   

@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBooks } from '../../redux/action'
-import { Products } from './Books'
+import { Books } from './Books'
 import { Alert, Button, Col, Jumbotron, Spinner } from 'react-bootstrap'
+import Pagination from 'react-js-pagination'
 
 
 
@@ -13,17 +14,20 @@ export const MainHomePage = () => {
   const books = useSelector((state) => state.book.stock)
   const errorCode = useSelector((state) => state.book.errorCode)
   const isLoading = useSelector((state) => state.book.isLoading)
+  const [currentPage, setCurrentPage] = useState(1)
   
- 
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getBooks())
-    // setIsLoading(false)
   }, [dispatch])
 
 
   const changeBook = (book) => setBookSelected(book);
+
+  // function setCurrentPageNo (pageNumber){
+  //   setCurrentPage(pageNumber )
+  // }
   
   return (
 <>
@@ -34,28 +38,7 @@ export const MainHomePage = () => {
     <Button variant="primary">Shop now</Button>
   </p>
 </Jumbotron>
-{/* <sectionid="home">
-<div class="row">
 
-    <div class="content">
-       
-    </div>
-
-    <div class="swiper books-slider">
-        <div class="swiper-wrapper">
-            <a href="#" class="swiper-slide"><img src="../../../public/assets/image/book-1.png" alt="" /></a>
-            <a href="#" class="swiper-slide"><img src="../../../public/assets/image/book-2.png" alt="" /></a>
-            <a href="#" class="swiper-slide"><img src="../../../public/assets/image/book-3.png" alt="" /></a>
-            <a href="#" class="swiper-slide"><img src="../../../public/assets/image/book-4.png" alt="" /></a>
-            <a href="#" class="swiper-slide"><img src="../../../public/assets/image/book-5.png" alt="" /></a>
-            <a href="#" class="swiper-slide"><img src="../../../public/assets/image/book-6.png" alt="" /></a>
-        </div>
-        <img src="image/stand.png" class="stand" alt="" />
-    </div>
-
-</div>
-
-</section> */}
     
         <div className='container-fluid'>
          <h1 id="products_heading">Latest Books</h1>
@@ -84,7 +67,7 @@ export const MainHomePage = () => {
       books.map((book, i) =>(
         <>
         
-       <Products
+       <Books
         book= {book}
         bookSelected={bookSelected}
         changeBook={changeBook}
@@ -92,11 +75,7 @@ export const MainHomePage = () => {
         
         
         />
-  {/* <Col md={8}>
-        <BookDetail
-        bookSelected={bookSelected}
-        />
-      </Col> */}
+ 
 
         </>
       ))
@@ -104,6 +83,21 @@ export const MainHomePage = () => {
       </div>
     </section>
   </div>
+   
+   {/* <div className='d-flex justify-content-center mt-5'>   */}
+  {/* <Pagination 
+   activePage={currentPage}
+  //  itemsCountPerPage={resPerPage}
+  //  totalItemsCount={bookCount}
+  //  onChange={setCurrentPageNo}
+   nextPageText={'Next'}
+   prevPageText={'Prev'}
+   firstPageText={'First'}
+   lastPageText={'Last'}
+   itemClass={'page-item'}
+   linkClass={'page-link'}
+ />
+   </div> */}
   
       </>  
   )
