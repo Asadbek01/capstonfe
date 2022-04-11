@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-export const SearchBooks = ({ history}) => {
+export const SearchBooks = ({ history }) => {
     const [ SearchQuery, setSearchQuery] = useState('')
     
     
@@ -10,7 +10,7 @@ export const SearchBooks = ({ history}) => {
      // prevent page refreshing
      const handleSubmit = (e) => {
         e.preventDefault()
-        
+
         if(SearchQuery.trim()){
             history.push(`/search/${SearchQuery}`)
         }else{
@@ -24,10 +24,10 @@ export const SearchBooks = ({ history}) => {
       }
 
   return (
-      <>
-    <form onSubmit={handleSubmit()}>
-
-         <div className="input-group">
+      
+      
+      <div className="input-group">
+             <form onSubmit={handleSubmit()}>
           <input
             type="text"
             id="search_field"
@@ -40,8 +40,8 @@ export const SearchBooks = ({ history}) => {
               <i className="fa fa-search" aria-hidden="true"></i>
             </button>
           </div>
-        </div>
     </form>
-</>
+        </div>
+
   )
 }

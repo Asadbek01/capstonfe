@@ -23,7 +23,7 @@ function App() {
    <Route path='/login' element={<Login/>}/>
    <Route path='/signUp' element={<SignUp/>}/>
      <Route path='/' element={<MainHomePage/>} exact/>
-     <Route path='/search/:SearchQuery' element={<MainHomePage/>}/>
+     {/* <Route path='/search/:SearchQuery' element={<MainHomePage/>}/> */}
      <Route path='/cart' element={<CartPage />}/>
      <Route path = "/detail/:id" element={<BookDetail />} exact />
      <Route path="*" element={<PageError />} />
