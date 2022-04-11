@@ -55,15 +55,15 @@ export const Footer = () => {
             <p class=""><a href="#" class="btn btn-tertiary">Contact Us</a></p>
           </div>
         </div> 
-        <div class="row ">
-          <div class="col-12 text-center">
+
+          <div class="col-10 text-center">
             <div class="copyright  pt-5">
               <p><small>&copy; BookStore - 2021-2022, All Rights Reserved
 </small></p>
             </div>
           </div>
         </div> 
-      </div>
+      
     </footer>
     </>
   )

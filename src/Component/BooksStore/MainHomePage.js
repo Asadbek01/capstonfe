@@ -47,7 +47,7 @@ export const MainHomePage = () => {
       {
       errorCode && (
         
-        <Alert variant="danger" style={{margin: "auto", width: "40%"}}>
+        <Alert variant="danger" style={{margin: "auto", width: "60%"}}>
           An error occurred: {errorCode}
         </Alert>
           )
@@ -55,10 +55,29 @@ export const MainHomePage = () => {
         {
           isLoading && (
             <div className='d-flex  m-auto'><Spinner style={{ margin: "auto", fontSize: "20px" }} animation="border" role="status" variant="primary" />
-              <h3 className="mt-1 ml-3 ">Loading...</h3>
+              <h2 className="mt-1 ml-3 ">Loading...</h2>
               </div>
               )
             }
+                 {/* {
+        isLoading &&  (        
+          
+            <div class="container">  
+            <div class="card">  
+            <div class="card-img skeleton">  
+            </div>  
+            <div class="card-body">  
+            <h2 class="card-title skeleton">  
+            </h2>  
+            <p class="card-intro skeleton">  
+            </p>  
+            </div>  
+            </div>  
+            
+            </div>   
+  
+  )
+  } */}
              
 
 

@@ -58,19 +58,19 @@ export const getBooksDetail = (id) =>
                        type: GET_BOOKS_DETAIL,
                        payload: data,
                    })
-                //    dispatch({
-                //        type: GET_BOOKS_LOADING,
-                //    })
+                   dispatch({
+                       type: GET_BOOKS_LOADING,
+                   })
                    
                } catch (error) {
                    dispatch({
                        type: GET_BOOKS_DETAIL_ERROR,
                        payload: error.message
                    })
-                //    dispatch({
-                //        type: GET_BOOKS_LOADING,
-                //        IsLoading: true
-                //    })
+                   dispatch({
+                       type: GET_BOOKS_LOADING,
+                       IsLoading: true
+                   })
                    
                }
        

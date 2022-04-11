@@ -41,6 +41,11 @@ export const BookDetailReducer = (state = InitialState.cart, action) =>{
                    ...state,
                    errorCode: action.payload
                }
+               case GET_BOOKS_LOADING:
+                return {
+                  ...state,
+                  isLoading: false,
+                }
         
    
    default:
