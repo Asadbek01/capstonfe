@@ -5,6 +5,7 @@ import { getBooks } from '../../redux/action'
 import { Books } from './Books'
 import { Alert, Button, Col, Jumbotron, Spinner } from 'react-bootstrap'
 import Pagination from 'react-js-pagination'
+import { useParams } from 'react-router-dom'
 
 
 
@@ -16,14 +17,15 @@ export const MainHomePage = () => {
   const isLoading = useSelector((state) => state.book.isLoading)
   // const [currentPage, setCurrentPage] = useState(1)
   
+  const params = useParams()
   const dispatch = useDispatch()
+  const SearchQuery = params.SearchQuery
   
   useEffect(() => {
-    dispatch(getBooks())
-  }, [dispatch])
+    dispatch(getBooks(SearchQuery))
+  }, [dispatch, SearchQuery])
   
  
-
   const changeBook = (book) => setBookSelected(book);
 
   // function setCurrentPageNo (pageNumber){

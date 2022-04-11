@@ -17,12 +17,12 @@ export const addToCartAction = (bookToAdd) => ({
     payload: index,
   })
 
-export const getBooks = () =>{
+export const getBooks = (SearchQuery = "") =>{
  return (dispatch) => {
          setTimeout( async() => {
 
             try {
-                const { data } =  await axios.get('http://localhost:3002/books')
+                const { data } =  await axios.get(`http://localhost:3002/books?search=${SearchQuery}`)
                 
                 dispatch({
                     type: GET_BOOKS,
