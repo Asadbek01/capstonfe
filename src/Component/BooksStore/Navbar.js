@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { Button, Card, Jumbotron } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import CartIndicator from '../view/CartIndicator'
+import { FaShoppingCart } from 'react-icons/fa'
 // import '../../assets/'
 export const MyNavbar = () => {
   const [bookSelected, setBookSelected] = useState(null)
   const [registered, setRegistered] = useState(true)
   const [ SearchQuery, setSearchQuery] = useState('')
   const books = useSelector((state) => state.book.stock)
+  const cartLength = useSelector(state => state.cart.cartBooks.length)
   const navigate = useNavigate()
 
   // prevent page refreshing
@@ -66,9 +67,13 @@ export const MyNavbar = () => {
         { registered ? (
       <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
         <div className='d-flex ml-5'>
-          <span className='ml-3'><CartIndicator /> </span> 
+        <Button color='primary' onClick={() => navigate('/cart')}>
+        <FaShoppingCart />
+        <span className='ml-2'>{cartLength}</span>
+      </Button> 
         </div>
       </div>
+      
         
         ):(
           <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">

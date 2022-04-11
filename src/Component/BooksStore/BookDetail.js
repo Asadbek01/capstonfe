@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getBooksDetail } from '../../redux/action'
+import { addToCartAction, getBooksDetail } from '../../redux/action'
 import { useParams } from 'react-router-dom'
-import { Carousel } from 'react-bootstrap'
 
 const BookDetail = () => {
     const BookWithSpesificId = useSelector(state => state.cart.cartBooks)
@@ -51,7 +50,12 @@ const BookDetail = () => {
                         <h4 className="mt-2">Description:</h4>
                         <p>{BookWithSpesificId.description}</p>
                         <hr />
-                        <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal">
+                        <button id="review_btn" type="button"
+                         className="btn btn-primary mt-4"
+                          data-toggle="modal" data-target="#ratingModal"
+                          onClick={() => {
+                            dispatch(addToCartAction(BookWithSpesificId)) }}
+                          >
                             Add To Cart
                         </button>
                     </div>
