@@ -52,7 +52,7 @@ const BookDetail = () => {
                         <p>{BookWithSpesificId.description}</p>
                         <hr />
                         <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal">
-                            Submit Your Review
+                            Add To Cart
                         </button>
                     </div>
                 </div>

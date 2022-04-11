@@ -8,10 +8,10 @@ export const Books = ({book, bookSelected,changeBook}) => {
   const navigate = useNavigate()
   
   
-  // const dispatch = useDispatch()
-  // useEffect(()=> {
-  //   dispatch(getBooks())
-  // }, [dispatch])
+  const dispatch = useDispatch()
+  useEffect(()=> {
+    dispatch(getBooks())
+  }, [dispatch])
   
   return (
     <>      {

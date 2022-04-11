@@ -10,18 +10,19 @@ import Pagination from 'react-js-pagination'
 
 export const MainHomePage = () => {
   const [bookSelected, setBookSelected] = useState(null)
-
+  
   const books = useSelector((state) => state.book.stock)
   const errorCode = useSelector((state) => state.book.errorCode)
   const isLoading = useSelector((state) => state.book.isLoading)
-  const [currentPage, setCurrentPage] = useState(1)
+  // const [currentPage, setCurrentPage] = useState(1)
   
   const dispatch = useDispatch()
-
+  
   useEffect(() => {
     dispatch(getBooks())
   }, [dispatch])
-
+  
+ 
 
   const changeBook = (book) => setBookSelected(book);
 
@@ -31,17 +32,8 @@ export const MainHomePage = () => {
   
   return (
 <>
-<Jumbotron>
-<h1>upto 75% off</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam deserunt nostrum accusamus. Nam alias sit necessitatibus, aliquid ex minima at!</p>
-  <p>
-    <Button variant="primary">Shop now</Button>
-  </p>
-</Jumbotron>
-
-    
-        <div className='container-fluid'>
-         <h1 id="products_heading">Latest Books</h1>
+            <div className='container-fluid'>
+         <h1 className='ml-3' id="products_heading">Latest Books</h1>
          <section  id="products" className="container mt-5">
       <div className="row">
       {

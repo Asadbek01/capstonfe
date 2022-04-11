@@ -149,7 +149,7 @@
 
   
 
-  *, *:after, *:before {  
+  /* *, *:after, *:before {  
     box-sizing: border-box;  
    }  
    body {  
@@ -217,4 +217,4 @@
     flex-wrap: wrap;  
    }  
 
-  
+   */
