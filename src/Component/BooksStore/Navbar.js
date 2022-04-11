@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Card, Jumbotron } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
-import { Link, Route, Routes, useNavigate } from 'react-router-dom'
+import {  Route, useNavigate } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
 import { SearchBooks } from '../view/SearchBooks'
 // import '../../assets/'
@@ -13,7 +13,7 @@ export const MyNavbar = () => {
 
  
   return (
-    
+     
     <>
    
      <nav className="navbar row">
@@ -29,9 +29,8 @@ export const MyNavbar = () => {
       </div>
 
       <div className="col-12 col-md-6 mt-2 mt-md-0">
-        <Routes>
-        <Route render={({ history }) => <SearchBooks history={history} /> } />
-        </Routes>
+
+        <Route render={({ history }) => <SearchBooks history={history}/> } />
       </div>
       
 
@@ -48,7 +47,7 @@ export const MyNavbar = () => {
         <FaShoppingCart />
         <span className='ml-2'>{cartLength}</span>
       </Button> 
-        </div>
+          </div>
       </div>
       
         
