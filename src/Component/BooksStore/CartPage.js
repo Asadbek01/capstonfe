@@ -18,7 +18,7 @@ export const CartPage = () => {
             </Button>
             <img
               className="book-cover-small"
-              src={book.images[0].imageUrl}
+              src={book.images[0].imgUrl}
               alt="book selected"
             />
             {book.title}
