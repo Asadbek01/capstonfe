@@ -10,10 +10,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Container, Row } from 'react-bootstrap';
 import Login from './Component/view/LoginPage';
 import SignUp from './Component/view/SignUpPage';
-import BookDetail  from "./Component/BooksStore/BookDetail"
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Footer } from './Component/view/Footer/Footer';
 import { PageError } from './Component/view/PageError';
+import BookDetail from './Component/view/BookDetail';
 function App() {
   return (
   <Router>

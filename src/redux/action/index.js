@@ -9,6 +9,8 @@ export const GET_BOOKS_DETAIL = "GET_BOOKS_DETAIL"
 export const GET_BOOKS_DETAIL_ERROR = "GET_BOOKS_DETAIL_ERROR"
 export const GET_SEARCHED_BOOKS = "GET_SEARCHED_BOOKS"
 export const ERROR_SEARCHED_BOOKS = "ERROR_SEARCHED_BOOKS"
+export const GET_ALL_BOOKS_IN_CART = "GET_ALL_BOOKS_IN_CART"
+export const GET_ERROR_BOOKS_IN_CART = "GET_ERROR_BOOKS_IN_CART"
 
 
 export const addToCartAction = (bookToAdd) => ({
@@ -21,8 +23,7 @@ export const addToCartAction = (bookToAdd) => ({
   })
 
 export const getBooks = () =>{
- return (dispatch) => {
-         setTimeout( async() => {
+ return async (dispatch) => {
 
             try {
                 const { data } =  await axios.get(`http://localhost:3002/books`)
@@ -46,7 +47,7 @@ export const getBooks = () =>{
                 })
                 
             }
-        }, 1000)
+        
     }
 }
 
@@ -73,32 +74,27 @@ export const getSearchedBooks = (SearchQuery) =>{
    
 
 
-export const getBooksDetail = (id) =>
-    async (dispatch) => {
+export const getBooksDetail = (id) =>{
+   return async (dispatch) => {
                try {
                    
-                   const { data } =  await axios.get(`http://localhost:3002/books/${id}`)
-                   
+                   const { data } =  await axios.get("http://localhost:3002/books/" + id)
+                
                    dispatch({
                        type: GET_BOOKS_DETAIL,
                        payload: data,
                    })
-                   dispatch({
-                       type: GET_BOOKS_LOADING,
-                   })
+                 
                    
                } catch (error) {
                    dispatch({
                        type: GET_BOOKS_DETAIL_ERROR,
                        payload: error.message
                    })
-                   dispatch({
-                       type: GET_BOOKS_LOADING,
-                       IsLoading: true
-                   })
+                   
                    
                }
-       
+            }
    }
 // export const getBooksAction = () => {
 //     return (dispatch, getState) => {

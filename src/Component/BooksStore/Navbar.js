@@ -8,7 +8,7 @@ import { getSearchedBooks } from '../../redux/action'
 
 export const MyNavbar = () => {
   const [registered, setRegistered] = useState(true)
-  const cartLength = useSelector(state => state.cart.cartBooks.length)
+const cartLength = useSelector(state => state.cart.cartBooks.length)
   const SearchedBooks = useSelector(state=>state.book.searchedBook)
   
   const navigate = useNavigate()
@@ -140,7 +140,6 @@ export const MyNavbar = () => {
   </div>
  </section>
  </div>
-<h1 className='ml-3' id="products_heading">Latest Books</h1>
 
 
     </>

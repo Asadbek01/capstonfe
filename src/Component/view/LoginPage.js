@@ -4,10 +4,8 @@ import { MainHomePage } from "../BooksStore/MainHomePage.js";
 import { useNavigate } from "react-router";
  import { FcGoogle } from "react-icons/fc";
 const Login = () => {
-    const navigate = useNavigate()
     const [ register, setRegister] = useState(false)
   const [registration, setRegistration] = useState({
-   
     email: "",
     password: "",
     rememberMe: false

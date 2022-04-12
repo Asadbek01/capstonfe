@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addToCartAction, getBooksDetail } from '../../redux/action'
+import { addToCartAction, getBooksDetail, removeFromCartAction } from '../../redux/action'
 import { useParams } from 'react-router-dom'
 
 const BookDetail = () => {
-    const BookWithSpesificId = useSelector(state => state.cart.cartBooks)
+    const BookWithSpesificId = useSelector(state => state.bookWithSpecificId.bookWithId)
+    const cartLength = useSelector(state => state.cart.cartBooks.length)
+
     // console
     const dispatch = useDispatch()
 
     const params = useParams()
     useEffect(() => {
         dispatch(getBooksDetail(params.id))
-    }, [dispatch, params.id])
+    }, [params.id])
+    
     return (
         <div className="container container-fluid">
-
             <div className="row f-flex justify-content-around">
 
                 <div className="col-12 col-lg-5 mt-5  img-fluid card mr-5"
                     id="product_image ">
-                    {/* <img src={BookWithSpesificId.images.imgUrl}  height="100%"  /> */}
+                    <img src={BookWithSpesificId.images && BookWithSpesificId.images.length > 0 ? BookWithSpesificId.images[0].imgUrl : ""}  height="100%"  /> 
                 </div>
 
                 <div className="col-12 col-lg-5 mt-5">
@@ -37,9 +39,14 @@ const BookDetail = () => {
 
                     <p id="product_price">${BookWithSpesificId.price}</p>
                     <div className="stockCounter d-inline">
-                        <span className="btn btn-danger minus">-</span>
-                        <input type="number" className="form-control count d-inline" value="1" readOnly />
-                        <span className="btn btn-primary plus">+</span>
+                        <span className="btn btn-danger minus"
+                         onClick={() => {
+                            dispatch(removeFromCartAction(i)) }}>-</span>
+                        <input type="number" className="form-control count d-inline" value={cartLength} readOnly />
+                        <span className="btn btn-primary plus"
+                         onClick={() => {
+                            dispatch(addToCartAction(BookWithSpesificId)) }}
+                        >+</span>
 
                         <hr />
 
@@ -54,8 +61,7 @@ const BookDetail = () => {
                          className="btn btn-primary mt-4"
                           data-toggle="modal" data-target="#ratingModal"
                           onClick={() => {
-                            dispatch(addToCartAction(BookWithSpesificId)) }}
-                          >
+                            dispatch(addToCartAction(BookWithSpesificId)) }}>
                             Add To Cart
                         </button>
                     </div>

@@ -39,9 +39,11 @@ export const MainHomePage = () => {
   
   return (
 <>
+      <h1 className='ml-3' id="products_heading">Latest Books</h1>
             <div className='container-fluid'>
          <section  id="products" className="container mt-5">
       <div className="row">
+
       {
       errorCode && (
         
