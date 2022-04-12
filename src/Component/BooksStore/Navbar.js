@@ -1,16 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Card, Jumbotron } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
-import {  Route, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import {  Link, Route, Routes, useNavigate } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
-import { SearchBooks } from '../view/SearchBooks'
+import { getSearchedBooks } from '../../redux/action'
 // import '../../assets/'
 export const MyNavbar = () => {
   const [registered, setRegistered] = useState(true)
   const books = useSelector((state) => state.book.stock)
   const cartLength = useSelector(state => state.cart.cartBooks.length)
-  const navigate = useNavigate()
+  const SearchedBooks = useSelector(state=>state.book.searchedBook)
 
+  const navigate = useNavigate()
+  const [ SearchQuery, setSearchQuery] = useState('')
+    
+    
+    const dispatch = useDispatch()
+    
+  // prevent page refreshing
+  const handleSubmit = (e) => {
+     e.preventDefault()
+
+  }
+ 
+   
+   // search input onChange event
+   const handleInputChange = (e) => {
+     setSearchQuery(e.target.value)
+   }
+
+   useEffect(() =>{
+     dispatch(getSearchedBooks(SearchQuery))
+   }, [SearchQuery]);
+   
  
   return (
      
@@ -29,17 +51,26 @@ export const MyNavbar = () => {
       </div>
 
       <div className="col-12 col-md-6 mt-2 mt-md-0">
-
-        <Route render={({ history }) => <SearchBooks history={history}/> } />
+      <form onSubmit={handleSubmit}>
+      <div className="input-group">
+          <input
+            type="text"
+            id="search_field"
+            className="form-control"
+            placeholder="Enter the book you want..."
+            onChange={(e) => handleInputChange(e)}
+            value={SearchQuery}
+          />
+          <div className="input-group-append">
+            <button id="search_btn" className="btn btn-primary">
+              <i className="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+    </form>
       </div>
-      
-
 
       
-
-
-
-
         { registered ? (
       <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
         <div className='d-flex ml-5'>
@@ -62,13 +93,46 @@ export const MyNavbar = () => {
        
       }
     </nav>
-    <Jumbotron>
-<h1>upto 75% off</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam deserunt nostrum accusamus. Nam alias sit necessitatibus, aliquid ex minima at!</p>
-  <p>
-    <Button variant="primary">Shop now</Button>
-  </p>
-</Jumbotron>
+
+    {
+        SearchedBooks?.filter((book) => {
+          if(!SearchQuery) return false
+          if(book.title.toLowerCase().includes(SearchQuery.toLowerCase())) return true
+        }).map((book) => (
+          <div className="col-sm-12 col-md-6 col-lg-3 my-3">
+          <div  
+          style={{ cursor: "pointer" }}>
+          <div className='card card_book'>
+            
+          <img
+            className="card-img-top mx-auto"
+            src={book.images[0].imgUrl}
+            />
+          <div className="card-body d-flex flex-column ">
+            <h5 className="card-title">
+            <Link to={`/detail/${book._id}`}>{book.title}</Link>
+            </h5>
+            <div className="ratings mt-auto">
+              <div className="rating-outer">
+                <div className="rating-inner"></div>
+              </div>
+              <span id="no_of_reviews">({book.ratings} Reviews)</span>
+            </div>
+            <div className='d-flex'>
+            <Button style={{width: "50%"}} variant="outline-danger" className='ml-2'>${book.price}</Button>
+            <Button 
+            style={{width: "50%"}} 
+            variant="outline-success"
+            className='ml-2'
+            ><Link to={`detail/${book._id}`}>View </Link></Button>
+          </div>
+          </div>
+        </div> 
+        </div>
+        </div>
+        ))
+      } 
+<h1 className='ml-3' id="products_heading">Latest Books</h1>
 
 
     </>

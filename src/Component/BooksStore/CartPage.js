@@ -18,7 +18,7 @@ export const CartPage = () => {
             </Button>
             <img
               className="book-cover-small"
-              src={book.imageUrl}
+              src={book.images[0].imageUrl}
               alt="book selected"
             />
             {book.title}
@@ -27,7 +27,7 @@ export const CartPage = () => {
       </ul>
     </Col>
     <Row>
-      <Col sm={12} className="font-weight-bold">
+      <Col sm={12} className="font-weight-bold ml-5">
         TOTAL:{" "}
         {book.reduce(
           (acc, currentValue) => acc + parseFloat(currentValue.price),

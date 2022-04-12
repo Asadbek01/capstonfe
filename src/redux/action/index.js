@@ -7,6 +7,9 @@ export const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 export const SET_USER_NAME = "SET_USER_NAME "
 export const GET_BOOKS_DETAIL = "GET_BOOKS_DETAIL"
 export const GET_BOOKS_DETAIL_ERROR = "GET_BOOKS_DETAIL_ERROR"
+export const GET_SEARCHED_BOOKS = "GET_SEARCHED_BOOKS"
+export const ERROR_SEARCHED_BOOKS = "ERROR_SEARCHED_BOOKS"
+
 
 export const addToCartAction = (bookToAdd) => ({
     type: ADD_TO_CART,
@@ -17,12 +20,12 @@ export const addToCartAction = (bookToAdd) => ({
     payload: index,
   })
 
-export const getBooks = (SearchQuery = "") =>{
+export const getBooks = () =>{
  return (dispatch) => {
          setTimeout( async() => {
 
             try {
-                const { data } =  await axios.get(`http://localhost:3002/books?search=${SearchQuery}`)
+                const { data } =  await axios.get(`http://localhost:3002/books`)
                 
                 dispatch({
                     type: GET_BOOKS,
@@ -46,6 +49,28 @@ export const getBooks = (SearchQuery = "") =>{
         }, 1000)
     }
 }
+
+export const getSearchedBooks = (SearchQuery) =>{
+    return async (dispatch) => {
+               try {
+                   const { data } =  await axios.get(`http://localhost:3002/books?search=${SearchQuery}`)
+                   
+                   dispatch({
+                    type: GET_SEARCHED_BOOKS,
+                    payload: data,
+                })
+             
+                
+            } catch (error) {
+                dispatch({
+                    type: ERROR_SEARCHED_BOOKS,
+                    payload: error.message
+                })
+                   
+               }
+       }
+   }
+   
 
 
 export const getBooksDetail = (id) =>

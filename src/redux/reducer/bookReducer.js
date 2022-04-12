@@ -1,4 +1,4 @@
-import {  GET_BOOKS, GET_BOOKS_ERROR, GET_BOOKS_LOADING,GET_BOOKS_DETAIL,GET_BOOKS_DETAIL_ERROR} from "../action";
+import {  GET_BOOKS, GET_BOOKS_ERROR, GET_BOOKS_LOADING,GET_BOOKS_DETAIL,GET_BOOKS_DETAIL_ERROR, ADD_TO_CART, GET_SEARCHED_BOOKS} from "../action";
 import { InitialState } from "../store";
 
 export const BookReducer = (state = InitialState.book, action) =>{
@@ -8,6 +8,12 @@ export const BookReducer = (state = InitialState.book, action) =>{
                 ...state,
             stock: action.payload
             }
+            case GET_SEARCHED_BOOKS :
+            return {
+                ...state,
+                searchedBook: action.payload
+            }
+
 
             case GET_BOOKS_ERROR :
             return {
@@ -46,6 +52,11 @@ export const BookDetailReducer = (state = InitialState.cart, action) =>{
                   ...state,
                   isLoading: false,
                 }
+                case ADD_TO_CART:
+                    return{
+                        ...state,
+                        cartBooks: action.payload
+                    }
         
    
    default:

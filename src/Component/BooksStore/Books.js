@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { getBooks } from '../../redux/action'
 export const Books = ({book, bookSelected,changeBook}) => {
   const isLoading = useSelector((state) => state.book.isLoading)
-  const navigate = useNavigate()
   
   
   const dispatch = useDispatch()
@@ -35,7 +34,6 @@ export const Books = ({book, bookSelected,changeBook}) => {
 }
 
     <div className="col-sm-12 col-md-6 col-lg-3 my-3">
-      
     <div   className={bookSelected?.id === book.id ? "border-thick mt-3" : "mt-3"}
     onClick={() => changeBook(book)}
     style={{ cursor: "pointer" }}>
@@ -62,7 +60,7 @@ export const Books = ({book, bookSelected,changeBook}) => {
         style={{width: "50%"}} 
         variant="outline-success"
         className='ml-2'
-        onClick={()=> navigate(`/detail/${book._id}`)}>View</Button>
+        ><Link to={`detail/${book._id}`}>View </Link></Button>
       </div>
       </div>
     </div> 

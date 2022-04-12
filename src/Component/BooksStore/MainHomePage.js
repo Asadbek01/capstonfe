@@ -5,7 +5,6 @@ import { getBooks } from '../../redux/action'
 import { Books } from './Books'
 import { Alert, Button, Col, Jumbotron, Spinner } from 'react-bootstrap'
 import Pagination from 'react-js-pagination'
-import { useParams } from 'react-router-dom'
 
 
 
@@ -16,14 +15,13 @@ export const MainHomePage = () => {
   const errorCode = useSelector((state) => state.book.errorCode)
   const isLoading = useSelector((state) => state.book.isLoading)
   // const [currentPage, setCurrentPage] = useState(1)
-  
-  const params = useParams()
   const dispatch = useDispatch()
-  const SearchQuery = params.SearchQuery
   
-  useEffect(() => {
-    dispatch(getBooks(SearchQuery))
-  }, [dispatch, SearchQuery])
+  
+  useEffect(() =>{
+    dispatch(getBooks())
+  }, []);
+  
   
  
   const changeBook = (book) => setBookSelected(book);
@@ -35,7 +33,6 @@ export const MainHomePage = () => {
   return (
 <>
             <div className='container-fluid'>
-         <h1 className='ml-3' id="products_heading">Latest Books</h1>
          <section  id="products" className="container mt-5">
       <div className="row">
       {
@@ -72,8 +69,7 @@ export const MainHomePage = () => {
   
   )
   } */}
-             
-
+        
 
 
     {
@@ -93,6 +89,7 @@ export const MainHomePage = () => {
         </>
       ))
 }
+
       </div>
     </section>
   </div>
