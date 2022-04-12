@@ -5,12 +5,12 @@ import {  Link, Route, Routes, useNavigate } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
 import { getSearchedBooks } from '../../redux/action'
 // import '../../assets/'
+
 export const MyNavbar = () => {
   const [registered, setRegistered] = useState(true)
-  const books = useSelector((state) => state.book.stock)
   const cartLength = useSelector(state => state.cart.cartBooks.length)
   const SearchedBooks = useSelector(state=>state.book.searchedBook)
-
+  
   const navigate = useNavigate()
   const [ SearchQuery, setSearchQuery] = useState('')
     
@@ -30,8 +30,8 @@ export const MyNavbar = () => {
    }
 
    useEffect(() =>{
-     dispatch(getSearchedBooks(SearchQuery))
-   }, [SearchQuery]);
+    dispatch(getSearchedBooks(SearchQuery))
+  }, [SearchQuery]);
    
  
   return (
@@ -93,45 +93,53 @@ export const MyNavbar = () => {
        
       }
     </nav>
+    <div className='container-fluid'>
+         <section  id="products" className="container mt-5">
+      <div className="row">
 
     {
-        SearchedBooks?.filter((book) => {
-          if(!SearchQuery) return false
-          if(book.title.toLowerCase().includes(SearchQuery.toLowerCase())) return true
-        }).map((book) => (
-          <div className="col-sm-12 col-md-6 col-lg-3 my-3">
-          <div  
-          style={{ cursor: "pointer" }}>
-          <div className='card card_book'>
-            
-          <img
-            className="card-img-top mx-auto"
-            src={book.images[0].imgUrl}
-            />
-          <div className="card-body d-flex flex-column ">
-            <h5 className="card-title">
-            <Link to={`/detail/${book._id}`}>{book.title}</Link>
-            </h5>
-            <div className="ratings mt-auto">
-              <div className="rating-outer">
-                <div className="rating-inner"></div>
-              </div>
-              <span id="no_of_reviews">({book.ratings} Reviews)</span>
-            </div>
-            <div className='d-flex'>
-            <Button style={{width: "50%"}} variant="outline-danger" className='ml-2'>${book.price}</Button>
-            <Button 
-            style={{width: "50%"}} 
-            variant="outline-success"
-            className='ml-2'
-            ><Link to={`detail/${book._id}`}>View </Link></Button>
+    SearchedBooks?.filter((book) => {
+      if(!SearchQuery) return false
+      if(book.title.toLowerCase().includes(SearchQuery.toLowerCase())) return true
+    }).map((book) => (
+
+      <div className="col-sm-12 col-md-6 col-lg-3 my-3">
+      <div  
+      style={{ cursor: "pointer" }}>
+      <div className='card card_book'>
+        
+      <img
+        className="card-img-top mx-auto"
+        src={book.images[0].imgUrl}
+        />
+      <div className="card-body d-flex flex-column ">
+        <h5 className="card-title">
+        <Link to={`/detail/${book._id}`}>{book.title}</Link>
+        </h5>
+        <div className="ratings mt-auto">
+          <div className="rating-outer">
+            <div className="rating-inner"></div>
           </div>
-          </div>
-        </div> 
+          <span id="no_of_reviews">({book.ratings} Reviews)</span>
         </div>
-        </div>
-        ))
-      } 
+        <div className='d-flex'>
+        <Button style={{width: "50%"}} variant="outline-danger" className='ml-2'>${book.price}</Button>
+        <Button 
+        style={{width: "50%"}} 
+        variant="outline-success"
+        className='ml-2'
+        ><Link to={`detail/${book._id}`}>View </Link></Button>
+      </div>
+      </div>
+    </div> 
+    </div>
+    </div>
+
+    ))
+}
+  </div>
+ </section>
+ </div>
 <h1 className='ml-3' id="products_heading">Latest Books</h1>
 
 

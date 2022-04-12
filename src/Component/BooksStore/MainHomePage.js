@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getBooks } from '../../redux/action'
+import { getBooks, getSearchedBooks } from '../../redux/action'
 import { Books } from './Books'
 import { Alert, Button, Col, Jumbotron, Spinner } from 'react-bootstrap'
 import Pagination from 'react-js-pagination'
@@ -10,14 +10,21 @@ import Pagination from 'react-js-pagination'
 
 export const MainHomePage = () => {
   const [bookSelected, setBookSelected] = useState(null)
+
   
   const books = useSelector((state) => state.book.stock)
   const errorCode = useSelector((state) => state.book.errorCode)
   const isLoading = useSelector((state) => state.book.isLoading)
+ 
+
+
   // const [currentPage, setCurrentPage] = useState(1)
   const dispatch = useDispatch()
   
-  
+
+
+
+
   useEffect(() =>{
     dispatch(getBooks())
   }, []);
@@ -89,6 +96,7 @@ export const MainHomePage = () => {
         </>
       ))
 }
+
 
       </div>
     </section>
