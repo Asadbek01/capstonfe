@@ -6,8 +6,9 @@ import { useParams } from 'react-router-dom'
 const BookDetail = () => {
     const BookWithSpesificId = useSelector(state => state.bookWithSpecificId.bookWithId)
     const cartLength = useSelector(state => state.cart.cartBooks.length)
+    const books = useSelector((state) => state.book.stock)
 
-    // console
+
     const dispatch = useDispatch()
 
     const params = useParams()
@@ -39,9 +40,13 @@ const BookDetail = () => {
 
                     <p id="product_price">${BookWithSpesificId.price}</p>
                     <div className="stockCounter d-inline">
-                        <span className="btn btn-danger minus"
-                         onClick={() => {
-                            dispatch(removeFromCartAction(i)) }}>-</span>
+
+                                <span className="btn btn-danger minus"
+                                 onClick={() => {
+                                    dispatch(removeFromCartAction())}}>-</span>
+                                
+                            
+                            
                         <input type="number" className="form-control count d-inline" value={cartLength} readOnly />
                         <span className="btn btn-primary plus"
                          onClick={() => {

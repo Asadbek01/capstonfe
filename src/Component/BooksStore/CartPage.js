@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Button, Card, Col, Container, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { removeFromCartAction } from '../../redux/action'
@@ -10,21 +10,23 @@ export const CartPage = () => {
   return (
     <Row>
     <Col sm={12}>
-      <ul style={{ listStyle: "none" }}>
         {book.map((book, i) => (
-          <li key={i} className="my-4">
+          <Card key={i} className="my-4">
+
+
+
             <Button variant="danger" onClick={() => dispatch(removeFromCartAction(i))}>
               remove
             </Button>
-            <img
+            <Card.Img
               className="book-cover-small"
               src={book.images[0].imgUrl}
               alt="book selected"
             />
             {book.title}
-          </li>
+          </Card>
         ))}
-      </ul>
+
     </Col>
     <Row>
       <Col sm={12} className="font-weight-bold ml-5">

@@ -3,6 +3,7 @@ import { Alert, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { getBooks } from '../../redux/action'
+import { HeartFill } from "react-bootstrap-icons"
 export const Books = ({book, bookSelected,changeBook}) => {
   const isLoading = useSelector((state) => state.book.isLoading)
   
@@ -52,7 +53,7 @@ export const Books = ({book, bookSelected,changeBook}) => {
           <div className="rating-outer">
             <div className="rating-inner"></div>
           </div>
-          <span id="no_of_reviews">({book.ratings} Reviews)</span>
+          <HeartFill color="red" size={20} className='mx-3' />
         </div>
         <div className='d-flex'>
         <Button style={{width: "50%"}} variant="outline-danger" className='ml-2'>${book.price}</Button>

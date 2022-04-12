@@ -23,7 +23,7 @@ function App() {
    <Route path='/signUp' element={<SignUp/>}/>
      <Route path='/' element={<MainHomePage/>} exact/>
      <Route path='/cart' element={<CartPage />}/>
-     <Route path = "/detail/:id" element={<BookDetail />} exact />
+     <Route path = "/detail/:id" element={<BookDetail />} />
      <Route path="*" element={<PageError />} />
      </Routes>
    <Footer />
