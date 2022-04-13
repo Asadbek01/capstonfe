@@ -4,14 +4,14 @@ import { MainHomePage } from "../BooksStore/MainHomePage.js";
 import { useNavigate } from "react-router";
  import { FcGoogle } from "react-icons/fc";
 
- import { Login, ClearErrors } from "../../redux/action/index.js";
+ import {  ClearErrors, Login } from "../../redux/action/index.js";
 import { useDispatch, useSelector } from "react-redux";
 
 
 
 
 
-const UserLogin = ({history}) => {
+const UserLogin = () => {
 
 
   // const [registration, setRegistration] = useState({
@@ -25,7 +25,7 @@ const UserLogin = ({history}) => {
   const [rememberMe, setrememberMe] = useState(false)
 
   const dispatch = useDispatch()
-  const {isAuth, loading, error} = useSelector(state=> state.user)
+  const {isAuth, loggedUser, loading, error} = useSelector(state=> state.user)
 
 
   useEffect(()=> {
@@ -35,7 +35,7 @@ if(error){
   alert.error(error)
   dispatch(ClearErrors())
 }
-  },[dispatch, isAuth, error, history])
+  },[dispatch, isAuth, error])
 
 
   // const handleInput = (fieldName, value) => {

@@ -18,6 +18,10 @@ export const  CLEAR_ERRORS= "CLEAR_ERRORS"
 export const USER_REGISTER_REQUEST = "USER_RWGISTER_REQUEST"
 export const USER_REGISTER  = "USER_REGISTER"
 export const USER_REGISTER_ERROR = "USER_REGISTER_ERROR"
+export const USER_LOAD_REQUEST  = "USER_LOAD_REQUEST"
+export const USER_LOAD  = "USER_LOAD"
+export const USER_LOAD_ERROR  = "USER_LOAD_ERROR"
+
 
 export const addToCartAction = (bookToAdd) => ({
     type: ADD_TO_CART,
@@ -106,7 +110,7 @@ export const getBooksDetail = (id) =>{
 
 
    
-   export const Login = (email, password) =>{
+   export const Login = (email, password,rememberMe) =>{
     return async (dispatch) => {
                 try {
                     
@@ -120,7 +124,7 @@ export const getBooksDetail = (id) =>{
                             'Content-Type': 'application/json'
                         }
                     }
-                    const { data } =  await axios.post("http://localhost:3002/users/login", {email, password}, config)
+                    const { data } =  await axios.post("http://localhost:3002/users/login", {email, password, rememberMe}, config)
                     dispatch({
                         type: USER_LOGIN,
                         payload: data.user
@@ -171,6 +175,33 @@ export const getBooksDetail = (id) =>{
                 }
              }
     }
+
+// Load User
+    export const LoadUser = () =>{
+        return async (dispatch) => {
+                    try {
+                        const config ={
+                            headers: {
+                                "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU2YzFhYjk2YjZkNzkzYTBhMDZmYTciLCJpYXQiOjE2NDk4NTI4NTksImV4cCI6MTY1MDQ1NzY1OX0.SH6C5avMF24pr7z7CnbUIN_stUbYcKiJM1cUzeMZZQM"
+                            }
+                        }
+                        
+                        const { data } =  await axios.get("http://localhost:3002/users/me", config)
+                        dispatch({
+                            type: USER_LOAD,
+                            payload: data
+                        })
+                        
+                    } catch (error) {
+                        dispatch({
+                            type: USER_LOAD_ERROR,
+                            payload: error.response.data.message,
+                        })
+                        
+                        
+                    }
+                 }
+        }
 export const ClearErrors =() =>{
     return async (dispatch) => {
     dispatch({type: CLEAR_ERRORS})

@@ -24,7 +24,6 @@ export const InitialState ={
         errorCode: null
     },
     user:  {
-        registeredUser: [],
         loggedUser: [],
         loading: true,
         isAuth: false,
