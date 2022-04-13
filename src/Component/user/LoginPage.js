@@ -1,58 +1,97 @@
-import React, { useState } from "react";
-import { Form, Button,  Row, Col, Navbar, Container } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Form, Button,  Row, Col, Navbar, Container, Spinner } from "react-bootstrap";
 import { MainHomePage } from "../BooksStore/MainHomePage.js";
 import { useNavigate } from "react-router";
  import { FcGoogle } from "react-icons/fc";
-const Login = () => {
-    const [ register, setRegister] = useState(false)
-  const [registration, setRegistration] = useState({
-    email: "",
-    password: "",
-    rememberMe: false
-  });
 
-  const handleInput = (fieldName, value) => {
-    setRegistration({
-      ...registration,
-      [fieldName]: value,
-    });
-  };
+ import { Login, ClearErrors } from "../../redux/action/index.js";
+import { useDispatch, useSelector } from "react-redux";
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch("http://localhost:3002/users/login", {
-        method: "POST",
-        body: JSON.stringify(registration),
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
-      if (response.ok) {
-        setRegister(true)
-        const user = await response.json();
-        localStorage.setItem("MyToken", user.accessToken);
-        setRegistration({
-          email: "",
-          password: "",
-          rememberMe: false
-        });
-      } else {
-        console.log("Error while fetched!");
-      }
-    } catch (error) {
-        console.log(error)
-    }
-  };
+
+
+
+
+const UserLogin = ({history}) => {
+
+
+  // const [registration, setRegistration] = useState({
+  //   email: "",
+  //   password: "",
+  //   rememberMe: false
+  // });
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [rememberMe, setrememberMe] = useState(false)
+
+  const dispatch = useDispatch()
+  const {isAuth, loading, error} = useSelector(state=> state.user)
+
+
+  useEffect(()=> {
+
+
+if(error){
+  alert.error(error)
+  dispatch(ClearErrors())
+}
+  },[dispatch, isAuth, error, history])
+
+
+  // const handleInput = (fieldName, value) => {
+  //   setRegistration({
+  //     ...registration,
+  //     [fieldName]: value,
+  //   });
+  // };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await fetch("http://localhost:3002/users/login", {
+  //       method: "POST",
+  //       body: JSON.stringify(registration),
+  //       headers: {
+  //         "Content-type": "application/json",
+  //       },
+  //     });
+  //     if (response.ok) {
+  //       setRegister(true)
+  //       const user = await response.json();
+  //       localStorage.setItem("MyToken", user.accessToken);
+  //       setRegistration({
+  //         email: "",
+  //         password: "",
+  //         rememberMe: false
+  //       });
+  //     } else {
+  //       console.log("Error while fetched!");
+  //     }
+  //   } catch (error) {
+  //       console.log(error)
+  //   }
+  // };
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+
+    dispatch(Login(email, password,rememberMe))
+
+  }
   return (
     <>
-          {register? (
-            <>      
-<MainHomePage  />
+{/* {
+  loading && (
+    <div className='d-flex  m-auto'><Spinner style={{ margin: "auto", fontSize: "20px" }} animation="border" role="status" variant="primary" />
+    <h2 className="mt-1 ml-3 ">Loading...</h2>
+    </div>
+  ) ( */}
 
-</>
-) : (
-  <>
+{
+  isAuth ? (
+    <MainHomePage />
+  ):(
+
             
          
   <Container>
@@ -82,9 +121,9 @@ const Login = () => {
                     // className="rounded-"
                     type="email"
                     placeholder="Enter email"
-                    value={registration.email}
+                    value={email}
                     onChange={(e) => {
-                      handleInput("email", e.target.value);
+                     setEmail(e.target.value);
                     }}
                     />
                 </Form.Group>
@@ -94,9 +133,9 @@ const Login = () => {
                     // className="rounded-pill"
                     type="password"
                     placeholder="Password"
-                    value={registration.password}
+                    value={password}
                     onChange={(e) => {
-                      handleInput("password", e.target.value);
+                      setPassword( e.target.value);
                     }}
                     />
                 </Form.Group>
@@ -105,14 +144,14 @@ const Login = () => {
             type='checkbox'
             label='Remember Me?'
             
-            checked={registration.checked}
+            checked={rememberMe}
             onChange={(e) => {
-              handleInput('rememberMe', e.target.checked)
+              setrememberMe(e.target.checked)
             }}
             />
           <Button 
                 variant="primary"
-                  type="submit"
+                type="submit"
                   style={{ width: "25%" }}
                   className="ml-auto rounded-pill"
                   >
@@ -137,9 +176,13 @@ const Login = () => {
       </Col>
       </Row>
       </Container>
+              )
+            }
+              {/* )
+            } */}
       </>
-      ) }
-      </>
+  
+  
       );
     };
-export default Login;
+export default UserLogin;

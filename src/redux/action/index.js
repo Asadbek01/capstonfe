@@ -11,7 +11,13 @@ export const GET_SEARCHED_BOOKS = "GET_SEARCHED_BOOKS"
 export const ERROR_SEARCHED_BOOKS = "ERROR_SEARCHED_BOOKS"
 export const GET_ALL_BOOKS_IN_CART = "GET_ALL_BOOKS_IN_CART"
 export const GET_ERROR_BOOKS_IN_CART = "GET_ERROR_BOOKS_IN_CART"
-
+export const  USER_LOGIN_REQUEST= "USER_LOGIN_REQUEST"
+export const  USER_LOGIN= "USER_LOGIN"
+export const  USER_LOGIN_ERROR= "USER_LOGIN_ERROR"
+export const  CLEAR_ERRORS= "CLEAR_ERRORS"
+export const USER_REGISTER_REQUEST = "USER_RWGISTER_REQUEST"
+export const USER_REGISTER  = "USER_REGISTER"
+export const USER_REGISTER_ERROR = "USER_REGISTER_ERROR"
 
 export const addToCartAction = (bookToAdd) => ({
     type: ADD_TO_CART,
@@ -96,37 +102,77 @@ export const getBooksDetail = (id) =>{
                }
             }
    }
-// export const getBooksAction = () => {
-//     return (dispatch, getState) => {
 
-//         setTimeout(async () => {
-//             try {
-//                 let response = await fetch(
+
+
+   
+   export const Login = (email, password) =>{
+    return async (dispatch) => {
+                try {
                     
-//                 )
-//                 if (response.ok) {
-//                     let { data } = await response.json()
+                    
+                    dispatch({
+                        type: USER_LOGIN_REQUEST,
+                    })
+                    
+                    const config ={
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                    const { data } =  await axios.post("http://localhost:3002/users/login", {email, password}, config)
+                    dispatch({
+                        type: USER_LOGIN,
+                        payload: data.user
+                    })
+                    
+                } catch (error) {
+                    dispatch({
+                        type: USER_LOGIN_ERROR,
+                        payload: error.response.data.message,
+                    })
+                    
+                    
+                }
+             }
+    }
+ 
 
-//                     console.log('BOOKS IN ACTION CREATOR', data)
-                   
-                  
-//                 } else {
-//                     console.log('error happened fetching the books')
-//                     // maybe here we can dispatch another action!
-//                     // an ERROR action :)
-//                     // dispatch({
-//                     //   type: GET_BOOKS_ERROR,
-//                     // })
-//                     // dispatch({
-//                     //   type: GET_BOOKS_LOADING,
-//                     // })
-//                 }
-//             } catch (error) {
-//                 console.log(error)
-//                 // maybe here we can dispatch another action!
-//                 // an ERROR action :)
-//                 //   
-//             }
-//         }, 1000)
-//     }
-// }
+    // REgister
+
+     
+   export const UserRegister = (userdata) =>{
+    return async (dispatch) => {
+                try {
+                    
+                    
+                    dispatch({
+                        type: USER_REGISTER_REQUEST,
+                    })
+                    
+                    const config ={
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                    const { data } =  await axios.post("http://localhost:3002/users/register", userdata, config)
+                    dispatch({
+                        type: USER_REGISTER,
+                        payload: data.user
+                    })
+                    
+                } catch (error) {
+                    dispatch({
+                        type: USER_REGISTER_ERROR,
+                        payload: error.response.data.message,
+                    })
+                    
+                    
+                }
+             }
+    }
+export const ClearErrors =() =>{
+    return async (dispatch) => {
+    dispatch({type: CLEAR_ERRORS})
+}
+}

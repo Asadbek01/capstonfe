@@ -8,8 +8,8 @@ import { MyNavbar } from './Component/BooksStore/Navbar';
 import { CartPage } from './Component/BooksStore/CartPage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Container, Row } from 'react-bootstrap';
-import Login from './Component/view/LoginPage';
-import SignUp from './Component/view/SignUpPage';
+import SignUp from './Component/user/SignUpPage';
+import UserLogin from './Component/user/LoginPage';
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Footer } from './Component/view/Footer/Footer';
 import { PageError } from './Component/view/PageError';
@@ -19,9 +19,9 @@ function App() {
   <Router>
    <MyNavbar />
      <Routes>
-   <Route path='/login' element={<Login/>}/>
+   <Route path='/' element={<UserLogin />}/>
    <Route path='/signUp' element={<SignUp/>}/>
-     <Route path='/' element={<MainHomePage/>} exact/>
+     <Route path='/home' element={<MainHomePage/>} exact/>
      <Route path='/cart' element={<CartPage />}/>
      <Route path = "/detail/:id" element={<BookDetail />} />
      <Route path="*" element={<PageError />} />

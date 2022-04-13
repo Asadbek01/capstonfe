@@ -14,7 +14,7 @@ const BookDetail = () => {
     const params = useParams()
     useEffect(() => {
         dispatch(getBooksDetail(params.id))
-    }, [params.id])
+    }, [dispatch, params.id])
     
     return (
         <div className="container container-fluid">
@@ -43,7 +43,7 @@ const BookDetail = () => {
 
                                 <span className="btn btn-danger minus"
                                  onClick={() => {
-                                    dispatch(removeFromCartAction())}}>-</span>
+                                 }}>-</span>
                                 
                             
                             
