@@ -17,14 +17,15 @@ export const userReducer = ( state = InitialState.user, action ) => {
             }  
             case USER_LOAD:
                 return {
-                    loggedUser: [...state.loggedUser,action.payload]
+                    ...state,
+                    isAuth: true,
+                    loggedUser: [...state.loggedUser, action.payload]
 
                 }
 
              case USER_LOAD_ERROR:
                  return{
                     ...state,
-                    loading: true,
                     isAuth: false,
                     error: action.payload
                  }

@@ -160,6 +160,7 @@ export const getBooksDetail = (id) =>{
                         }
                     }
                     const { data } =  await axios.post("http://localhost:3002/users/register", userdata, config)
+                  
                     dispatch({
                         type: USER_REGISTER,
                         payload: data.user
