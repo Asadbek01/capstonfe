@@ -21,10 +21,20 @@ export const MyNavbar = () => {
   const SearchedBooks = useSelector((state) => state.book.searchedBook);
   const userMe = useSelector((state) => state.user);
   const isAuth = useSelector((state) => state.user);
+  const [SearchQuery, setSearchQuery] = useState("");
+  const [category, setCategory] = useState("");
+
+  const categories = [
+    "History",
+    "Poetry",
+    "Philosophy",
+    "Religion",
+    "Fiction",
+    "Comedy",
+    "Computer-Science",
+  ];
 
   const navigate = useNavigate();
-  const [SearchQuery, setSearchQuery] = useState("");
-
   const dispatch = useDispatch();
 
   // prevent page refreshing
@@ -38,8 +48,8 @@ export const MyNavbar = () => {
   };
 
   useEffect(() => {
-    dispatch(getSearchedBooks(SearchQuery));
-  }, [SearchQuery]);
+    dispatch(getSearchedBooks(SearchQuery, category));
+  }, [SearchQuery, category]);
   return (
     <>
       <nav className="navbar row" color="dark">
@@ -71,14 +81,30 @@ export const MyNavbar = () => {
                   menuAlign="right"
                   variant="outline-secondary"
                   id="dropdown-basic-button"
-                  title={"Category"}
                   className="ml-2"
-
-                  // title={currentCategory.toLocaleUpperCase()}
+                  title={category.toLocaleUpperCase()}
                 >
-                  <Dropdown.Item className="text-capitalize">
-                    sdcsdc
+                  {categories.map((category) => (
+                    <Dropdown.Item
+                      className="text-capitalize"
+                      key={category}
+                      onClick={() => setCategory(category)}
+                    >
+                      {category}
+                    </Dropdown.Item>
+                  ))}
+                  {/* <Dropdown.Item className="text-capitalize">
+                    Poetry
                   </Dropdown.Item>
+                  <Dropdown.Item className="text-capitalize">
+                    Philosophy
+                  </Dropdown.Item>
+                  <Dropdown.Item className="text-capitalize">
+                    Religion
+                  </Dropdown.Item>
+                  <Dropdown.Item className="text-capitalize">
+                    Computer-Science
+                  </Dropdown.Item> */}
                 </DropdownButton>
               </div>
             </div>

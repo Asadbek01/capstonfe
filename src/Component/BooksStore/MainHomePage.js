@@ -9,21 +9,25 @@ export const MainHomePage = () => {
   const [bookSelected, setBookSelected] = useState(null);
 
   const books = useSelector((state) => state.book.stock);
+  const bookCount = useSelector((state) => state.book);
+  const resPerPage = useSelector((state) => state.book);
+
   const errorCode = useSelector((state) => state.book.errorCode);
   const isLoading = useSelector((state) => state.book.isLoading);
 
-  // const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getBooks());
-  }, []);
+    dispatch(getBooks(currentPage));
+  }, [currentPage]);
 
   const changeBook = (book) => setBookSelected(book);
 
-  // function setCurrentPageNo (pageNumber){
-  //   setCurrentPage(pageNumber )
-  // }
+  function setCurrentPageNo(pageNumber) {
+    setCurrentPage(pageNumber);
+  }
 
   return (
     <>
@@ -83,20 +87,16 @@ export const MainHomePage = () => {
         </section>
       </div>
 
-      {/* <div className='d-flex justify-content-center mt-5'>   */}
-      {/* <Pagination 
-   activePage={currentPage}
-  //  itemsCountPerPage={resPerPage}
-  //  totalItemsCount={bookCount}
-  //  onChange={setCurrentPageNo}
-   nextPageText={'Next'}
-   prevPageText={'Prev'}
-   firstPageText={'First'}
-   lastPageText={'Last'}
-   itemClass={'page-item'}
-   linkClass={'page-link'}
- />
-   </div> */}
+      <div className="d-flex justify-content-center mt-5">
+        <Pagination
+          activePage={currentPage}
+          itemsCountPerPage={resPerPage}
+          totalItemsCount={bookCount}
+          onChange={setCurrentPageNo}
+          itemClass={"page-item"}
+          linkClass={"page-link"}
+        />
+      </div>
     </>
   );
 };
