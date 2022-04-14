@@ -7,11 +7,11 @@ import Pagination from "react-js-pagination";
 
 export const MainHomePage = () => {
   const [bookSelected, setBookSelected] = useState(null);
+  const [category, setCategory] = useState("");
 
   const books = useSelector((state) => state.book.stock);
   const bookCount = useSelector((state) => state.book);
   const resPerPage = useSelector((state) => state.book);
-
   const errorCode = useSelector((state) => state.book.errorCode);
   const isLoading = useSelector((state) => state.book.isLoading);
 
@@ -20,8 +20,8 @@ export const MainHomePage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getBooks(currentPage));
-  }, [currentPage]);
+    dispatch(getBooks());
+  }, [category]);
 
   const changeBook = (book) => setBookSelected(book);
 

@@ -31,10 +31,13 @@ export const removeFromCartAction = (index) => ({
   payload: index,
 });
 
-export const getBooks = () => {
+export const getBooks = (SearchQuery, currentPage = 1, category) => {
   return async (dispatch) => {
     try {
-      let baselink = `http://localhost:3002/books`;
+      let baselink = `http://localhost:3002/books?search=${SearchQuery}&page=${currentPage}`;
+      if (category) {
+        baselink = `http://localhost:3002/books?search=${SearchQuery}&page=${currentPage}&category=${category}`;
+      }
       const { data } = await axios.get(baselink);
 
       dispatch({
@@ -43,6 +46,10 @@ export const getBooks = () => {
       });
       dispatch({
         type: GET_BOOKS_LOADING,
+      });
+      dispatch({
+        type: GET_SEARCHED_BOOKS,
+        payload: data,
       });
     } catch (error) {
       dispatch({
@@ -53,24 +60,6 @@ export const getBooks = () => {
         type: GET_BOOKS_LOADING,
         IsLoading: true,
       });
-    }
-  };
-};
-
-export const getSearchedBooks = (SearchQuery, currentPage = 1, category) => {
-  return async (dispatch) => {
-    try {
-      let baselink = `http://localhost:3002/books?search=${SearchQuery}&page=${currentPage}`;
-      if (category) {
-        baselink = `http://localhost:3002/books?search=${SearchQuery}&page=${currentPage}&category=${category}`;
-      }
-      const { data } = await axios.get(baselink);
-
-      dispatch({
-        type: GET_SEARCHED_BOOKS,
-        payload: data,
-      });
-    } catch (error) {
       dispatch({
         type: ERROR_SEARCHED_BOOKS,
         payload: error.message,

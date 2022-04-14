@@ -11,14 +11,15 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
-import { getSearchedBooks } from "../../redux/action";
+import { getBooks, getSearchedBooks } from "../../redux/action";
 import { Avatar } from "@material-ui/core";
 import { FiShoppingCart } from "react-icons/fi";
+import { Books } from "./Books";
 // import '../../assets/'
 
 export const MyNavbar = () => {
   const cartLength = useSelector((state) => state.cart.cartBooks.length);
-  const SearchedBooks = useSelector((state) => state.book.searchedBook);
+  const SearchedBooks = useSelector((state) => state.book.stock);
   const userMe = useSelector((state) => state.user);
   const isAuth = useSelector((state) => state.user);
   const [SearchQuery, setSearchQuery] = useState("");
@@ -48,7 +49,7 @@ export const MyNavbar = () => {
   };
 
   useEffect(() => {
-    dispatch(getSearchedBooks(SearchQuery, category));
+    dispatch(getBooks(SearchQuery, category));
   }, [SearchQuery, category]);
   return (
     <>
@@ -93,18 +94,6 @@ export const MyNavbar = () => {
                       {category}
                     </Dropdown.Item>
                   ))}
-                  {/* <Dropdown.Item className="text-capitalize">
-                    Poetry
-                  </Dropdown.Item>
-                  <Dropdown.Item className="text-capitalize">
-                    Philosophy
-                  </Dropdown.Item>
-                  <Dropdown.Item className="text-capitalize">
-                    Religion
-                  </Dropdown.Item>
-                  <Dropdown.Item className="text-capitalize">
-                    Computer-Science
-                  </Dropdown.Item> */}
                 </DropdownButton>
               </div>
             </div>
@@ -177,43 +166,7 @@ export const MyNavbar = () => {
               if (book.title.toLowerCase().includes(SearchQuery.toLowerCase()))
                 return true;
             }).map((book) => (
-              <div className="col-sm-12 col-md-6 col-lg-3 my-3">
-                <div style={{ cursor: "pointer" }}>
-                  <div className="card card_book">
-                    <img
-                      className="card-img-top mx-auto"
-                      src={book.images[0].imgUrl}
-                    />
-                    <div className="card-body d-flex flex-column ">
-                      <h5 className="card-title">
-                        <Link to={`/detail/${book._id}`}>{book.title}</Link>
-                      </h5>
-                      <div className="ratings mt-auto">
-                        <div className="rating-outer">
-                          <div className="rating-inner"></div>
-                        </div>
-                        <span id="no_of_reviews">({book.ratings} Reviews)</span>
-                      </div>
-                      <div className="d-flex">
-                        <Button
-                          style={{ width: "50%" }}
-                          variant="outline-danger"
-                          className="ml-2"
-                        >
-                          ${book.price}
-                        </Button>
-                        <Button
-                          style={{ width: "50%" }}
-                          variant="outline-success"
-                          className="ml-2"
-                        >
-                          <Link to={`detail/${book._id}`}>View </Link>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Books book={book} />
             ))}
           </div>
         </section>
