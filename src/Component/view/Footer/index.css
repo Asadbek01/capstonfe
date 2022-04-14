@@ -43,8 +43,10 @@ a {
       .footer-48201 .social li a:hover {
         color: #fff; }
   .footer-48201 .copyright {
-    border-top: 1px solid #404040; }
-/* for footer logo style */
+    border-top: 1px solid #404040; 
+  text-align: center;
+  margin-left: 13rem
+  }
 
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
 
