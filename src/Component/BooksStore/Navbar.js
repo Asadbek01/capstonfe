@@ -59,7 +59,7 @@ export const MyNavbar = () => {
             <img
               src="./assets/logo_nav-1.png"
               className=" responsive logo_img ml-5"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/home")}
               style={{ cursor: "pointer" }}
               alt="logo"
             />
