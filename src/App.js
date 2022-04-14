@@ -18,21 +18,21 @@ import store from "./redux/store";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 function App() {
-  useEffect(() => {
-    store.dispatch(LoadUser());
-  }, []);
+  // useEffect(() => {
+  //   store.dispatch(LoadUser());
+  // }, []);
 
-  const userMe = useSelector((state) => state.user.loggedUser);
+  // const userMe = useSelector((state) => state.user.loggedUser);
   // console.log(userMe)
   return (
     <Router>
       <div className="App">
-        <MyNavbar userMe={userMe} />
+        <MyNavbar /*userMe={userMe} */ />
 
         <Routes>
-          <Route path="/" element={<UserLogin />} />
+          <Route path="/login" element={<UserLogin />} />
           <Route path="/signUp" element={<SignUp />} />
-          <Route path="/home" element={<MainHomePage />} exact />
+          <Route path="/" element={<MainHomePage />} exact />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/detail/:id" element={<BookDetail />} />
           <Route path="*" element={<PageError />} />

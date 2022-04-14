@@ -83,7 +83,7 @@ export const MyNavbar = () => {
                   variant="outline-secondary"
                   id="dropdown-basic-button"
                   className="ml-2"
-                  title={category.toLocaleUpperCase()}
+                  title={category || "Comedy "}
                 >
                   {categories.map((category) => (
                     <Dropdown.Item
@@ -115,7 +115,7 @@ export const MyNavbar = () => {
             </Badge>
           </div>
 
-          {isAuth ? (
+          {/* {isAuth ? (
             <header class="header">
               <div class="profile">
                 <div class="profile__avatar i-block pull-left">
@@ -147,15 +147,15 @@ export const MyNavbar = () => {
                 </ul>
               </div>
             </header>
-          ) : (
-            <Button
-              onClick={() => navigate("/login")}
-              variant="primary"
-              className="ml-4"
-            >
-              Login
-            </Button>
-          )}
+          ) : ( */}
+          <Button
+            onClick={() => navigate("/login")}
+            variant="primary"
+            className="ml-4"
+          >
+            Login
+          </Button>
+          {/* )} */}
         </div>
       </nav>
       <div className="container-fluid">

@@ -86,35 +86,36 @@ export const getBooksDetail = (id) => {
   };
 };
 
-export const Login = (email, password, rememberMe) => {
-  return async (dispatch) => {
-    try {
-      dispatch({
-        type: USER_LOGIN_REQUEST,
-      });
+// export const Login = (email, password, rememberMe) => {
+//   return async (dispatch) => {
+//     try {
+//       dispatch({
+//         type: USER_LOGIN_REQUEST,
+//       });
 
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const { data } = await axios.post(
-        "http://localhost:3002/users/login",
-        { email, password, rememberMe },
-        config
-      );
-      dispatch({
-        type: USER_LOGIN,
-        payload: data.user,
-      });
-    } catch (error) {
-      dispatch({
-        type: USER_LOGIN_ERROR,
-        payload: error.response.data.message,
-      });
-    }
-  };
-};
+//       const config = {
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       };
+//       const { data } = await axios.post(
+//         "http://localhost:3002/users/login",
+//         { email, password, rememberMe },
+//         config
+//       );
+
+//       dispatch({
+//         type: USER_LOGIN,
+//         payload: data.user,
+//       });
+//     } catch (error) {
+//       dispatch({
+//         type: USER_LOGIN_ERROR,
+//         payload: error.response.data.message,
+//       });
+//     }
+//   };
+// };
 
 // REgister
 
@@ -150,32 +151,32 @@ export const UserRegister = (userdata) => {
 };
 
 // Load User
-export const LoadUser = () => {
-  return async (dispatch) => {
-    try {
-      const config = {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU2YzFhYjk2YjZkNzkzYTBhMDZmYTciLCJpYXQiOjE2NDk4NTI4NTksImV4cCI6MTY1MDQ1NzY1OX0.SH6C5avMF24pr7z7CnbUIN_stUbYcKiJM1cUzeMZZQM",
-        },
-      };
+// export const LoadUser = () => {
+//   return async (dispatch) => {
+//     try {
+//       const config = {
+//         headers: {
+//           Authorization:
+//             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU2YzFhYjk2YjZkNzkzYTBhMDZmYTciLCJpYXQiOjE2NDk4NTI4NTksImV4cCI6MTY1MDQ1NzY1OX0.SH6C5avMF24pr7z7CnbUIN_stUbYcKiJM1cUzeMZZQM",
+//         },
+//       };
 
-      const { data } = await axios.get(
-        "http://localhost:3002/users/me",
-        config
-      );
-      dispatch({
-        type: USER_LOAD,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: USER_LOAD_ERROR,
-        payload: error.response.data.message,
-      });
-    }
-  };
-};
+//       const { data } = await axios.get(
+//         "http://localhost:3002/users/me",
+//         config
+//       );
+//       dispatch({
+//         type: USER_LOAD,
+//         payload: data,
+//       });
+//     } catch (error) {
+//       dispatch({
+//         type: USER_LOAD_ERROR,
+//         payload: error.response.data.message,
+//       });
+//     }
+//   };
+// };
 export const ClearErrors = () => {
   return async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
