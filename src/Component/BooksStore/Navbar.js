@@ -149,7 +149,7 @@ export const MyNavbar = () => {
             </header>
           ) : ( */}
           <Button
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/")}
             variant="primary"
             className="ml-4"
           >

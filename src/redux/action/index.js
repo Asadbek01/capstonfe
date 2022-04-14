@@ -117,39 +117,6 @@ export const getBooksDetail = (id) => {
 //   };
 // };
 
-// REgister
-
-export const UserRegister = (userdata) => {
-  return async (dispatch) => {
-    try {
-      dispatch({
-        type: USER_REGISTER_REQUEST,
-      });
-
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const { data } = await axios.post(
-        "http://localhost:3002/users/register",
-        userdata,
-        config
-      );
-
-      dispatch({
-        type: USER_REGISTER,
-        payload: data.user,
-      });
-    } catch (error) {
-      dispatch({
-        type: USER_REGISTER_ERROR,
-        payload: error.response.data.message,
-      });
-    }
-  };
-};
-
 // Load User
 // export const LoadUser = () => {
 //   return async (dispatch) => {

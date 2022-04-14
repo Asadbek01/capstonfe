@@ -59,7 +59,7 @@ export const Books = ({ book, bookSelected, changeBook }) => {
                   variant="outline-success"
                   className="ml-2"
                 >
-                  <Link to={`detail/${book._id}`}>View </Link>
+                  <Link to={`/detail/${book._id}`}>View </Link>
                 </Button>
               </div>
             </div>

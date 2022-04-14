@@ -30,9 +30,9 @@ function App() {
         <MyNavbar /*userMe={userMe} */ />
 
         <Routes>
-          <Route path="/login" element={<UserLogin />} />
+          <Route path="/" element={<UserLogin />} />
           <Route path="/signUp" element={<SignUp />} />
-          <Route path="/" element={<MainHomePage />} exact />
+          <Route path="/home" element={<MainHomePage />} exact />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/detail/:id" element={<BookDetail />} />
           <Route path="*" element={<PageError />} />

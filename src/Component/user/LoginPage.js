@@ -19,10 +19,11 @@ const UserLogin = () => {
     password: "",
     rememberMe: false,
   });
-
+  const history = useNavigate();
   const [registered, setRegister] = useState(false);
   const [userError, setUserError] = useState(false);
   const [loginError, setLoginError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const handleInput = (fieldName, value) => {
     setRegistration({
@@ -38,6 +39,7 @@ const UserLogin = () => {
     if (!registration.email || !registration.password) {
       return setUserError(true);
     }
+
     try {
       const response = await fetch("http://localhost:3002/users/login", {
         method: "POST",
@@ -49,12 +51,15 @@ const UserLogin = () => {
       if (response.ok) {
         setRegister(true);
         const user = await response.json();
+        setLoading(false);
         localStorage.setItem("MyToken", user.accessToken);
         setRegistration({
           email: "",
           password: "",
           rememberMe: false,
         });
+      } else if (response.status === 500) {
+        setLoginError(true);
       } else {
         console.log("Error while fetched!");
       }
@@ -77,12 +82,6 @@ const UserLogin = () => {
 
   return (
     <>
-      {/* {
-  loading && (
-    <div className='d-flex  m-auto'><Spinner style={{ margin: "auto", fontSize: "20px" }} animation="border" role="status" variant="primary" />
-    <h2 className="mt-1 ml-3 ">Loading...</h2>
-    </div>
-  ) ( */}
       {userError ? (
         <Alert style={{ width: "20%", margin: "auto" }} variant={"danger"}>
           Please Fill In All Details!
@@ -98,7 +97,7 @@ const UserLogin = () => {
         ""
       )}
       {registered ? (
-        <MainHomePage />
+        history("/home")
       ) : (
         <Container>
           <Row className="d-flex justify-content-center mt-4">
