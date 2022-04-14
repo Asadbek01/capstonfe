@@ -10,8 +10,9 @@ export const MainHomePage = () => {
   const [category, setCategory] = useState("");
 
   const books = useSelector((state) => state.book.stock);
-  const bookCount = useSelector((state) => state.book);
-  const resPerPage = useSelector((state) => state.book);
+  const page = useSelector((state) => state.book.stock);
+  const totalBooks = useSelector((state) => state.book);
+  console.log(totalBooks);
   const errorCode = useSelector((state) => state.book.errorCode);
   const isLoading = useSelector((state) => state.book.isLoading);
 
@@ -21,7 +22,7 @@ export const MainHomePage = () => {
 
   useEffect(() => {
     dispatch(getBooks());
-  }, [category]);
+  }, []);
 
   const changeBook = (book) => setBookSelected(book);
 
@@ -73,16 +74,17 @@ export const MainHomePage = () => {
   )
   } */}
 
-            {books.map((book, i) => (
-              <>
-                <Books
-                  book={book}
-                  bookSelected={bookSelected}
-                  changeBook={changeBook}
-                  key={i.id}
-                />
-              </>
-            ))}
+            {books.book &&
+              books.book.map((book, i) => (
+                <>
+                  <Books
+                    book={book}
+                    bookSelected={bookSelected}
+                    changeBook={changeBook}
+                    key={i.id}
+                  />
+                </>
+              ))}
           </div>
         </section>
       </div>
@@ -90,8 +92,8 @@ export const MainHomePage = () => {
       <div className="d-flex justify-content-center mt-5">
         <Pagination
           activePage={currentPage}
-          itemsCountPerPage={resPerPage}
-          totalItemsCount={bookCount}
+          itemsCountPerPage={page}
+          totalItemsCount={totalBooks}
           onChange={setCurrentPageNo}
           itemClass={"page-item"}
           linkClass={"page-link"}

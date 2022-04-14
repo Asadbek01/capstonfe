@@ -104,8 +104,8 @@ const UserLogin = () => {
             <Col md={4} xs={6} sm={3}>
               <div className="register-form">
                 <Button
-                  className="mb-3 rounded-pill ml-5"
-                  style={{ width: "75%" }}
+                  className="rounded-pill "
+                  style={{ width: "100%" }}
                   variant="outline-primary"
                 >
                   <a
@@ -116,15 +116,23 @@ const UserLogin = () => {
                     Google Login
                   </a>
                 </Button>
-                <Form onSubmit={handleSubmit}>
-                  <div className="d-flex font-weight-bold ml-5">
-                    <hr style={{ width: "100px" }} className="mr-2 ml-2" />
+                <Form onSubmit={handleSubmit} className="m-auto">
+                  <div className="d-flex font-weight-bold justify-content-center text-white">
+                    <hr
+                      style={{ width: "100px", border: "1px solid white" }}
+                      className="mr-2 ml-2"
+                    />
                     or
-                    <hr style={{ width: "100px" }} className="mr-2 ml-2" />
+                    <hr
+                      style={{ width: "100px", border: "1px solid white" }}
+                      className="mr-2 ml-2"
+                    />
                   </div>
 
                   <div>
-                    <h2 className="text-center pb-2">Welcome Back</h2>
+                    <h2 className="text-center pb-2 text-white">
+                      Welcome Back
+                    </h2>
                     {/* <img className="LoginImage pb-3" src="https://www.freeiconspng.com/uploads/person-icon-8.png" /> */}
                   </div>
                   <Form.Group className="pb-3">
@@ -145,7 +153,7 @@ const UserLogin = () => {
                       onChange={(e) => handleInput("password", e.target.value)}
                     />
                   </Form.Group>
-                  <Form.Group className="d-flex mt-4">
+                  <Form.Group className="d-flex mt-4  text-white">
                     <Form.Check
                       type="checkbox"
                       label="Remember Me?"
@@ -171,7 +179,7 @@ const UserLogin = () => {
                     </div>
                   </div>
 
-                  <p className="mt-4 text-center">
+                  <p className="mt-4 text-center  text-white">
                     Don't have an account? <a href="/signUp">Sign Up</a>
                   </p>
                 </Form>

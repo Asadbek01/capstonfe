@@ -2,8 +2,6 @@ import "./App.css";
 import "./Component/BooksStore/index.css";
 import "./Component/view/Footer/index.css";
 import { MainHomePage } from "./Component/BooksStore/MainHomePage";
-// import '../../css/MainHomePage.css'
-
 import { MyNavbar } from "./Component/BooksStore/Navbar";
 import { CartPage } from "./Component/BooksStore/CartPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -15,19 +13,38 @@ import { PageError } from "./Component/view/PageError";
 import BookDetail from "./Component/view/BookDetail";
 import { LoadUser } from "./redux/action";
 import store from "./redux/store";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-function App() {
-  // useEffect(() => {
-  //   store.dispatch(LoadUser());
-  // }, []);
+import { useEffect, useState } from "react";
 
-  // const userMe = useSelector((state) => state.user.loggedUser);
-  // console.log(userMe)
+function App() {
+  const [data, setData] = useState([]);
+  console.log(process.env.REACT_APP_TOKEN);
+  const fetchMyDetails = async () => {
+    try {
+      const response = await fetch("http://localhost:3002/users/me", {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU2YzFhYjk2YjZkNzkzYTBhMDZmYTciLCJpYXQiOjE2NDk5NjM0MDMsImV4cCI6MTY1MDU2ODIwM30.kP4Dyl6EfjRDUo5qKE6b83Z36ai54mWdHla4e-ZqiXg",
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setData(data);
+      } else {
+        console.error("fetch failed");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMyDetails();
+  }, []);
   return (
     <Router>
       <div className="App">
-        <MyNavbar /*userMe={userMe} */ />
+        <MyNavbar userMe={data} />
 
         <Routes>
           <Route path="/" element={<UserLogin />} />
