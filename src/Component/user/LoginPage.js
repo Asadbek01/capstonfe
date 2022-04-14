@@ -100,11 +100,11 @@ const UserLogin = () => {
         history("/home")
       ) : (
         <Container>
-          <Row className="d-flex justify-content-center mt-4">
+          <Row className="d-flex justify-content-center mt-5 ">
             <Col md={4} xs={6} sm={3}>
               <div className="register-form">
                 <Button
-                  className="rounded-pill "
+                  className="rounded-pill mb-4"
                   style={{ width: "100%" }}
                   variant="outline-primary"
                 >

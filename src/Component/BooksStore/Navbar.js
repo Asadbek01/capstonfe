@@ -20,7 +20,6 @@ import { Books } from "./Books";
 export const MyNavbar = ({ userMe }) => {
   const cartLength = useSelector((state) => state.cart.cartBooks.length);
   const SearchedBooks = useSelector((state) => state.book.stock);
-  const [registered, setRegistered] = useState(false);
   const [SearchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState("");
 
@@ -41,15 +40,14 @@ export const MyNavbar = ({ userMe }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-
+  
   // search input onChange event
   const handleInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
-
+  
   useEffect(() => {
     dispatch(getBooks(SearchQuery, category));
-    setRegistered(true);
   }, [SearchQuery, category]);
   return (
     <>
@@ -77,36 +75,39 @@ export const MyNavbar = ({ userMe }) => {
                 onChange={(e) => handleInputChange(e)}
                 value={SearchQuery}
               />
-              <div className="input-group-append">
-                <DropdownButton
-                  menuAlign="right"
-                  variant="outline-secondary"
-                  id="dropdown-basic-button"
-                  className="ml-2"
-                  title={category || "Comedy "}
-                >
-                  {categories.map((category) => (
-                    <Dropdown.Item
-                      className="text-capitalize"
-                      key={category}
-                      onClick={() => setCategory(category)}
-                    >
-                      {category}
-                    </Dropdown.Item>
-                  ))}
-                </DropdownButton>
-              </div>
-            </div>
+              
+                  <div className="input-group-append">
+                  <DropdownButton
+                    menuAlign="right"
+                    variant="outline-secondary"
+                    id="dropdown-basic-button"
+                    className="ml-2"
+                    title={category || "Comedy "}
+                  >
+                    {categories.map((category) => (
+                      <Dropdown.Item
+                        className="text-capitalize"
+                        key={category}
+                        onClick={() => setCategory(category)}
+                      >
+                        {category}
+                      </Dropdown.Item>
+                    ))}
+                  </DropdownButton>
+                </div>
+               
+             </div>
           </form>
         </div>
-
+        
+        
         <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
           <div style={{ position: "relative", right: "10%" }}>
             <FiShoppingCart
               color="blue"
               size={20}
               onClick={() => navigate("/cart")}
-            />
+              />
             <Badge
               variant="danger"
               style={{ position: "absolute", top: "15px" }}
@@ -114,7 +115,7 @@ export const MyNavbar = ({ userMe }) => {
               {cartLength}
             </Badge>
           </div>
-          {registered ? (
+
             <header class="header ">
               <div class="profile mr-3">
                 <div class="profile__avatar i-block pull-left">
@@ -136,15 +137,16 @@ export const MyNavbar = ({ userMe }) => {
                 </ul>
               </div>
             </header>
-          ) : (
+            )
+          
             <Button
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/login")}
               variant="primary"
               className="ml-4"
             >
               Login
             </Button>
-          )}
+          
         </div>
       </nav>
       <div className="container-fluid">

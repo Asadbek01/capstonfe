@@ -16,6 +16,7 @@ import store from "./redux/store";
 import { useEffect, useState } from "react";
 
 function App() {
+  const[registered, setRegisterd] = useState(false);
   const [data, setData] = useState([]);
   console.log(process.env.REACT_APP_TOKEN);
   const fetchMyDetails = async () => {
@@ -28,7 +29,6 @@ function App() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         setData(data);
       } else {
         console.error("fetch failed");
