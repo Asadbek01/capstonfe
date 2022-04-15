@@ -1,21 +1,33 @@
+// USER_LOAD
+const[registered, setRegisterd] = useState(false);
+const [data, setData] = useState([]);
+console.log(process.env.REACT_APP_TOKEN);
+const fetchMyDetails = async () => {
+  try {
+    const response = await fetch("http://localhost:3002/users/me", {
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU2YzFhYjk2YjZkNzkzYTBhMDZmYTciLCJpYXQiOjE2NDk5NjM0MDMsImV4cCI6MTY1MDU2ODIwM30.kP4Dyl6EfjRDUo5qKE6b83Z36ai54mWdHla4e-ZqiXg",
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      setData(data);
+    } else {
+      console.error("fetch failed");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+useEffect(() => {
+  fetchMyDetails();
+}, []);
+
+
 // user Reducer
-// export const UserReducer = (state = InitialState.user, action) => {
-//     switch (action.type) {
-//       case USER_LOGIN:
-//         return {
-//           ...state,
-//           loggedUser: action.payload,
-//         };
-    
-//       case USER_LOAD_ERROR:
-//         return {
-//           ...state,
-//           errorCode: action.payload,
-//         };
-//       default:
-//         return state;
-//     }
-//   };
+
 
 
 

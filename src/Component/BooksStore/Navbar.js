@@ -121,10 +121,10 @@ export const MyNavbar = ({ userMe }) => {
               <div class="profile mr-3">
                 <div class="profile__avatar i-block pull-left ">
                   <span class="profile__monogram i-block ">
-                    <Avatar
+                    {/* <Avatar
                       src={userMe.avatar && userMe.avatar.url}
                       alt={userMe && userMe.name}
-                    />
+                    /> */}
                   </span>
                 </div>
                 <span class="profile__name i-block pull-left pt-3 ">

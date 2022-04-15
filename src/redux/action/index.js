@@ -118,32 +118,32 @@ export const getBooksDetail = (id) => {
 // };
 
 // Load User
-// export const LoadUser = () => {
-//   return async (dispatch) => {
-//     try {
-//       const config = {
-//         headers: {
-//           Authorization:
-//             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU2YzFhYjk2YjZkNzkzYTBhMDZmYTciLCJpYXQiOjE2NDk4NTI4NTksImV4cCI6MTY1MDQ1NzY1OX0.SH6C5avMF24pr7z7CnbUIN_stUbYcKiJM1cUzeMZZQM",
-//         },
-//       };
+export const LoadUser = () => {
+  return async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU2YzFhYjk2YjZkNzkzYTBhMDZmYTciLCJpYXQiOjE2NDk4NTI4NTksImV4cCI6MTY1MDQ1NzY1OX0.SH6C5avMF24pr7z7CnbUIN_stUbYcKiJM1cUzeMZZQM",
+        },
+      };
 
-//       const { data } = await axios.get(
-//         "http://localhost:3002/users/me",
-//         config
-//       );
-//       dispatch({
-//         type: USER_LOAD,
-//         payload: data,
-//       });
-//     } catch (error) {
-//       dispatch({
-//         type: USER_LOAD_ERROR,
-//         payload: error.response.data.message,
-//       });
-//     }
-//   };
-// };
+      const { data } = await axios.get(
+        "http://localhost:3002/users/me",
+        config
+      );
+      dispatch({
+        type: USER_LOAD,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_LOAD_ERROR,
+        payload: error.response.data.message,
+      });
+    }
+  };
+};
 export const ClearErrors = () => {
   return async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });

@@ -1,15 +1,13 @@
-import { ExpansionPanelActions } from "@material-ui/core";
 import {
   CLEAR_ERRORS,
   USER_LOAD,
   USER_LOAD_ERROR,
-  USER_LOAD_REQUEST,
-  USER_LOGIN,
-  USER_LOGIN_ERROR,
-  USER_LOGIN_REQUEST,
-  USER_REGISTER,
-  USER_REGISTER_ERROR,
-  USER_REGISTER_REQUEST,
+//   USER_LOGIN,
+//   USER_LOGIN_ERROR,
+//   USER_LOGIN_REQUEST,
+//   USER_REGISTER,
+//   USER_REGISTER_ERROR,
+//   USER_REGISTER_REQUEST,
 } from "../action";
 import { InitialState } from "../store";
 
@@ -39,3 +37,5 @@ export const userReducer = (state = InitialState.user, action) => {
       return state;
   }
 };
+
+

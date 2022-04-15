@@ -12,6 +12,9 @@ import {
 import { MainHomePage } from "../BooksStore/MainHomePage.js";
 import { useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
+import { Login } from "../../redux/action/index.js";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const UserLogin = () => {
   const [registration, setRegistration] = useState({
@@ -24,6 +27,9 @@ const UserLogin = () => {
   const [userError, setUserError] = useState(false);
   const [loginError, setLoginError] = useState(false);
   const [loading, setLoading] = useState(true);
+  // const loggedUser = useSelector(state=> state.user.loggedUser)
+  // const dispatch = useDispatch()
+
 
   const handleInput = (fieldName, value) => {
     setRegistration({
@@ -34,7 +40,7 @@ const UserLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setUserError(false);
+     setUserError(false);
     setLoginError(false);
     if (!registration.email || !registration.password) {
       return setUserError(true);
@@ -49,10 +55,11 @@ const UserLogin = () => {
         },
       });
       if (response.ok) {
-        setRegister(true);
-        const user = await response.json();
+       setRegister(true);
         setLoading(false);
-        localStorage.setItem("MyToken", user.accessToken);
+        const user = await response.json();
+          localStorage.setItem("MyToken", user.accessToken);
+
         setRegistration({
           email: "",
           password: "",
@@ -70,16 +77,21 @@ const UserLogin = () => {
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
-  //   localStorage.setItem("MyToken", loggedUser.accessToken);
+  //   setUserError(false);
+  //   setLoginError(false);
+  //   // localStorage.setItem("MyToken", loggedUser.accessToken);
   //   setRegistration({
   //     email: "",
   //     password: "",
   //     rememberMe: false,
   //   });
-
-  //   dispatch(Login(registration));
   // };
+//  useEffect(() => {
+//   dispatch(Login(registration));
+//   setRegister(true);
+//         setLoading(false);
 
+//  }, [])
   return (
     <>
       {userError ? (
