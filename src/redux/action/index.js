@@ -21,8 +21,7 @@ export const USER_REGISTER_ERROR = "USER_REGISTER_ERROR";
 export const USER_LOAD_REQUEST = "USER_LOAD_REQUEST";
 export const USER_LOAD = "USER_LOAD";
 export const USER_LOAD_ERROR = "USER_LOAD_ERROR";
-export const ADD_MY_INFO_TO_CURRENT_USER = "ADD_MY_INFO_TO_CURRENT_USER"
-export const LOG_OUT_USER ="LOG_OUT_USER"
+
 export const addToCartAction = (bookToAdd) => ({
   type: ADD_TO_CART,
   payload: bookToAdd,
@@ -31,17 +30,6 @@ export const removeFromCartAction = (index) => ({
   type: REMOVE_FROM_CART,
   payload: index,
 });
-
-export const userLoginAction = () => ({
-    type: USER_LOGIN,
-})
-export const addMyInfoToCurentUser = (myInfo) => ({
-    type: ADD_MY_INFO_TO_CURRENT_USER,
-    payload: myInfo
-})
-export const logOutUserAction = () => ({
-    type: LOG_OUT_USER
-})
 
 export const getBooks = (SearchQuery, currentPage = 1, category) => {
   return async (dispatch) => {
@@ -131,12 +119,14 @@ export const getBooksDetail = (id) => {
 
 // Load User
 export const LoadUser = () => {
+    let users = localStorage.getItem('MyToken') || [];
+    console.log( " here", users)
   return async (dispatch) => {
     try {
       const config = {
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU2YzFhYjk2YjZkNzkzYTBhMDZmYTciLCJpYXQiOjE2NDk4NTI4NTksImV4cCI6MTY1MDQ1NzY1OX0.SH6C5avMF24pr7z7CnbUIN_stUbYcKiJM1cUzeMZZQM",
+          users
         },
       };
 

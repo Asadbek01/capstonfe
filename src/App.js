@@ -27,7 +27,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <MyNavbar /*userMe={userMe} */ />
+        <MyNavbar userMe={userMe} />
 
         <Routes>
           <Route path="/" element={<UserLogin />} />

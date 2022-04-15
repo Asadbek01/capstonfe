@@ -121,14 +121,14 @@ export const MyNavbar = ({ userMe }) => {
               <div class="profile mr-3">
                 <div class="profile__avatar i-block pull-left ">
                   <span class="profile__monogram i-block ">
-                    {/* <Avatar
-                      src={userMe.avatar && userMe.avatar.url}
-                      alt={userMe && userMe.name}
-                    /> */}
+                    <Avatar
+                      src={userMe[0] ? userMe[0].avatar.url : ""}
+                      alt={userMe[0] ? userMe[0].name : " "}
+                    />
                   </span>
                 </div>
                 <span class="profile__name i-block pull-left pt-3 ">
-                  {userMe && userMe.name}
+                  {userMe[0] && userMe[0].name}
                 </span>
                 <ul class="menu" style={{ height: "15vh" }}>
                   <li class="menu__item">Profile</li>
