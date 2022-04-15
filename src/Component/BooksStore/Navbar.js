@@ -102,15 +102,16 @@ export const MyNavbar = ({ userMe }) => {
         
         
         <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-          <div style={{ position: "relative", right: "10%" }}>
+          <div style={{ position: "relative", right: "15%", marginTop: "20px" }} >
             <FiShoppingCart
               color="blue"
-              size={20}
+              size={25}
               onClick={() => navigate("/cart")}
               />
             <Badge
+                        className='ml-1'
               variant="danger"
-              style={{ position: "absolute", top: "15px" }}
+              style={{ position: "absolute", marginTop: "15px" }} 
             >
               {cartLength}
             </Badge>
@@ -118,7 +119,7 @@ export const MyNavbar = ({ userMe }) => {
 
             <header class="header ">
               <div class="profile mr-3">
-                <div class="profile__avatar i-block pull-left">
+                <div class="profile__avatar i-block pull-left ">
                   <span class="profile__monogram i-block ">
                     <Avatar
                       src={userMe.avatar && userMe.avatar.url}
@@ -126,7 +127,7 @@ export const MyNavbar = ({ userMe }) => {
                     />
                   </span>
                 </div>
-                <span class="profile__name i-block pull-left mt-n1 ">
+                <span class="profile__name i-block pull-left pt-3 ">
                   {userMe && userMe.name}
                 </span>
                 <ul class="menu" style={{ height: "15vh" }}>
@@ -139,13 +140,13 @@ export const MyNavbar = ({ userMe }) => {
             </header>
             )
           
-            <Button
+            {/* <Button
               onClick={() => navigate("/login")}
               variant="primary"
               className="ml-4"
             >
               Login
-            </Button>
+            </Button> */}
           
         </div>
       </nav>

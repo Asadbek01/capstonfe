@@ -12,7 +12,7 @@ export const InitialState ={
         stock: [],
         searchedBook: [],
         errorCode: null,
-        isLoading: true
+        isLoading: true,
     },
 
     bookWithSpecificId:{
