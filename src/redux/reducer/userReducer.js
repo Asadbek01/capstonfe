@@ -1,41 +1,29 @@
-import {
-  CLEAR_ERRORS,
-  USER_LOAD,
-  USER_LOAD_ERROR,
-//   USER_LOGIN,
-//   USER_LOGIN_ERROR,
-//   USER_LOGIN_REQUEST,
-//   USER_REGISTER,
-//   USER_REGISTER_ERROR,
-//   USER_REGISTER_REQUEST,
-} from "../action";
-import { InitialState } from "../store";
+import { ADD_MY_INFO_TO_CURRENT_USER, LOG_OUT_USER, USER_LOGIN } from "../action"
+import { InitialState } from "../store"
 
-export const userReducer = (state = InitialState.user, action) => {
-  switch (action.type) {
-    case USER_LOAD:
-      return {
-        ...state,
-        isAuth: true,
-        loggedUser: [...state.loggedUser, action.payload],
-      };
+const userReducer = (state = InitialState.user, action) => {
+    switch(action.type) {
+        case USER_LOGIN: return {
+            ...state,
+            isLoggedIn: true
+        }
+        case ADD_MY_INFO_TO_CURRENT_USER: return {
+            ...state,
+            currentUser: action.payload
+        }
+        case LOG_OUT_USER: return {
+            ...state,
+            isLoggedIn: false,
+            currentUser: null
+        }
+      
+        // case ACTIONS.CLEAR_USER_INFO: return {
+        //     isLoggedIn: false,
+        //     currentUser: null,
+        //     theme: 'dark'
+        // }
+        default: return state
+    }
+}
 
-    case USER_LOAD_ERROR:
-      return {
-        ...state,
-        isAuth: false,
-        error: action.payload,
-      };
-
-    case CLEAR_ERRORS:
-      return {
-        ...state,
-        error: null,
-      };
-
-    default:
-      return state;
-  }
-};
-
-
+export default userReducer

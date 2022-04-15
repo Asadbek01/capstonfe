@@ -21,7 +21,8 @@ export const USER_REGISTER_ERROR = "USER_REGISTER_ERROR";
 export const USER_LOAD_REQUEST = "USER_LOAD_REQUEST";
 export const USER_LOAD = "USER_LOAD";
 export const USER_LOAD_ERROR = "USER_LOAD_ERROR";
-
+export const ADD_MY_INFO_TO_CURRENT_USER = "ADD_MY_INFO_TO_CURRENT_USER"
+export const LOG_OUT_USER ="LOG_OUT_USER"
 export const addToCartAction = (bookToAdd) => ({
   type: ADD_TO_CART,
   payload: bookToAdd,
@@ -30,6 +31,17 @@ export const removeFromCartAction = (index) => ({
   type: REMOVE_FROM_CART,
   payload: index,
 });
+
+export const userLoginAction = () => ({
+    type: USER_LOGIN,
+})
+export const addMyInfoToCurentUser = (myInfo) => ({
+    type: ADD_MY_INFO_TO_CURRENT_USER,
+    payload: myInfo
+})
+export const logOutUserAction = () => ({
+    type: LOG_OUT_USER
+})
 
 export const getBooks = (SearchQuery, currentPage = 1, category) => {
   return async (dispatch) => {
