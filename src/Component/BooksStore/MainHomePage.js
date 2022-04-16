@@ -10,9 +10,10 @@ export const MainHomePage = () => {
   const [category, setCategory] = useState("");
 
   const books = useSelector((state) => state.book.stock);
+  console.log(books)
   const page = useSelector((state) => state.book.stock);
   const totalBooks = useSelector((state) => state.book);
-  console.log(totalBooks);
+  // console.log(totalBooks);
   const errorCode = useSelector((state) => state.book.errorCode);
   const isLoading = useSelector((state) => state.book.isLoading);
 

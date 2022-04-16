@@ -99,10 +99,9 @@ export const Register = (userDetails) => {
         userDetails,
         config
       );
-
       dispatch({
         type: USER_REGISTER,
-        payload: data.user,
+        payload: data,
       });
     } catch (error) {
       dispatch({
@@ -114,34 +113,34 @@ export const Register = (userDetails) => {
 };
 
 // Load User
-export const LoadUser = () => {
-    let users = localStorage.getItem('MyToken') || [];
-    console.log( " here", users)
-  return async (dispatch) => {
-    try {
-      const config = {
-        headers: {
-          Authorization:
-          users
-        },
-      };
+// export const LoadUser = () => {
+//     let users = localStorage.getItem('MyToken') || [];
+//     console.log( " here", users)
+//   return async (dispatch) => {
+//     try {
+//       const config = {
+//         headers: {
+//           Authorization:
+//           users
+//         },
+//       };
 
-      const { data } = await axios.get(
-        "http://localhost:3002/users/me",
-        config
-      );
-      dispatch({
-        type: USER_LOAD,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: USER_LOAD_ERROR,
-        payload: error.response.data.message,
-      });
-    }
-  };
-};
+//       const { data } = await axios.get(
+//         "http://localhost:3002/users/me",
+//         config
+//       );
+//       dispatch({
+//         type: USER_LOAD,
+//         payload: data,
+//       });
+//     } catch (error) {
+//       dispatch({
+//         type: USER_LOAD_ERROR,
+//         payload: error.response.data.message,
+//       });
+//     }
+//   };
+// };
 export const ClearErrors = () => {
   return async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });

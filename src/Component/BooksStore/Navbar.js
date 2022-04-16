@@ -19,7 +19,9 @@ import { Books } from "./Books";
 
 export const MyNavbar = ({ userMe }) => {
   const cartLength = useSelector((state) => state.cart.cartBooks.length);
+  const isAuth = useSelector(state=> state.user.isAuth)
   const SearchedBooks = useSelector((state) => state.book.stock);
+
   const [SearchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState("");
 
@@ -34,7 +36,7 @@ export const MyNavbar = ({ userMe }) => {
   ];
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // prevent page refreshing
   const handleSubmit = (e) => {
@@ -46,9 +48,6 @@ export const MyNavbar = ({ userMe }) => {
     setSearchQuery(e.target.value);
   };
   
-  useEffect(() => {
-    dispatch(getBooks(SearchQuery, category));
-  }, [SearchQuery, category]);
   return (
     <>
       <nav className="navbar row" color="dark">
@@ -102,7 +101,9 @@ export const MyNavbar = ({ userMe }) => {
         
         
         <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-          <div style={{ position: "relative", right: "15%", marginTop: "20px" }} >
+          {
+            isAuth?(
+              <div style={{ position: "relative", right: "15%", marginTop: "px"}} >
             <FiShoppingCart
               color="blue"
               size={25}
@@ -116,8 +117,27 @@ export const MyNavbar = ({ userMe }) => {
               {cartLength}
             </Badge>
           </div>
+            ):(
+              <div style={{position:"absolute", right:"60%"}} >
+            <FiShoppingCart
+              color="blue"
+              size={25}
+              onClick={() => navigate("/cart")}
+              />
+            <Badge
+                        className='ml-1'
+              variant="danger"
+              style={{ position: "absolute", marginTop: "15px" }} 
+            >
+              {cartLength}
+            </Badge>
+          </div>
+            )
+          }
+            {
+              isAuth?(
 
-            <header class="header ">
+                <header class="header ">
               <div class="profile mr-3">
                 <div class="profile__avatar i-block pull-left ">
                   <span class="profile__monogram i-block ">
@@ -138,15 +158,17 @@ export const MyNavbar = ({ userMe }) => {
                 </ul>
               </div>
             </header>
-            )
-          
-            {/* <Button
-              onClick={() => navigate("/login")}
+            
+            ) :(
+            <Button
+              onClick={() => navigate("/")}
               variant="primary"
-              className="ml-4"
-            >
+style={{position: "relative", left:"40px"}}
+>
               Login
-            </Button> */}
+            </Button>
+            )
+          }
           
         </div>
       </nav>

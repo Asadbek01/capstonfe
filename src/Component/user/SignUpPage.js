@@ -46,13 +46,13 @@ const handleInput = (e) =>{
 }
     const handleSubmit = (e) =>{
        e.preventDefault()
-       const formData = new FormData()
-       formData.set("name", name);
-       formData.set("email", email);
-       formData.set("lastname", lastname);
-       formData.set("password", password);
+      //  const formData = new FormData()
+      //  formData.set("name", name);
+      //  formData.set("email", email);
+      //  formData.set("lastname", lastname);
+      //  formData.set("password", password);
 
-       dispatch(Register(formData))
+       dispatch(Register(reservation))
     }
  
   
