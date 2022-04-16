@@ -14,18 +14,21 @@ export const CartPage = () => {
       <Col sm={12}>
         {book.map((book, i) => (
           <Card key={i} className="my-4">
+             <Card.Body>
+    <Card.Title>{book.title}</Card.Title>
+    <Card.Img
+              className="book-cover-small"
+              src={book.images[0].imgUrl}
+              alt="book selected"
+            />
             <Button
               variant="danger"
               onClick={() => dispatch(removeFromCartAction(i))}
             >
               remove
             </Button>
-            <Card.Img
-              className="book-cover-small"
-              src={book.images[0].imgUrl}
-              alt="book selected"
-            />
-            {book.title}
+  </Card.Body>
+            
           </Card>
         ))}
       </Col>
