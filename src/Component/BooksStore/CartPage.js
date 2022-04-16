@@ -8,6 +8,8 @@ export const CartPage = () => {
   const book = useSelector((state) => state.cart.cartBooks);
   const dispatch = useDispatch();
   return (
+    <>
+    {book.length === 0 ?  <h1 className="text-center text-white">Your cart is empty</h1> : ""}
     <Row>
       <Col sm={12}>
         {book.map((book, i) => (
@@ -37,5 +39,6 @@ export const CartPage = () => {
         </Col>
       </Row>
     </Row>
+    </>
   );
 };
