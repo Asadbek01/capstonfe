@@ -26,6 +26,7 @@ export const MyNavbar = ({ userMe }) => {
   const [category, setCategory] = useState("");
 
   const categories = [
+    "All",
     "History",
     "Poetry",
     "Philosophy",
@@ -46,6 +47,7 @@ export const MyNavbar = ({ userMe }) => {
   // search input onChange event
   const handleInputChange = (e) => {
     setSearchQuery(e.target.value);
+    setCategory(category)
   };
   
   return (
@@ -87,6 +89,7 @@ export const MyNavbar = ({ userMe }) => {
                       <Dropdown.Item
                         className="text-capitalize"
                         key={category}
+                        onChange={e => handleInputChange(e)}
                         onClick={() => setCategory(category)}
                       >
                         {category}
@@ -141,10 +144,10 @@ export const MyNavbar = ({ userMe }) => {
               <div class="profile mr-3">
                 <div class="profile__avatar i-block pull-left ">
                   <span class="profile__monogram i-block ">
-                    {/* <Avatar
-                      src={userMe[0] ? userMe[0].avatar.url : ""}
-                      alt={userMe[0] ? userMe[0].name : " "}
-                    /> */}
+                    { <Avatar
+                      // src={userMe[0] ? userMe[0].avatar.url : ""}
+                      // alt={userMe[0] ? userMe[0].name : " "}
+                    /> }
                   </span>
                 </div>
                 {/* <span class="profile__name i-block pull-left pt-3 ">
@@ -177,9 +180,9 @@ style={{position: "relative", left:"40px"}}
           <div className="row">
             {SearchedBooks.book
               ?.filter((book) => {
-                if (!SearchQuery) return false;
+                if (!SearchQuery || !category) return false;
                 if (
-                  book.title.toLowerCase().includes(SearchQuery.toLowerCase())
+                  book.title.toLowerCase().includes(SearchQuery.toLowerCase() || category.toLocaleLowerCase())
                 )
                   return true;
               })

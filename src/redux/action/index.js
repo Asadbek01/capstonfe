@@ -21,10 +21,11 @@ export const USER_REGISTER_ERROR = "USER_REGISTER_ERROR";
 export const USER_LOAD_REQUEST = "USER_LOAD_REQUEST";
 export const USER_LOAD = "USER_LOAD";
 export const USER_LOAD_ERROR = "USER_LOAD_ERROR";
-
+export const GET_CATEGORY_BOOKS = "GET_CATEGORY_BOOKS";
+export const ERROR_CATEGORY_BOOKS = "ERROR_CATEGORY_BOOKS";
 export const addToCartAction = (bookToAdd) => ({
   type: ADD_TO_CART,
-  payload: bookToAdd,
+  payload: bookToAdd, 
 });
 export const removeFromCartAction = (index) => ({
   type: REMOVE_FROM_CART,
@@ -51,6 +52,10 @@ export const getBooks = (SearchQuery, currentPage = 1, category) => {
         type: GET_SEARCHED_BOOKS,
         payload: data,
       });
+      dispatch({
+        type: GET_CATEGORY_BOOKS,
+        payload: data,
+      });
     } catch (error) {
       dispatch({
         type: GET_BOOKS_ERROR,
@@ -64,6 +69,10 @@ export const getBooks = (SearchQuery, currentPage = 1, category) => {
         type: ERROR_SEARCHED_BOOKS,
         payload: error.message,
       });
+      dispatch({
+        type: ERROR_CATEGORY_BOOKS,
+        payload: error.message,
+      });
     }
   };
 };
@@ -75,7 +84,7 @@ export const getBooksDetail = (id) => {
 
       dispatch({
         type: GET_BOOKS_DETAIL,
-        payload: data,
+        payload: data
       });
     } catch (error) {
       dispatch({
@@ -111,6 +120,36 @@ export const Register = (userDetails) => {
     }
   };
 };
+
+
+//  Login
+
+export const Login = (userDetails) => {
+  return async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "http://localhost:3002/users/login",
+        userDetails,
+        config
+      );
+      dispatch({
+        type: USER_LOGIN,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_LOGIN_ERROR,
+        payload: error.message,
+      });
+    }
+  };
+};
+
 
 // Load User
 // export const LoadUser = () => {

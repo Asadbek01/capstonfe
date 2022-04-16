@@ -12,86 +12,84 @@ import {
 import { MainHomePage } from "../BooksStore/MainHomePage.js";
 import { useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
-import { Login } from "../../redux/action/index.js";
+import { ClearErrors, Login } from "../../redux/action/index.js";
 import { useDispatch, useSelector } from "react-redux";
 
 
 const UserLogin = () => {
-  const [registration, setRegistration] = useState({
-    email: "",
-    password: "",
-    rememberMe: false,
-  });
   const history = useNavigate();
-  const [registered, setRegister] = useState(false);
+
   const [userError, setUserError] = useState(false);
   const [loginError, setLoginError] = useState(false);
-  const [loading, setLoading] = useState(true);
+
+  const isAuth = useSelector(state=> state.user.isAuth)
+  const error = useSelector(state=> state.user.error)
+
+  const [reservation, setReservation] = useState({
+    email: '',
+  password:  '',
+  rememberMe: false,
+
+  })
+  const { email, password, rememberMe} = reservation
   // const loggedUser = useSelector(state=> state.user.loggedUser)
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-
-  const handleInput = (fieldName, value) => {
-    setRegistration({
-      ...registration,
-      [fieldName]: value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-     setUserError(false);
-    setLoginError(false);
-    if (!registration.email || !registration.password) {
-      return setUserError(true);
+  useEffect(()=> {
+    if(isAuth){
+      history('/home')
     }
+    
+      },[dispatch, isAuth, error])
 
-    try {
-      const response = await fetch("http://localhost:3002/users/login", {
-        method: "POST",
-        body: JSON.stringify(registration),
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
-      if (response.ok) {
-       setRegister(true);
-        setLoading(false);
-        const user = await response.json();
-          localStorage.setItem("MyToken", user.accessToken);
+  const handleInput = (e) =>{
+    setReservation({...reservation, [e.target.name]:  e.target.value})
+  }
 
-        setRegistration({
-          email: "",
-          password: "",
-          rememberMe: false,
-        });
-      } else if (response.status === 500) {
-        setLoginError(true);
-      } else {
-        console.log("Error while fetched!");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // const handleSubmit = (e) => {
+  // const handleSubmit = async (e) => {
   //   e.preventDefault();
-  //   setUserError(false);
-  //   setLoginError(false);
-  //   // localStorage.setItem("MyToken", loggedUser.accessToken);
-  //   setRegistration({
-  //     email: "",
-  //     password: "",
-  //     rememberMe: false,
-  //   });
-  // };
-//  useEffect(() => {
-//   dispatch(Login(registration));
-//   setRegister(true);
-//         setLoading(false);
+  //  
 
-//  }, [])
+  //   try {
+  //     const response = await fetch("http://localhost:3002/users/login", {
+  //       method: "POST",
+  //       body: JSON.stringify(registration),
+  //       headers: {
+  //         "Content-type": "application/json",
+  //       },
+  //     });
+  //     if (response.ok) {
+  //      setRegister(true);
+  //       setLoading(false);
+  //       const user = await response.json();
+  //         localStorage.setItem("MyToken", user.accessToken);
+
+  //       setRegistration({
+  //         email: "",
+  //         password: "",
+  //         rememberMe: false,
+  //       });
+  //     } else if (response.status === 500) {
+  //       setLoginError(true);
+  //     } else {
+  //       console.log("Error while fetched!");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setUserError(false);
+    setLoginError(false);
+    // localStorage.setItem("MyToken", loggedUser.accessToken);
+      if (!reservation.email || !reservation.password) {
+        return setUserError(true);
+      }
+      dispatch(Login(reservation));
+  };
+ 
   return (
     <>
       {userError ? (
@@ -101,16 +99,13 @@ const UserLogin = () => {
       ) : (
         ""
       )}
-      {loginError ? (
+      {error ? (
         <Alert style={{ width: "20%", margin: "auto" }} variant={"danger"}>
           Invalid Login!
         </Alert>
       ) : (
         ""
       )}
-      {registered ? (
-        history("/home")
-      ) : (
         <Container>
           <Row className="d-flex justify-content-center mt-5 ">
             <Col md={4} xs={6} sm={3}>
@@ -152,8 +147,9 @@ const UserLogin = () => {
                       // className="rounded-"
                       type="email"
                       placeholder="Enter email"
-                      value={registration.email}
-                      onChange={(e) => handleInput("email", e.target.value)}
+                      name="email"
+                      value={email}
+                      onChange={handleInput}
                     />
                   </Form.Group>
                   <Form.Group>
@@ -161,18 +157,17 @@ const UserLogin = () => {
                       // className="rounded-pill"
                       type="password"
                       placeholder="Password"
-                      value={registration.password}
-                      onChange={(e) => handleInput("password", e.target.value)}
-                    />
+                      name="password"
+                      value={password}
+                      onChange={handleInput}                    />
                   </Form.Group>
                   <Form.Group className="d-flex mt-4  text-white">
                     <Form.Check
                       type="checkbox"
                       label="Remember Me?"
-                      checked={registration.rememberMe}
-                      onChange={(e) =>
-                        handleInput("rememberMe", e.target.checked)
-                      }
+                      name="rememberMe"
+                      checked={rememberMe}
+                     onChange={handleInput}                      
                     />
                     <Button
                       variant="primary"
@@ -199,7 +194,6 @@ const UserLogin = () => {
             </Col>
           </Row>
         </Container>
-      )}
     </>
   );
 };

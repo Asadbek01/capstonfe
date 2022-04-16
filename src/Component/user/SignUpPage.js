@@ -46,12 +46,6 @@ const handleInput = (e) =>{
 }
     const handleSubmit = (e) =>{
        e.preventDefault()
-      //  const formData = new FormData()
-      //  formData.set("name", name);
-      //  formData.set("email", email);
-      //  formData.set("lastname", lastname);
-      //  formData.set("password", password);
-
        dispatch(Register(reservation))
     }
  
@@ -90,9 +84,9 @@ const handleInput = (e) =>{
   return (
               <Container className="d-flex flex-column justify-content-center align-items-center w-50" style={{ minHeight: "100vh"}}>
               <Form onSubmit={handleSubmit} className="w-100 border p-4">
-                  <h2>Register</h2>
+                  <h2 className='text-white'>Register</h2>
                   <Form.Group className="mb-3" controlId="formBasicFirstName">
-                      <Form.Label>First Name</Form.Label>
+                      <Form.Label className='text-white'>First Name</Form.Label>
                       <Form.Control type="text" placeholder="Insert your first name..."
                       required
                       value={name} 
@@ -100,14 +94,14 @@ const handleInput = (e) =>{
                       onChange={handleInput} />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicLastName">
-                      <Form.Label>Last Name</Form.Label>
+                      <Form.Label className='text-white'>Last Name</Form.Label>
                       <Form.Control type="text" placeholder="Insert your last name" 
                       required
                       value={lastname} 
                       name="lastname"onChange={handleInput} />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
-                      <Form.Label>Email address</Form.Label>
+                      <Form.Label className='text-white'>Email address</Form.Label>
                       <Form.Control type="email" placeholder="Insert your email"
                       required
                       value={email} 
@@ -115,7 +109,7 @@ const handleInput = (e) =>{
                       onChange={handleInput} />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicPassword">
-                      <Form.Label>Password</Form.Label>
+                      <Form.Label className='text-white'>Password</Form.Label>
                       <Form.Control type="password" placeholder="Password min 6 char..."
                       required
                       value={password} 

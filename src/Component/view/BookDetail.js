@@ -8,18 +8,41 @@ import {
 import { useParams } from "react-router-dom";
 
 const BookDetail = () => {
-  const BookWithSpesificId = useSelector(
-    (state) => state.bookWithSpecificId.bookWithId
-  );
+
+// getting state from redux Store
+  const BookWithSpesificId = useSelector( (state) => state.bookWithSpecificId.bookWithId);
   const cartLength = useSelector((state) => state.cart.cartBooks.length);
   const books = useSelector((state) => state.book.stock);
 
-  const dispatch = useDispatch();
+// useState
+const [ quantity, setQuantity] = useState(1)
 
+// Assigning
+  const dispatch = useDispatch();
   const params = useParams();
+
+//  getting BookDetail
   useEffect(() => {
     dispatch(getBooksDetail(params.id));
   }, [dispatch, params.id]);
+
+
+
+const increaseQuantity = () => {
+ const count = document.querySelector(".count")
+ if(count.valueAsNumber >= BookWithSpesificId.stock ) return
+   const  qty = count.valueAsNumber + 1
+   setQuantity(qty)
+ 
+}
+
+const decreaseQuantity = () =>{
+  const count = document.querySelector(".count")
+  if(count.valueAsNumber <= 1 ) return
+    const  qty = count.valueAsNumber - 1
+    setQuantity(qty)
+}
+
 
   return (
     <div className="container container-fluid">
@@ -57,20 +80,19 @@ const BookDetail = () => {
             ${BookWithSpesificId.price}
           </p>
           <div className="stockCounter d-inline">
-            <span className="btn btn-danger minus" onClick={() => {}}>
+            <span className="btn btn-danger minus" onClick={decreaseQuantity}>
               -
             </span>
 
             <input
               type="number"
               className="form-control count d-inline ml-1"
-              value={cartLength}
+              value={quantity} readOnly
             />
             <span
               className="btn btn-primary plus ml-1"
-              onClick={() => {
-                dispatch(addToCartAction(BookWithSpesificId));
-              }}
+              onClick={increaseQuantity}
+              
             >
               +
             </span>
@@ -99,6 +121,7 @@ const BookDetail = () => {
               className="btn btn-primary mt-4"
               data-toggle="modal"
               data-target="#ratingModal"
+              disabled={BookWithSpesificId.stock ===0}
               onClick={() => {
                 dispatch(addToCartAction(BookWithSpesificId));
               }}

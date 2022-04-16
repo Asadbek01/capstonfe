@@ -9,21 +9,20 @@ import {
   GET_ALL_BOOKS_IN_CART,
   GET_ERROR_BOOKS_IN_CART,
   REMOVE_FROM_CART,
+  GET_CATEGORY_BOOKS,
 } from "../action";
 import { InitialState } from "../store";
 
 export const BookReducer = (state = InitialState.book, action) => {
   switch (action.type) {
     case GET_BOOKS:
+      case GET_SEARCHED_BOOKS:
+        case GET_CATEGORY_BOOKS:
       return {
         ...state,
         stock: action.payload,
       };
-    case GET_SEARCHED_BOOKS:
-      return {
-        ...state,
-        stock: action.payload,
-      };
+      
 
     case GET_BOOKS_ERROR:
       return {

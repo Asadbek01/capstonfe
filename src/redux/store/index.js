@@ -10,9 +10,10 @@ const composeFunction =
 export const InitialState ={
     book:{
         stock: [],
-        searchedBook: [],
+        category: [],
         errorCode: null,
         isLoading: true,
+        
     },
 
     bookWithSpecificId:{

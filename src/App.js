@@ -11,7 +11,7 @@ import SignUp from "./Component/user/SignUpPage";
 import UserLogin from "./Component/user/LoginPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Footer } from "./Component/view/Footer/Footer";
-import { PageError } from "./Component/view/PageError";
+import { PageError } from "./Component/view/error/PageError";
 import BookDetail from "./Component/view/BookDetail";
 // import { LoadUser } from "./redux/action";
 // import store from "./redux/store";
