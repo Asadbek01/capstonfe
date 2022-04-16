@@ -86,36 +86,32 @@ export const getBooksDetail = (id) => {
   };
 };
 
-// export const Login = (email, password, rememberMe) => {
-//   return async (dispatch) => {
-//     try {
-//       dispatch({
-//         type: USER_LOGIN_REQUEST,
-//       });
+export const Register = (userDetails) => {
+  return async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "http://localhost:3002/users/register",
+        userDetails,
+        config
+      );
 
-//       const config = {
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       };
-//       const { data } = await axios.post(
-//         "http://localhost:3002/users/login",
-//         { email, password, rememberMe },
-//         config
-//       );
-
-//       dispatch({
-//         type: USER_LOGIN,
-//         payload: data.user,
-//       });
-//     } catch (error) {
-//       dispatch({
-//         type: USER_LOGIN_ERROR,
-//         payload: error.response.data.message,
-//       });
-//     }
-//   };
-// };
+      dispatch({
+        type: USER_REGISTER,
+        payload: data.user,
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_REGISTER_ERROR,
+        payload: error.message,
+      });
+    }
+  };
+};
 
 // Load User
 export const LoadUser = () => {
