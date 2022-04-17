@@ -293,7 +293,8 @@ ul, li {
   height: 50px;
   line-height: 40px;
   padding: 0 10px 0 15px;
-  color: white
+  color: white;
+  font-size: 15px;
 }
 
 .menu {
@@ -314,7 +315,7 @@ ul, li {
 .profile:hover .menu {
   visibility: visible;
   opacity: 1;
-  height: 180px;
+  /* height: px; */
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 .profile:hover .menu .menu__item {

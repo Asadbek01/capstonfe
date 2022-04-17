@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  Alert,
   Badge,
   Button,
   Card,
@@ -11,7 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
-import { getBooks, getSearchedBooks } from "../../redux/action";
+import { getBooks, getSearchedBooks, LogOutUser } from "../../redux/action";
 import { Avatar } from "@material-ui/core";
 import { FiShoppingCart } from "react-icons/fi";
 import { Books } from "./Books";
@@ -37,7 +38,7 @@ export const MyNavbar = ({ userMe }) => {
   ];
 
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // prevent page refreshing
   const handleSubmit = (e) => {
@@ -49,6 +50,15 @@ export const MyNavbar = ({ userMe }) => {
     setSearchQuery(e.target.value);
     setCategory(category)
   };
+
+  const LogOutHandler = () => {
+    dispatch(LogOutUser())
+    {
+      <Alert variant="success" style={{ margin: "auto", width: "60%" }}>
+     Successfully logged out
+    </Alert>
+    }
+  }
   
   return (
     <>
@@ -145,19 +155,22 @@ export const MyNavbar = ({ userMe }) => {
                 <div class="profile__avatar i-block pull-left ">
                   <span class="profile__monogram i-block ">
                     { <Avatar
-                      // src={userMe[0] ? userMe[0].avatar.url : ""}
-                      // alt={userMe[0] ? userMe[0].name : " "}
+                      src={userMe.avatar && userMe.avatar.url}
+                      alt={userMe && userMe.name }
                     /> }
                   </span>
                 </div>
-                {/* <span class="profile__name i-block pull-left pt-3 ">
-                  {userMe[0] && userMe[0].name}
-                </span> */}
-                <ul class="menu" style={{ height: "15vh" }}>
+                <span class="profile__name i-block pull-left pt-n3">
+                  {userMe && userMe.name}
+                </span>
+                <ul class="menu" style={{ height: "20vh",  }}>
+                  {
+                    userMe.role === "admin" ?  <li class="menu__item">Dashboard</li> :  <li class="menu__item">Order</li>
+                  }
                   <li class="menu__item">Profile</li>
-                  <li onClick={() => navigate("/signUp")} class="menu__item">
+                  <Link onClick={LogOutHandler()} to='/' class="menu__item text-danger">
                     Log out
-                  </li>
+                  </Link>
                 </ul>
               </div>
             </header>

@@ -23,6 +23,8 @@ export const USER_LOAD = "USER_LOAD";
 export const USER_LOAD_ERROR = "USER_LOAD_ERROR";
 export const GET_CATEGORY_BOOKS = "GET_CATEGORY_BOOKS";
 export const ERROR_CATEGORY_BOOKS = "ERROR_CATEGORY_BOOKS";
+export const USER_LOG_OUT_FAIL = 'USER_LOG_OUT_FAIL'
+export const USER_LOG_OUT ='USER_LOG_OUT'
 export const addToCartAction = (bookToAdd) => ({
   type: ADD_TO_CART,
   payload: bookToAdd, 
@@ -40,7 +42,7 @@ export const getBooks = (SearchQuery, currentPage = 1, category) => {
         baselink = `http://localhost:3002/books?search=${SearchQuery}&page=${currentPage}&category=${category}`;
       }
       const { data } = await axios.get(baselink);
-
+      
       dispatch({
         type: GET_BOOKS,
         payload: data,
@@ -108,7 +110,9 @@ export const Register = (userDetails) => {
         userDetails,
         config
       );
-      dispatch({
+      let token = data.accessToken
+      localStorage.setItem("MyToken", 'Bearer ' + token)
+            dispatch({
         type: USER_REGISTER,
         payload: data,
       });
@@ -137,6 +141,8 @@ export const Login = (userDetails) => {
         userDetails,
         config
       );
+      let token = data.accessToken
+      localStorage.setItem("MyToken", 'Bearer ' + token)
       dispatch({
         type: USER_LOGIN,
         payload: data,
@@ -152,34 +158,66 @@ export const Login = (userDetails) => {
 
 
 // Load User
-// export const LoadUser = () => {
-//     let users = localStorage.getItem('MyToken') || [];
-//     console.log( " here", users)
-//   return async (dispatch) => {
-//     try {
-//       const config = {
-//         headers: {
-//           Authorization:
-//           users
-//         },
-//       };
+export const LoadUser = () => {
+  return async (dispatch) => {
+    try {
+      let users = localStorage.getItem('MyToken') || [];
+      console.log( " here", users)
+      const config = {
+        headers: {
+          Authorization:
+          users
+        },
+      };
 
-//       const { data } = await axios.get(
-//         "http://localhost:3002/users/me",
-//         config
-//       );
-//       dispatch({
-//         type: USER_LOAD,
-//         payload: data,
-//       });
-//     } catch (error) {
-//       dispatch({
-//         type: USER_LOAD_ERROR,
-//         payload: error.response.data.message,
-//       });
-//     }
-//   };
-// };
+      const { data } = await axios.get(
+        "http://localhost:3002/users/me",
+        config
+      );
+      dispatch({
+        type: USER_LOAD,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_LOAD_ERROR,
+        payload: error.response.data.message,
+      });
+    }
+  };
+};
+
+// logout user
+
+export const LogOutUser = () => {
+  return async (dispatch) => {
+    try {
+    let remove = localStorage.removeItem('MyToken') || [];
+    const config = {
+      headers: {
+        Authorization:
+        remove
+      },
+    };
+
+    const { data } = await axios.get(
+      "http://localhost:3002/users/me",
+      config
+    );
+    // localStorage.remove("MyToken")
+    dispatch({
+      type: USER_LOG_OUT,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_LOG_OUT_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+};
+
 export const ClearErrors = () => {
   return async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });

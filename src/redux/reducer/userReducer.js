@@ -6,6 +6,8 @@ import {
   USER_LOGIN_ERROR,
   USER_REGISTER,
   USER_REGISTER_ERROR,
+  USER_LOG_OUT,
+  USER_LOG_OUT_FAIL
 } from "../action";
 import { InitialState } from "../store";
 
@@ -20,6 +22,19 @@ export const userReducer = (state = InitialState.user, action) => {
         loading: false,
         loggedUser: action.payload
       };
+
+      case USER_LOG_OUT:
+        return {
+          isAuth: false,
+          loading: true,
+          loggedUser: null
+
+        }
+        case USER_LOG_OUT_FAIL:
+          return {
+            ...state,
+            error: action.payload
+          }
 
     case USER_LOAD_ERROR:
         case USER_REGISTER_ERROR:

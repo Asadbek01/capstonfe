@@ -10,10 +10,9 @@ export const MainHomePage = () => {
   const [category, setCategory] = useState("");
 
   const books = useSelector((state) => state.book.stock);
-  console.log(books)
-  const page = useSelector((state) => state.book.stock);
-  const totalBooks = useSelector((state) => state.book);
-  // console.log(totalBooks);
+  const page = useSelector((state) => state.book.pages);
+  const totalBooks = useSelector((state) => state.book.totalBooks);
+  console.log("perpage ",totalBooks);
   const errorCode = useSelector((state) => state.book.errorCode);
   const isLoading = useSelector((state) => state.book.isLoading);
 
@@ -26,6 +25,10 @@ export const MainHomePage = () => {
   }, []);
 
   const changeBook = (book) => setBookSelected(book);
+  // // Get Current books
+  // const indexOfLastBook = currentPage * bookPerPage
+  // const indexOfFirstBook = indexOfLastBook * bookPerPage
+  // const currentBook = books.slice(indexOfFirstBook, indexOfLastBook)
 
   function setCurrentPageNo(pageNumber) {
     setCurrentPage(pageNumber);
