@@ -11,6 +11,7 @@ export const Books = ({ book, bookSelected, changeBook }) => {
   useEffect(() => {
     dispatch(getBooks());
   }, [dispatch]);
+  const navigate = useNavigate()
 
   return (
     <>
@@ -59,7 +60,7 @@ export const Books = ({ book, bookSelected, changeBook }) => {
                   variant="outline-success"
                   className="ml-2"
                 >
-                  <Link to={`/detail/${book._id}`}>View </Link>
+                  <li onClick={()=> navigate(`/detail/${book._id}`)}>View </li> 
                 </Button>
               </div>
             </div>

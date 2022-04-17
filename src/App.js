@@ -17,6 +17,7 @@ import { LoadUser } from "./redux/action";
 import store from "./redux/store";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Profile } from "./Component/user/Profile";
 function App() {
   useEffect(() => {
     store.dispatch(LoadUser());
@@ -30,11 +31,12 @@ function App() {
         <MyNavbar userMe={userMe} />
 
         <Routes>
-          <Route path="/" element={<UserLogin />} />
+          <Route path="/" element={<UserLogin />} exact/>
           <Route path="/signUp" element={<SignUp />} />
+          <Route path="/me" element={<Profile />}  exact/>
           <Route path="/home" element={<MainHomePage />} exact />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/detail/:id" element={<BookDetail />} />
+          <Route path="/cart" element={<CartPage /> } exact />
+          <Route path="/detail/:id" element={<BookDetail />} exact />
           <Route path="*" element={<PageError />} />
         </Routes>
         <Footer />

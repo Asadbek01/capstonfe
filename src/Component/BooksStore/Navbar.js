@@ -157,11 +157,11 @@ export const MyNavbar = ({ userMe }) => {
                 <span class="profile__name i-block pull-left pt-n3">
                   {userMe && userMe.name}
                 </span>
-                <ul class="menu" style={{ height: "20vh",  }}>
+                <ul class="menu" style={{ height: "20vh", position: "absolute" , zIndex: "999"  }}>
                   {
                     userMe.role === "admin" ?  <li class="menu__item">Dashboard</li> :  <li class="menu__item">Order</li>
                   }
-                  <li class="menu__item">Profile</li>
+                  <li onClick={() => navigate("/me")} class="menu__item">Profile</li>
                   <li onClick={dispatch(LogOutUser())}  class="menu__item text-danger">
                     Log out
                   </li>
@@ -206,7 +206,8 @@ style={{position: "relative", left:"40px"}}
               .map(book =>(
                 <Books book={book} />
               ))
-}
+            }
+
           </div>
         </section>
       </div>

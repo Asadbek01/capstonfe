@@ -200,7 +200,6 @@ export const LogOutUser = () => {
         "http://localhost:3002/users/me",
         config
         );
-        localStorage.removeItem("MyToken", data.accessToken)
     dispatch({
       type: USER_LOG_OUT,
       payload: data,
