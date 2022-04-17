@@ -12,7 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
-import { getBooks, getSearchedBooks, LogOutUser } from "../../redux/action";
+import {  getBooks, LogOutUser } from "../../redux/action";
 import { Avatar } from "@material-ui/core";
 import { FiShoppingCart } from "react-icons/fi";
 import { Books } from "./Books";
@@ -27,7 +27,6 @@ export const MyNavbar = ({ userMe }) => {
   const [category, setCategory] = useState("");
 
   const categories = [
-    "All",
     "History",
     "Poetry",
     "Philosophy",
@@ -44,21 +43,16 @@ export const MyNavbar = ({ userMe }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-  
+  useEffect(() => {
+    dispatch(getBooks(SearchQuery, category))
+
+  }, [SearchQuery, category])
   // search input onChange event
   const handleInputChange = (e) => {
     setSearchQuery(e.target.value);
     setCategory(category)
   };
 
-  const LogOutHandler = () => {
-    dispatch(LogOutUser())
-    {
-      <Alert variant="success" style={{ margin: "auto", width: "60%" }}>
-     Successfully logged out
-    </Alert>
-    }
-  }
   
   return (
     <>
@@ -93,13 +87,13 @@ export const MyNavbar = ({ userMe }) => {
                     variant="outline-secondary"
                     id="dropdown-basic-button"
                     className="ml-2"
-                    title={category || "Comedy "}
+                    title={category || ""}
                   >
                     {categories.map((category) => (
                       <Dropdown.Item
                         className="text-capitalize"
                         key={category}
-                        onChange={e => handleInputChange(e)}
+                        onChange={handleInputChange}
                         onClick={() => setCategory(category)}
                       >
                         {category}
@@ -168,9 +162,9 @@ export const MyNavbar = ({ userMe }) => {
                     userMe.role === "admin" ?  <li class="menu__item">Dashboard</li> :  <li class="menu__item">Order</li>
                   }
                   <li class="menu__item">Profile</li>
-                  <Link onClick={LogOutHandler()} to='/' class="menu__item text-danger">
+                  <li onClick={dispatch(LogOutUser())}  class="menu__item text-danger">
                     Log out
-                  </Link>
+                  </li>
                 </ul>
               </div>
             </header>
@@ -193,15 +187,26 @@ style={{position: "relative", left:"40px"}}
           <div className="row">
             {SearchedBooks.book
               ?.filter((book) => {
-                if (!SearchQuery || !category) return false;
+                if (!SearchQuery) return false;
                 if (
-                  book.title.toLowerCase().includes(SearchQuery.toLowerCase() || category.toLocaleLowerCase())
+                  book.title.toLowerCase().includes(SearchQuery.toLowerCase())
                 )
                   return true;
               })
               .map((book) => (
                 <Books book={book} />
-              ))}
+                )) 
+              }
+              { SearchedBooks.book?.filter(book => {
+                if(!category) return false;
+                if(book.category.toLowerCase().includes(category.toLocaleLowerCase())
+                )
+                return true
+              })
+              .map(book =>(
+                <Books book={book} />
+              ))
+}
           </div>
         </section>
       </div>

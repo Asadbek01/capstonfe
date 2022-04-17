@@ -129,20 +129,21 @@ export const Register = (userDetails) => {
 //  Login
 
 export const Login = (userDetails) => {
+  
   return async (dispatch) => {
     try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
+          const config = {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
         },
       };
       const { data } = await axios.post(
         "http://localhost:3002/users/login",
         userDetails,
         config
-      );
-      let token = data.accessToken
-      localStorage.setItem("MyToken", 'Bearer ' + token)
+        );
+      localStorage.setItem("MyToken" , data.accessToken)
       dispatch({
         type: USER_LOGIN,
         payload: data,
@@ -161,8 +162,7 @@ export const Login = (userDetails) => {
 export const LoadUser = () => {
   return async (dispatch) => {
     try {
-      let users = localStorage.getItem('MyToken') || [];
-      console.log( " here", users)
+      let users = localStorage.getItem('MyToken');
       const config = {
         headers: {
           Authorization:
@@ -192,19 +192,15 @@ export const LoadUser = () => {
 export const LogOutUser = () => {
   return async (dispatch) => {
     try {
-    let remove = localStorage.removeItem('MyToken') || [];
-    const config = {
-      headers: {
-        Authorization:
-        remove
-      },
-    };
-
-    const { data } = await axios.get(
-      "http://localhost:3002/users/me",
-      config
-    );
-    // localStorage.remove("MyToken")
+      const config = {
+        method: "GET",
+            };
+      
+      const { data } = await axios.get(
+        "http://localhost:3002/users/me",
+        config
+        );
+        localStorage.removeItem("MyToken", data.accessToken)
     dispatch({
       type: USER_LOG_OUT,
       payload: data,
@@ -212,7 +208,7 @@ export const LogOutUser = () => {
   } catch (error) {
     dispatch({
       type: USER_LOG_OUT_FAIL,
-      payload: error.response.data.message,
+      payload: error.message,
     });
   }
 };
