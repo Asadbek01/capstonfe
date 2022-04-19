@@ -349,4 +349,23 @@ ul, li {
   transform: scale(1);
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
 }
+
+
+
+/* avatar */
+.avatar img {
+  width: 70%;
+  height: 28vh;
+  object-fit: cover;
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+.btn.focus,
+.btn:focus {
+  outline: 0;
+  box-shadow: none;
+}
 /* NOt found page */

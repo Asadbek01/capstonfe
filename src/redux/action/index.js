@@ -25,6 +25,13 @@ export const GET_CATEGORY_BOOKS = "GET_CATEGORY_BOOKS";
 export const ERROR_CATEGORY_BOOKS = "ERROR_CATEGORY_BOOKS";
 export const USER_LOG_OUT_FAIL = 'USER_LOG_OUT_FAIL'
 export const USER_LOG_OUT ='USER_LOG_OUT'
+export const USER_PROFILE_UPDATE_ERROR = "USER_PROFILE_UPDATE_ERROR"
+export const USER_PROFILE_UPDATE = "USER_PROFILE_UPDATE"
+export const USER_PROFILE_RESET = "USERUSER_PROFILE_RESETUPDATE"
+
+
+
+
 export const addToCartAction = (bookToAdd) => ({
   type: ADD_TO_CART,
   payload: bookToAdd, 
@@ -157,6 +164,35 @@ export const Login = (userDetails) => {
   };
 };
 
+
+// Update User
+
+export const updateUser = (userDetails) => {
+  return async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const { data } = await axios.put(
+        "http://localhost:3002/users/me/update",
+        userDetails,
+        config
+      );
+      localStorage.getItem("MyToken")
+            dispatch({
+        type: USER_PROFILE_UPDATE,
+        payload: data.success,
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_PROFILE_UPDATE_ERROR,
+        payload: error.message,
+      });
+    }
+  };
+};
 
 // Load User
 export const LoadUser = () => {

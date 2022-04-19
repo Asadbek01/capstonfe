@@ -38,12 +38,15 @@ export const MainHomePage = () => {
     <>
       <div className="container-fluid">
         <section id="products" className="container">
+    
+             
           <h1 className="ml-3" id="products_heading">
             Latest Books
           </h1>
+      
           <div className="row">
             {errorCode && (
-              <Alert variant="danger" style={{ margin: "auto", width: "60%" }}>
+              <Alert variant="danger" className="text-center" style={{ margin: "auto", width: "30%" }}>
                 An error occurred: {errorCode}
               </Alert>
             )}
@@ -55,7 +58,7 @@ export const MainHomePage = () => {
                   role="status"
                   variant="primary"
                 />
-                <h2 className="mt-1 ml-3 ">Loading...</h2>
+                <h2 className="mt-1 ml-3 text-white ">Loading...</h2>
               </div>
             )}
             {/* {

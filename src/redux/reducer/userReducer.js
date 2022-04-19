@@ -7,7 +7,10 @@ import {
   USER_REGISTER,
   USER_REGISTER_ERROR,
   USER_LOG_OUT,
-  USER_LOG_OUT_FAIL
+  USER_LOG_OUT_FAIL,
+  USER_PROFILE_UPDATE,
+  USER_PROFILE_UPDATE_ERROR,
+  USER_PROFILE_RESET
 } from "../action";
 import { InitialState } from "../store";
 
@@ -57,5 +60,36 @@ export const userReducer = (state = InitialState.user, action) => {
       return state;
   }
 };
+
+
+export const userProfileUpdate =(state ={}, action) => {
+   switch(action.type){
+     
+    case USER_PROFILE_UPDATE:
+      return {
+        ...state,
+        loading: false,
+        isUpdated: action.payload
+      }
+
+      case USER_PROFILE_RESET:
+        return {
+          isUpdated: false
+
+        }
+
+      case USER_PROFILE_UPDATE_ERROR:
+        return{
+          ...state,
+          loading: false,
+          error: action.payload
+        }
+    
+    
+    
+    default:
+       return state;
+   }
+}
 
 

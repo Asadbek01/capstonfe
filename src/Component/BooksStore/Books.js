@@ -39,13 +39,13 @@ export const Books = ({ book, bookSelected, changeBook }) => {
             <img className="card-img-top mx-auto" src={book.images[0].imgUrl} />
             <div className="card-body d-flex flex-column ">
               <h5 className="card-title">
-                <Link to={`/detail/${book._id}`}>{book.title}</Link>
+                <Link to={`/detail/${book._id}`} className='text-secondary'>{book.title}</Link>
               </h5>
               <div className="ratings mt-auto">
                 <div className="rating-outer">
                   <div className="rating-inner"></div>
                 </div>
-                <HeartFill color="red" size={20} className="mx-3" />
+                {/* <HeartFill color="red" size={20} className="mx-3" /> */}
               </div>
               <div className="d-flex">
                 <Button

@@ -18,6 +18,7 @@ import store from "./redux/store";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Profile } from "./Component/user/Profile";
+import UpdateProfile from "./Component/user/UpdateUser";
 function App() {
   useEffect(() => {
     store.dispatch(LoadUser());
@@ -38,6 +39,7 @@ function App() {
           <Route path="/cart" element={<CartPage /> } exact />
           <Route path="/detail/:id" element={<BookDetail />} exact />
           <Route path="*" element={<PageError />} />
+          <Route path="/me/update" element={<UpdateProfile />} />
         </Routes>
         <Footer />
       </div>
