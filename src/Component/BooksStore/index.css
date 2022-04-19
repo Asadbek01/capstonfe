@@ -358,6 +358,15 @@ ul, li {
   height: 28vh;
   object-fit: cover;
 }
+/* @media (min-width: 768px) {
+  .avatar img {
+    width: 30%;
+    height: 25vh;
+    object-fit: cover;
+    margin-left: 5x;
+  }
+} */
+
 
 .rounded-circle {
   border-radius: 50% !important;
