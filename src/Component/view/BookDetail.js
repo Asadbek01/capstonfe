@@ -80,7 +80,7 @@ const decreaseQuantity = () =>{
             ${BookWithSpesificId.price}
           </p>
           <div className="stockCounter d-inline">
-            <span className="btn btn-danger minus" onClick={decreaseQuantity}>
+            <span className="btn btn-danger minus" onClick={() => decreaseQuantity(BookWithSpesificId)}>
               -
             </span>
 

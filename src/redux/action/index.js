@@ -185,7 +185,7 @@ export const updateUser = (userDetails) => {
         userDetails,
         config
       );
-      localStorage.getItem("MyToken")
+      window.localStorage.getItem("MyToken")
             dispatch({
         type: USER_PROFILE_UPDATE,
         payload: data.success,
@@ -203,7 +203,7 @@ export const updateUser = (userDetails) => {
 export const LoadUser = () => {
   return async (dispatch) => {
     try {
-      let users = localStorage.getItem('MyToken');
+      let users =   window.localStorage.getItem('MyToken');
       const config = {
         headers: {
           Authorization:

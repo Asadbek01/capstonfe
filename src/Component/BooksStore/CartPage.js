@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 
 
 import { useDispatch, useSelector } from 'react-redux'
-// import { addItemToCart, removeItemFromCart } from '../../actions/cartActions'
 import { addToCartAction, removeFromCartAction } from '../../redux/action'
 // const [quantity, setQuantity] = useState(1)
 
@@ -57,7 +56,7 @@ export const CartPage = () => {
                                     <div className="cart-item" key={i.id}>
                                         <div className="row">
                                             <div className="col-4 col-lg-3">
-                                                <img src={item.images[0].imgUrl} alt="books" height="90" width="115" />
+                                                <img src={ item.images[0] && item.images[0].imgUrl} alt="books" height="90" width="115" />
                                             </div>
 
                                             <div className="col-5 col-lg-3">

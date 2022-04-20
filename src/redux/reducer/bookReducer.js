@@ -75,10 +75,20 @@ export const CartPageBooks = (state = InitialState.cart, action) => {
         errorCode: action.payload,
       };
     case ADD_TO_CART:
-      return {
-        ...state,
-        cartBooks: [...state.cartBooks, action.payload],
-      };
+      const item =action.payload
+      const isItemExist = state.cartBooks.find(i=>i.book === item.product)
+      if(isItemExist){
+
+        return {
+          ...state,
+          cartBooks: state.cartBooks.map(i=> i.product ===isItemExist.product? item: i),
+        };
+      }else{
+        return{
+          ...state,
+          cartBooks: [...state.cartBooks, item]
+        }
+        }
     case REMOVE_FROM_CART:
       return {
         ...state,

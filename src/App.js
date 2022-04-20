@@ -16,13 +16,16 @@ import BookDetail from "./Component/view/BookDetail";
 import { LoadUser } from "./redux/action";
 import store from "./redux/store";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Profile } from "./Component/user/Profile";
 import UpdateProfile from "./Component/user/UpdateUser";
 function App() {
-  useEffect(() => {
-    store.dispatch(LoadUser());
-  }, []);
+  const dispatch = useDispatch()
+useEffect(() => {
+  
+  dispatch(LoadUser());
+}, [])
+  
 
   const userMe = useSelector((state) => state.user.loggedUser);
   console.log(userMe)
