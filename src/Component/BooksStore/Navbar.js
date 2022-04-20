@@ -46,6 +46,7 @@ export const MyNavbar = ({ userMe }) => {
   useEffect(() => {
     dispatch(getBooks(SearchQuery, category))
 
+
   }, [SearchQuery, category])
   // search input onChange event
   const handleInputChange = (e) => {
@@ -162,7 +163,7 @@ export const MyNavbar = ({ userMe }) => {
                     userMe.role === "admin" ?  <li class="menu__item">Dashboard</li> :  <li class="menu__item">Order</li>
                   }
                   <li onClick={() => navigate("/me")} class="menu__item">Profile</li>
-                  <li onClick={dispatch(LogOutUser())}  class="menu__item text-danger">
+                  <li  class="menu__item text-danger">
                     Log out
                   </li>
                 </ul>

@@ -228,17 +228,10 @@ export const LoadUser = () => {
 export const LogOutUser = () => {
   return async (dispatch) => {
     try {
-      const config = {
-        method: "GET",
-            };
-      
-      const { data } = await axios.get(
-        "http://localhost:3002/users/me",
-        config
-        );
+        localStorage.remove('MyToken')
+        
     dispatch({
       type: USER_LOG_OUT,
-      payload: data,
     });
   } catch (error) {
     dispatch({

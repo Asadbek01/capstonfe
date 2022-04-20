@@ -24,7 +24,7 @@ const UpdateProfile = () => {
         if (user) {
             setName(user.name);
             setEmail(user.email);
-            setAvatarPreview(user.avatar.url)
+            setAvatarPreview( user.avatar && user.avatar.url)
         }
 
         if (error) {
@@ -60,8 +60,8 @@ const UpdateProfile = () => {
 
         reader.onload = () => {
             if (reader.readyState === 2) {
-                setAvatarPreview(reader.result)
-                setAvatar(reader.result)
+                setAvatarPreview( reader? reader.result : '')
+                setAvatar(reader? reader.result : '')
             }
         }
 
@@ -71,7 +71,7 @@ const UpdateProfile = () => {
     return (
         <>
     
-            <div className="row wrapper d-flex justify-content-center">
+            <div className="row wrapper d-flex justify-content-center mt-5">
                 <div className="col-10 col-lg-5 ">
                     <form className="shadow-lg" onSubmit={submitHandler} encType='multipart/form-data'>
                         <h1 className="mt-2 mb-5 text-white">Update Profile</h1>
@@ -104,11 +104,11 @@ const UpdateProfile = () => {
                             <label htmlFor='avatar_upload'>Avatar</label>
                             <div className='d-flex align-items-center'>
                                 <div>
-                                    <figure className='avatar mr-3 item-rtl'>
+                                    <figure className='mr-3 item-rtl'>
                                         <img
-                                            src={avatarPreview}
+                                            src={avatarPreview? avatarPreview : ''}
                                             alt='Avatar Preview'
-                                            style={{width: '90%', height: "15vh", borderRadius: '50%'}}
+                                            style={{width: '130px' , height: '85px', borderRadius: '50%'}}
                                         />
                                     </figure>
                                 </div>

@@ -7,7 +7,6 @@ import {
   USER_REGISTER,
   USER_REGISTER_ERROR,
   USER_LOG_OUT,
-  USER_LOG_OUT_FAIL,
   USER_PROFILE_UPDATE,
   USER_PROFILE_UPDATE_ERROR,
   USER_PROFILE_RESET
@@ -33,11 +32,7 @@ export const userReducer = (state = InitialState.user, action) => {
           loggedUser: null
 
         }
-        case USER_LOG_OUT_FAIL:
-          return {
-            ...state,
-            error: action.payload
-          }
+  
 
     case USER_LOAD_ERROR:
         case USER_REGISTER_ERROR:
