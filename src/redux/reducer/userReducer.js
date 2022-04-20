@@ -24,14 +24,6 @@ export const userReducer = (state = InitialState.user, action) => {
         loading: false,
         loggedUser: action.payload
       };
-
-      case USER_LOG_OUT:
-        return {
-          isAuth: false,
-          loading: true,
-          loggedUser: null
-
-        }
   
 
     case USER_LOAD_ERROR:

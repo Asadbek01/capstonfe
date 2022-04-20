@@ -40,6 +40,11 @@ export const removeFromCartAction = (index) => ({
   type: REMOVE_FROM_CART,
   payload: index,
 });
+export const LogOutUser = (logout) => ({  
+  type: USER_LOG_OUT,
+  payload: logout, 
+  
+});
 
 export const getBooks = (SearchQuery, currentPage = 1, category) => {
   return async (dispatch) => {
@@ -118,7 +123,7 @@ export const Register = (userDetails) => {
         config
       );
       let token = data.accessToken
-      localStorage.setItem("MyToken", 'Bearer ' + token)
+      window.localStorage.setItem("MyToken", 'Bearer ' + token)
             dispatch({
         type: USER_REGISTER,
         payload: data,
@@ -150,7 +155,7 @@ export const Login = (userDetails) => {
         userDetails,
         config
         );
-      localStorage.setItem("MyToken" , data.accessToken)
+      window.localStorage.setItem("MyToken" , data.accessToken)
       dispatch({
         type: USER_LOGIN,
         payload: data,
@@ -225,22 +230,7 @@ export const LoadUser = () => {
 
 // logout user
 
-export const LogOutUser = () => {
-  return async (dispatch) => {
-    try {
-        localStorage.remove('MyToken')
-        
-    dispatch({
-      type: USER_LOG_OUT,
-    });
-  } catch (error) {
-    dispatch({
-      type: USER_LOG_OUT_FAIL,
-      payload: error.message,
-    });
-  }
-};
-};
+
 
 export const ClearErrors = () => {
   return async (dispatch) => {

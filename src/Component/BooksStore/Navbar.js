@@ -54,7 +54,10 @@ export const MyNavbar = ({ userMe }) => {
     setCategory(category)
   };
 
-  
+  const removeToken = () => {
+    localStorage.removeItem('MyToken')
+    window.location.href =  '/'
+  }
   return (
     <>
       <nav className="navbar row" color="dark">
@@ -143,8 +146,8 @@ export const MyNavbar = ({ userMe }) => {
             )
           }
             {
-              isAuth?(
-
+              isAuth? (
+              
                 <header class="header ">
               <div class="profile mr-3">
                 <div class="profile__avatar i-block pull-left ">
@@ -163,7 +166,7 @@ export const MyNavbar = ({ userMe }) => {
                     userMe.role === "admin" ?  <li class="menu__item">Dashboard</li> :  <li class="menu__item">Order</li>
                   }
                   <li onClick={() => navigate("/me")} class="menu__item">Profile</li>
-                  <li  class="menu__item text-danger">
+                  <li onClick={removeToken} class="menu__item text-danger">
                     Log out
                   </li>
                 </ul>

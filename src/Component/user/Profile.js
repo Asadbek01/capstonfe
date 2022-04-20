@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { Spinner } from 'react-bootstrap'
+import { Button, Spinner } from 'react-bootstrap'
 
 
 
@@ -25,7 +25,10 @@ export const Profile = () => {
             <div className="row justify-content-around mt-5 user-info">
                 <div className="col-12 col-md-3">
                     <figure className='avatar avatar-profile'>
-                        <img className="rounded-circle img-fluid " src={user.avatar.url} alt={user.name} />
+                        <img className="img-fluid"
+                         src={user.avatar.url} alt={user.name}
+                         style={{width:'200px', borderRadius: "50%"}}
+                         />
                     </figure>
                     <Link to="/me/update" id="edit_profile" className="btn btn-primary btn-block my-5">
                         Edit Profile
@@ -43,14 +46,16 @@ export const Profile = () => {
                     <p className='text-secondary'>{String(user.createdAt).substring(0, 10)}</p>
 
                     {user.role !== 'admin' && (
-                        <Link to="/orders/me" className="btn btn-danger btn-block mt-5">
+                        <Button to="/orders/me" variant='outline-danger'  className=" btn-block mt-3" style={{size: "20%"}} >
                             My Orders
-                        </Link>
+                        </Button>
                     )}
 
-                    <Link to="/password/update" className="btn btn-primary btn-block mt-3">
+                    <Button to="/password/update" variant='outline-primary' 
+                    size='20px'
+                    className=" btn-block mt-3">
                         Change Password
-                    </Link>
+                    </Button>
                 </div>
             </div>
             </>

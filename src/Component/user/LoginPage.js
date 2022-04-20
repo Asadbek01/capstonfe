@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 const UserLogin = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const [userError, setUserError] = useState(false);
   const [loginError, setLoginError] = useState(false);
@@ -37,7 +37,7 @@ const UserLogin = () => {
 
   useEffect(()=> {
     if(isAuth){
-      history('/home')
+      navigate('/home')
     }
     
       },[dispatch, isAuth, error])

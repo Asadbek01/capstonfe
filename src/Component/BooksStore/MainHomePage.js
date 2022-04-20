@@ -51,7 +51,7 @@ export const MainHomePage = () => {
               </Alert>
             )}
             {isLoading && (
-              <div className="d-flex  m-auto">
+              <div className="d-flex m-auto">
                 <Spinner
                   style={{ margin: "auto", fontSize: "20px" }}
                   animation="border"

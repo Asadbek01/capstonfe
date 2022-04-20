@@ -37,7 +37,7 @@ const MixtureReducer = combineReducers({
     bookWithSpecificId: BookDetailReducer,
     cart: CartPageBooks,
     user: userReducer ,
-    userProfile: userProfileUpdate
+    // userProfile: userProfileUpdate
 })
 
 const configureStore = createStore(
