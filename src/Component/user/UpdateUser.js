@@ -24,7 +24,7 @@ const UpdateProfile = () => {
         if (user) {
             setName(user.name);
             setEmail(user.email);
-            setAvatarPreview( user.avatar && user.avatar.url)
+            setAvatarPreview( user && user.avatar)
         }
 
         if (error) {

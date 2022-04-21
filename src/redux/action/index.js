@@ -28,13 +28,15 @@ export const USER_LOG_OUT ='USER_LOG_OUT'
 export const USER_PROFILE_UPDATE_ERROR = "USER_PROFILE_UPDATE_ERROR"
 export const USER_PROFILE_UPDATE = "USER_PROFILE_UPDATE"
 export const USER_PROFILE_RESET = "USERUSER_PROFILE_RESETUPDATE"
+export const INCREASE_QUANTITY= 'INCREASE_QUANTITY'
 
 
 
 
-export const addToCartAction = (bookToAdd) => ({
+export const addToCartAction = (bookToAdd, quantity) => ({
   type: ADD_TO_CART,
-  payload: bookToAdd, 
+  payload: bookToAdd, quantity 
+  
 });
 export const removeFromCartAction = (index) => ({
   type: REMOVE_FROM_CART,
@@ -175,9 +177,11 @@ export const Login = (userDetails) => {
 export const updateUser = (userDetails) => {
   return async (dispatch) => {
     try {
+      const token = localStorage.getItem("MyToken")
       const config = {
         headers: {
           "Content-Type": "multipart/form-data",
+          Authorization: token
         },
       };
       const { data } = await axios.put(

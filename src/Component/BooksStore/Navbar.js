@@ -153,7 +153,7 @@ export const MyNavbar = ({ userMe }) => {
                 <div class="profile__avatar i-block pull-left ">
                   <span class="profile__monogram i-block ">
                     { <Avatar
-                      src={userMe.avatar && userMe.avatar.url}
+                      src={userMe && userMe.avatar}
                       alt={userMe && userMe.name }
                     /> }
                   </span>

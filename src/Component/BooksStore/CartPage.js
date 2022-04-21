@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 
@@ -10,7 +10,10 @@ export const CartPage = () => {
 
     const dispatch = useDispatch();
     const history = useNavigate()
-
+    const [ quantity, setQuantity] = useState(1)
+    
+    
+    const cartItemsLength = useSelector((state) => state.cart.cartBooks)
     const cartItems = useSelector((state) => state.cart.cartBooks)
     console.log(cartItems)
 
@@ -18,23 +21,37 @@ export const CartPage = () => {
       dispatch(removeFromCartAction(id))
     }
 
-    const increaseQty = (id, quantity, stock) => {
-        const newQty = quantity + 1;
+    // const increaseQty = (id, quantity, stock) => {
+    //     const newQty = quantity + 1;
 
-        if (newQty > stock) return;
+    //     if (newQty > stock) return;
 
-        dispatch(addToCartAction(id, newQty))
-    }
+    //     dispatch(addToCartAction(id, newQty))
+    // }
 
-    const decreaseQty = (id, quantity) => {
+    // const decreaseQty = (id, quantity) => {
 
-        const newQty = quantity - 1;
+    //     const newQty = quantity - 1;
 
-        if (newQty <= 0) return;
+    //     if (newQty <= 0) return;
 
-        dispatch(addToCartAction(id, newQty))
+    //     dispatch(addToCartAction(id, newQty))
 
-    }
+    // }
+    const increaseQuantity = () => {
+        const count = document.querySelector(".count")
+        if(count.valueAsNumber >= cartItems.stock ) return
+          const  qty = count.valueAsNumber + 1
+          setQuantity(qty)
+        
+       }
+       
+       const decreaseQuantity = () =>{
+         const count = document.querySelector(".count")
+         if(count.valueAsNumber <= 1 ) return
+           const  qty = count.valueAsNumber - 1
+           setQuantity(qty)
+       }
 
     const checkoutHandler = () => {
         history('/login?redirect=shipping')
@@ -56,7 +73,7 @@ export const CartPage = () => {
                                     <div className="cart-item" key={i.id}>
                                         <div className="row">
                                             <div className="col-4 col-lg-3">
-                                                <img src={ item.images[0] && item.images[0].imgUrl} alt="books" height="90" width="115" />
+                                                <img src={item?.images[0].imgUrl} alt="books" height="90" width="115" />
                                             </div>
 
                                             <div className="col-5 col-lg-3">
@@ -70,11 +87,15 @@ export const CartPage = () => {
 
                                             <div className="col-4 col-lg-3 mt-4 mt-lg-0">
                                                 <div className="stockCounter d-inline">
-                                                    <span className="btn btn-danger minus mr-1" onClick={() => decreaseQty(item.product, item.quantity)}>-</span>
+                                                    <span className="btn btn-danger minus mr-1" onClick={() => decreaseQuantity(cartItems)}
+                                                     >-</span>
+                                                     {/* onClick={() => decreaseQty(item._id, item.quantity)} */}
 
-                                                    <input type="number" className="form-control count d-inline" value={item.quantity} readOnly />
+                                                    <input type="number" className="form-control count d-inline" value={quantity} readOnly />
 
-                                                    <span className="btn btn-primary plus ml-1" onClick={() => increaseQty(item.product, item.quantity, item.stock)}>+</span>
+                                                    <span className="btn btn-primary plus ml-1" onClick={increaseQuantity}
+                                                     >+</span>
+                                                     {/* onClick={() => increaseQty(item._id, item.quantity, item.stock)} */}
                                                 </div>
                                             </div>
 

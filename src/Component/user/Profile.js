@@ -26,7 +26,7 @@ export const Profile = () => {
                 <div className="col-12 col-md-3">
                     <figure className='avatar avatar-profile'>
                         <img className="img-fluid"
-                         src={user.avatar.url} alt={user.name}
+                         src={user.avatar} alt={user.name}
                          style={{width:'200px', borderRadius: "50%"}}
                          />
                     </figure>

@@ -10,6 +10,7 @@ import {
   GET_ERROR_BOOKS_IN_CART,
   REMOVE_FROM_CART,
   GET_CATEGORY_BOOKS,
+  INCREASE_QUANTITY,
 } from "../action";
 import { InitialState } from "../store";
 
@@ -76,12 +77,12 @@ export const CartPageBooks = (state = InitialState.cart, action) => {
       };
     case ADD_TO_CART:
       const item =action.payload
-      const isItemExist = state.cartBooks.find(i=>i.book === item.product)
+      const isItemExist = state.cartBooks.find(i=>i._id === item._id)
       if(isItemExist){
 
         return {
           ...state,
-          cartBooks: state.cartBooks.map(i=> i.product ===isItemExist.product? item: i),
+          cartBooks: state.cartBooks.map(i=> i._id ===isItemExist._id? item: i),
         };
       }else{
         return{
@@ -99,3 +100,14 @@ export const CartPageBooks = (state = InitialState.cart, action) => {
       return state;
   }
 };
+
+// const insceraseQnty =(state= InitialState.cart, action) => 
+// {
+//   switch (action.type) {
+//     case INCREASE_QUANTITY:
+  
+//           const item =action.payload
+//           const isItemExist = state.cartBooks.findIndex(i=>i.id === item.id)
+
+//   }
+// }
