@@ -20,13 +20,16 @@ const [ quantity, setQuantity] = useState(1)
 // Assigning
   const dispatch = useDispatch();
   const params = useParams();
-
-//  getting BookDetail
+  
+  //  getting BookDetail
   useEffect(() => {
     dispatch(getBooksDetail(params.id));
   }, [dispatch, params.id]);
 
-
+  
+  const addToCartHandler = () => {
+    dispatch(addToCartAction(params.id, quantity))
+  }
 
 const increaseQuantity = () => {
  const count = document.querySelector(".count")
@@ -42,7 +45,6 @@ const decreaseQuantity = () =>{
     const  qty = count.valueAsNumber - 1
     setQuantity(qty)
 }
-
 
   return (
     <div className="container container-fluid">
@@ -80,14 +82,14 @@ const decreaseQuantity = () =>{
             ${BookWithSpesificId.price}
           </p>
           <div className="stockCounter d-inline">
-            <span className="btn btn-danger minus" onClick={() => decreaseQuantity(BookWithSpesificId)}>
+            <span className="btn btn-danger minus" onClick={decreaseQuantity}>
               -
             </span>
 
             <input
               type="number"
               className="form-control count d-inline ml-1"
-              value={quantity} readOnly
+              value={quantity}
             />
             <span
               className="btn btn-primary plus ml-1"
@@ -122,9 +124,7 @@ const decreaseQuantity = () =>{
               data-toggle="modal"
               data-target="#ratingModal"
               disabled={BookWithSpesificId.stock ===0}
-              onClick={() => {
-                dispatch(addToCartAction(BookWithSpesificId));
-              }}
+              onClick={addToCartHandler}
             >
               Add To Cart
             </button>

@@ -82,7 +82,7 @@ export const CartPageBooks = (state = InitialState.cart, action) => {
 
         return {
           ...state,
-          cartBooks: state.cartBooks.map(i=> i._id ===isItemExist._id? item: i),
+          cartBooks: state.cartBooks.map(i=> i.books ===isItemExist.books? item: i),
         };
       }else{
         return{
@@ -93,7 +93,7 @@ export const CartPageBooks = (state = InitialState.cart, action) => {
     case REMOVE_FROM_CART:
       return {
         ...state,
-        cartBooks: state.cartBooks.filter((book, i) => i !== action.payload),
+        cartBooks: state.cartBooks.filter((book, i) => i.book !== action.payload),
       };
 
     default:

@@ -56,7 +56,7 @@ export const userProfileUpdate =(state ={}, action) => {
       return {
         ...state,
         loading: false,
-        isUpdated: action.payload
+        isUpdated: true
       }
 
       case USER_PROFILE_RESET:

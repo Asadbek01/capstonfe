@@ -143,6 +143,7 @@ footer {
 .rating-outer {
   display: inline-block;
   position: relative;
+  left:5%;
   font-family: FontAwesome;
   color:orange
 }

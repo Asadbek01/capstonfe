@@ -33,15 +33,15 @@ export const INCREASE_QUANTITY= 'INCREASE_QUANTITY'
 
 
 
-export const addToCartAction = (bookToAdd, quantity) => ({
-  type: ADD_TO_CART,
-  payload: bookToAdd, quantity 
+// export const addToCartAction = (bookToAdd, quantity) => ({
+//   type: ADD_TO_CART,
+//   payload: bookToAdd, quantity 
   
-});
-export const removeFromCartAction = (index) => ({
-  type: REMOVE_FROM_CART,
-  payload: index,
-});
+// });
+// export const removeFromCartAction = (index) => ({
+//   type: REMOVE_FROM_CART,
+//   payload: index,
+// });
 export const LogOutUser = (logout) => ({  
   type: USER_LOG_OUT,
   payload: logout, 
@@ -102,6 +102,7 @@ export const getBooksDetail = (id) => {
         type: GET_BOOKS_DETAIL,
         payload: data
       });
+
     } catch (error) {
       dispatch({
         type: GET_BOOKS_DETAIL_ERROR,
@@ -110,6 +111,7 @@ export const getBooksDetail = (id) => {
     }
   };
 };
+
 
 export const Register = (userDetails) => {
   return async (dispatch) => {
@@ -140,6 +142,36 @@ export const Register = (userDetails) => {
 };
 
 
+export const addToCartAction = (id,quantity) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3002/books/" + id);
+      dispatch({
+        type: ADD_TO_CART,
+        payload: {
+          book: data.book._id,
+          title: data.title,
+          price: data.price,
+          stock: data.stock,
+          subtitle: data.subtitle,
+          ratings: data.ratings,
+          category: data.category,
+          images: data.images[0].imgUrl,
+          numReviews: data.numReviews,
+          numReviews: data.numReviews,
+          quantity
+        }
+      });
+      
+    } catch (error) {
+    }
+  };
+};
+
+export const removeFromCartAction = (index) => ({
+  type: REMOVE_FROM_CART,
+  payload: index,
+});
 //  Login
 
 export const Login = (userDetails) => {
@@ -174,12 +206,13 @@ export const Login = (userDetails) => {
 
 // Update User
 
-export const updateUser = (userDetails) => {
+export const updateProfile = (userDetails) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem("MyToken")
       const config = {
         headers: {
+          method: "PUT",
           "Content-Type": "multipart/form-data",
           Authorization: token
         },
@@ -192,7 +225,7 @@ export const updateUser = (userDetails) => {
       window.localStorage.getItem("MyToken")
             dispatch({
         type: USER_PROFILE_UPDATE,
-        payload: data.success,
+        payload: data,
       });
     } catch (error) {
       dispatch({

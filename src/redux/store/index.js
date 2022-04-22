@@ -28,7 +28,8 @@ export const InitialState ={
         loggedUser: [],
         loading: true,
         isAuth: false,
-        error: null
+        error: null,
+        isUpdated: false
     },
 }
 

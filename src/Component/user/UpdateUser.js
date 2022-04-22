@@ -4,35 +4,40 @@ import { Button } from 'react-bootstrap'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { ClearErrors, LoadUser, updateUser } from '../../redux/action'
+import { ClearErrors, LoadUser, updateProfile } from '../../redux/action'
 
 const UpdateProfile = () => {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [avatar, setAvatar] = useState('')
-    const [avatarPreview, setAvatarPreview] = useState('/images/default_avatar.jpg')
 
     const navigate = useNavigate()
     const dispatch = useDispatch();
 
     const  user  = useSelector(state => state.user.loggedUser);
-    const { error, isUpdated, loading } = useSelector(state => state.user)
+    const  isUpdated  = useSelector(state => state.user.isUpdated)
+    const  error  = useSelector(state => state.user.error)
+    const [userDetails, setUserDetails] = useState({
+        name: '',
+        email: '',
+        avatar: ''
+    })
 
     useEffect(() => {
 
-        if (user) {
-            setName(user.name);
-            setEmail(user.email);
-            setAvatarPreview( user && user.avatar)
-        }
+        user && setUserDetails({
+            name: user.name,
+            email: user.email,
+            avatar: user.avatar
+        })
+        
 
         if (error) {
             dispatch(ClearErrors());
         }
 
         if (isUpdated) {
-            alert("edited Successfully")
             dispatch(LoadUser());
 
             navigate('/me')
@@ -47,12 +52,9 @@ const UpdateProfile = () => {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.set('name', name);
-        formData.set('email', email);
-        formData.set('avatar', avatar);
+       
 
-        dispatch(updateUser(formData))
+        dispatch(updateProfile(userDetails))
     }
 
     const onChange = e => {
@@ -60,8 +62,8 @@ const UpdateProfile = () => {
 
         reader.onload = () => {
             if (reader.readyState === 2) {
-                setAvatarPreview( reader? reader.result : '')
-                setAvatar(reader? reader.result : '')
+                // setAvatarPreview( reader? reader.result : '')
+                user.avatar(reader? reader.result : '')
             }
         }
 
@@ -106,7 +108,7 @@ const UpdateProfile = () => {
                                 <div>
                                     <figure className='mr-3 item-rtl'>
                                         <img
-                                            src={avatarPreview? avatarPreview : ''}
+                                            src={user.avatar? avatar : ''}
                                             alt='Avatar Preview'
                                             style={{width: '130px' , height: '85px', borderRadius: '50%'}}
                                         />
@@ -128,7 +130,8 @@ const UpdateProfile = () => {
                             </div>
                         </div>
 
-                        <Button type="submit" variant="outline-primary" style={{width: '20%'}} disabled={loading ? true : false} >Update</Button>
+                        <Button type="submit" variant="outline-primary" style={{width: '20%'}} 
+                       onClick={(e) =>document.location.reload(true)}>Update</Button>
                     </form>
                 </div>
             </div>
