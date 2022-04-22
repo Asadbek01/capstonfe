@@ -17,12 +17,12 @@ export const Books = ({ book, bookSelected, changeBook }) => {
     <>
       {" "}
       {isLoading && (
-        <div class="container">
-          <div class="card">
-            <div class="card-img skeleton"></div>
-            <div class="card-body">
-              <h2 class="card-title skeleton"></h2>
-              <p class="card-intro skeleton"></p>
+        <div className="container">
+          <div className="card">
+            <div className="card-img skeleton"></div>
+            <div className="card-body">
+              <h2 className="card-title skeleton"></h2>
+              <p className="card-intro skeleton"></p>
             </div>
           </div>
         </div>

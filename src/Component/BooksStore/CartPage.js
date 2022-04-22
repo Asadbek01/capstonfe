@@ -99,8 +99,8 @@ export const CartPage = () => {
                             <div id="order_summary" className=' text-white'>
                                 <h4>Order Summary</h4>
                                 <hr style={{ border: '1px solid'}}/>
-                                <p>Subtotal:  <span className="order-summary-values">{cartItems.reduce((acc, currentValue) => acc + parseFloat(currentValue.price), 0)}</span></p>
-                                {/* <p>Est. total: <span className="order-summary-values">${cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}</span></p> */}
+                                <p>Subtotal:  <span className="order-summary-values">{cartItems.reduce((acc, item) => acc + item.quantity * item.price,0).toFixed(2)}</span></p>
+                                <p>Est. total: <span className="order-summary-values">{cartItems.reduce((acc, item) => (acc + Number(item.quantity)), 0)}</span></p>
 
                                 <hr  style={{ border: '1px solid'}} />
                                 <button id="checkout_btn" className="btn btn-primary btn-block" onClick={checkoutHandler}>Check out</button>

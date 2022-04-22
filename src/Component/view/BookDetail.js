@@ -108,10 +108,10 @@ const decreaseQuantity = () =>{
               Status:{" "}
               <span
                 className={
-                  BookWithSpesificId.stock > 0 ? "text-success" : "text-danger "
+                  BookWithSpesificId.stock > 0 ? "text-success ml-2" : "text-danger ml-2 "
                 }
               >
-                {BookWithSpesificId.stock > 0 ? "In Stock" : "out Of stock"}
+                {BookWithSpesificId.stock > 0 ? <small style={{fontSize: "16px", fontFamily: "monospace"}}>In Stock ({BookWithSpesificId.stock})</small> : "out Of stock"}
               </span>
             </p>
 

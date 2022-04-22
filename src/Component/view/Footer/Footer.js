@@ -4,22 +4,22 @@ import { BsInstagram, BsTelegram, BsTwitter, BsLinkedin } from "react-icons/bs";
 export const Footer = () => {
   return (
     <>
-      <footer class="footer-48201">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4 pr-md-5">
-              <div class="content ml-5">
+      <footer className="footer-48201">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4 pr-md-5">
+              <div className="content ml-5">
                 <small>Pretty Pages</small>
                 <small>Pretty Pages</small>
                 <div className="pt-5 ml-n5 divContainer">
                   <p className="ml-n5">
                     What I say is, a{" "}
-                    <a class="link" href="">
+                    <a className="link" href="">
                       town{" "}
                     </a>{" "}
                     isn’t a town without a bookstore. It may call itself a town,
                     but unless it’s got a{" "}
-                    <a class="link" href="">
+                    <a className="link" href="">
                       bookstore
                     </a>
                     , it knows it’s not fooling a soul.
@@ -27,8 +27,8 @@ export const Footer = () => {
                 </div>
               </div>
             </div>
-            <div class="col-md">
-              <ul class="list-unstyled nav-links">
+            <div className="col-md">
+              <ul className="list-unstyled nav-links">
                 <li>
                   <a href="#">Home</a>
                 </li>
@@ -46,8 +46,8 @@ export const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div class="col-md">
-              <ul class="list-unstyled nav-links">
+            <div className="col-md">
+              <ul className="list-unstyled nav-links">
                 <li>
                   <a href="#">Clients</a>
                 </li>
@@ -65,8 +65,8 @@ export const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div class="col-md">
-              <ul class="list-unstyled nav-links">
+            <div className="col-md">
+              <ul className="list-unstyled nav-links">
                 <li>
                   <a href="#">Privacy Policy</a>
                 </li>
@@ -78,8 +78,8 @@ export const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div class="col-md text-md-center">
-              <ul class="social list-unstyled">
+            <div className="col-md text-md-center">
+              <ul className="social list-unstyled">
                 <li>
                   <a href="#">
                     <BsInstagram className="m-1" />
