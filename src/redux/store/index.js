@@ -1,7 +1,8 @@
 import { createStore, compose, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import { BookDetailReducer, BookReducer, CartPageBooks } from "../reducer/bookReducer";
-import { userProfileUpdate, userReducer } from "../reducer/userReducer";
+import { BookDetailReducer, BookReducer, } from "../reducer/bookReducer";
+import { CartPageBooks } from "../reducer/cartReducer";
+import {  userReducer } from "../reducer/userReducer";
 
 
 const composeFunction =
@@ -29,7 +30,6 @@ export const InitialState ={
         loading: true,
         isAuth: false,
         error: null,
-        isUpdated: false
     },
 }
 

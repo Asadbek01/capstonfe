@@ -8,15 +8,12 @@ import { ClearErrors, LoadUser, updateProfile } from '../../redux/action'
 
 const UpdateProfile = () => {
 
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [avatar, setAvatar] = useState('')
 
     const navigate = useNavigate()
     const dispatch = useDispatch();
 
     const  user  = useSelector(state => state.user.loggedUser);
-    const  isUpdated  = useSelector(state => state.user.isUpdated)
+    const  isUpdated  = useSelector(state => state.user)
     const  error  = useSelector(state => state.user.error)
     const [userDetails, setUserDetails] = useState({
         name: '',
@@ -47,7 +44,7 @@ const UpdateProfile = () => {
             // })
         }
 
-    }, [dispatch, error, isUpdated])
+    }, [dispatch, user, error, isUpdated])
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -56,13 +53,18 @@ const UpdateProfile = () => {
 
         dispatch(updateProfile(userDetails))
     }
+    const handleInput = (field, value) => {
+        setUserDetails(details => ({
+            ...details,
+            [field]: value
+        }))
+    }
 
     const onChange = e => {
         const reader = new FileReader();
 
         reader.onload = () => {
             if (reader.readyState === 2) {
-                // setAvatarPreview( reader? reader.result : '')
                 user.avatar(reader? reader.result : '')
             }
         }
@@ -85,9 +87,8 @@ const UpdateProfile = () => {
                                 id="name_field"
                                 className="form-control"
                                 name='name'
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                            />
+                                value={user.name}
+                                onChange={e => handleInput('name', e.target.value)}                         />
                         </div>
 
                         <div className="form-group  text-white">
@@ -97,8 +98,8 @@ const UpdateProfile = () => {
                                 id="email_field"
                                 className="form-control"
                                 name='email'
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                value={user.email}
+                                onChange={e => handleInput('email', e.target.value)}
                             />
                         </div>
 
@@ -108,7 +109,7 @@ const UpdateProfile = () => {
                                 <div>
                                     <figure className='mr-3 item-rtl'>
                                         <img
-                                            src={user.avatar? avatar : ''}
+                                            src={user? user.avatar  : ''}
                                             alt='Avatar Preview'
                                             style={{width: '130px' , height: '85px', borderRadius: '50%'}}
                                         />

@@ -62,44 +62,6 @@ export const BookDetailReducer = (
       return state;
   }
 };
-export const CartPageBooks = (state = InitialState.cart, action) => {
-  switch (action.type) {
-    case GET_ALL_BOOKS_IN_CART:
-      return {
-        ...state,
-        cartBooks: action.payload,
-      };
-
-    case GET_ERROR_BOOKS_IN_CART:
-      return {
-        ...state,
-        errorCode: action.payload,
-      };
-    case ADD_TO_CART:
-      const item =action.payload
-      const isItemExist = state.cartBooks.find(i=>i._id === item._id)
-      if(isItemExist){
-
-        return {
-          ...state,
-          cartBooks: state.cartBooks.map(i=> i.books ===isItemExist.books? item: i),
-        };
-      }else{
-        return{
-          ...state,
-          cartBooks: [...state.cartBooks, item]
-        }
-        }
-    case REMOVE_FROM_CART:
-      return {
-        ...state,
-        cartBooks: state.cartBooks.filter((book, i) => i.book !== action.payload),
-      };
-
-    default:
-      return state;
-  }
-};
 
 // const insceraseQnty =(state= InitialState.cart, action) => 
 // {

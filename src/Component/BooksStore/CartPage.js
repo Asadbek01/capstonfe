@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,18 +10,13 @@ export const CartPage = () => {
 
     const dispatch = useDispatch();
     const history = useNavigate()
-    const [ quantity, setQuantity] = useState(1)
     
     
-    const cartItemsLength = useSelector((state) => state.cart.cartBooks)
     const cartItems = useSelector((state) => state.cart.cartBooks)
-    console.log(cartItems)
 
-    const removeCartItemHandler = (id) => {
-      dispatch(removeFromCartAction(id))
-    }
 
-    const increaseQty = (id, quantity, stock) => {
+
+    const increaseQuantity = (id, quantity, stock) => {
         const newQty = quantity + 1;
 
         if (newQty > stock) return;
@@ -29,7 +24,7 @@ export const CartPage = () => {
         dispatch(addToCartAction(id, newQty))
     }
 
-    const decreaseQty = (id, quantity) => {
+    const decreaseQuantity = (id, quantity) => {
 
         const newQty = quantity - 1;
 
@@ -38,42 +33,29 @@ export const CartPage = () => {
         dispatch(addToCartAction(id, newQty))
 
     }
-    // const increaseQuantity = () => {
-    //     const count = document.querySelector(".count")
-    //     if(count.valueAsNumber >= cartItems.stock ) return
-    //       const  qty = count.valueAsNumber + 1
-    //       setQuantity(qty)
-        
-    //    }
-       
-    //    const decreaseQuantity = () =>{
-    //      const count = document.querySelector(".count")
-    //      if(count.valueAsNumber <= 1 ) return
-    //        const  qty = count.valueAsNumber - 1
-    //        setQuantity(qty)
-    //    }
+ 
 
     const checkoutHandler = () => {
         history('/login?redirect=shipping')
     }
 
     return (
-        <Fragment>
+        <>
             {cartItems.length === 0 ? <h2 className="text-center text-white">Your Cart is Empty</h2> : (
-                <Fragment>
+                <>
                     <h2 className="mt-5 text-white">Your Cart: <b>{cartItems.length} items</b></h2>
 
                     <div className="row d-flex justify-content-between">
                         <div className="col-12 col-lg-8 mx-2">
 
                             {cartItems.map((item, i) => (
-                                <Fragment>
+                                <>
                                     <hr style={{border: "1px solid "}} />
 
                                     <div className="cart-item" key={i.id}>
                                         <div className="row">
                                             <div className="col-4 col-lg-3">
-                                                <img src={item?.images} alt="books" height="90" width="115" />
+                                                <img src={item? item.images : ''} alt="books" height="90" width="115" />
                                             </div>
 
                                             <div className="col-5 col-lg-3">
@@ -87,29 +69,28 @@ export const CartPage = () => {
 
                                             <div className="col-4 col-lg-3 mt-4 mt-lg-0">
                                                 <div className="stockCounter d-inline">
-                                                    <span className="btn btn-danger minus mr-1" 
-                                                     onClick={() => decreaseQty(item.book, item.quantity)}
+                                                    <span className="btn btn-danger minus mr-1" onClick={() => decreaseQuantity(item.book, item.quantity)}
                                                      >-</span>
-                                                     {/* //onClick={() => decreaseQuantity(cartItems)}// */}
-                                                     {/* onClick={() => decreaseQty(item._id, item.quantity)} */}
 
                                                     <input type="number" className="form-control count d-inline" value={item.quantity} readOnly />
 
-                                                    <span className="btn btn-primary plus ml-1" onClick={() => increaseQty(item.book, item.quantity, item.stock)}
+                                                    <span className="btn btn-primary plus ml-1" 
+                                                     onClick={() => increaseQuantity(item.book, item.quantity, item.stock)} 
                                                      >+</span>
-                                                     {/* //onClick={increaseQuantity}// */}
+                                                    
+
                                                      
                                                 </div>
                                             </div>
 
                                             <div className="col-4 col-lg-1 mt-4 mt-lg-0">
-                                                <i id="delete_cart_item" className="fa fa-trash btn btn-danger" onClick={() => removeCartItemHandler(i)} ></i>
+                                                <i id="delete_cart_item" className="fa fa-trash btn btn-danger" onClick={()=>dispatch(removeFromCartAction(i))} ></i>
                                             </div>
 
                                         </div>
                                     </div>
                                     <hr style={{border: "1px solid"}}/>
-                                </Fragment>
+                                </>
                             ))}
 
                         </div>
@@ -126,10 +107,10 @@ export const CartPage = () => {
                             </div>
                         </div>
                     </div>
-                </Fragment>
+                </>
 
             )}
-        </Fragment>
+        </>
         //  <Row>
 /* //         <Col sm={12} className="font-weight-bold ml-5 text-white">
 //           TOTAL:{" "}

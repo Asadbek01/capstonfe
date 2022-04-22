@@ -6,6 +6,7 @@ import {
   removeFromCartAction,
 } from "../../redux/action";
 import { useParams } from "react-router-dom";
+import { Alert } from "react-bootstrap";
 
 const BookDetail = () => {
 
@@ -28,8 +29,10 @@ const [ quantity, setQuantity] = useState(1)
 
   
   const addToCartHandler = () => {
+    
     dispatch(addToCartAction(params.id, quantity))
-  }
+  
+  } 
 
 const increaseQuantity = () => {
  const count = document.querySelector(".count")
