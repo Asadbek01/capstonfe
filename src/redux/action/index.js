@@ -221,7 +221,7 @@ export const updateProfile = (userDetails) => {
       window.localStorage.getItem("MyToken")
             dispatch({
         type: USER_PROFILE_UPDATE,
-        payload: data,
+        payload: data.success,
       });
     } catch (error) {
       dispatch({

@@ -23,7 +23,25 @@ export const userReducer = (state = InitialState.user, action) => {
         loading: false,
         loggedUser: action.payload
       };
+     
   
+        case USER_PROFILE_UPDATE:
+          return {
+            loading: false,
+            isUpdated: null
+  
+          }
+  
+        case USER_PROFILE_UPDATE_ERROR:
+          return{
+            ...state,
+            loading: false,
+            error: action.payload
+          }
+      
+      
+     
+
 
     case USER_LOAD_ERROR:
         case USER_REGISTER_ERROR:
@@ -48,34 +66,6 @@ export const userReducer = (state = InitialState.user, action) => {
 };
 
 
-export const userProfileUpdate =(state ={}, action) => {
-   switch(action.type){
-     
-    case USER_PROFILE_UPDATE:
-      return {
-        ...state,
-        loading: false,
-        isUpdated: true
-      }
 
-      case USER_PROFILE_RESET:
-        return {
-          isUpdated: false
-
-        }
-
-      case USER_PROFILE_UPDATE_ERROR:
-        return{
-          ...state,
-          loading: false,
-          error: action.payload
-        }
-    
-    
-    
-    default:
-       return state;
-   }
-}
 
 

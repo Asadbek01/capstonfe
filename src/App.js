@@ -22,27 +22,25 @@ import UpdateProfile from "./Component/user/UpdateUser";
 function App() {
   const dispatch = useDispatch()
 useEffect(() => {
-  
-  dispatch(LoadUser());
+  store.dispatch(LoadUser())
 }, [])
   
 
   const userMe = useSelector((state) => state.user.loggedUser);
-  console.log(userMe)
   return (
     <Router>
       <div className="App">
-        <MyNavbar userMe={userMe} />
+        <MyNavbar  />
 
         <Routes>
-          <Route path="/" element={<UserLogin />} />
+          <Route path="/" element={<UserLogin />} exact/>
           <Route path="/signUp" element={<SignUp />} />
-          <Route path="/me" element={<Profile />}  />
-          <Route path="/home" element={<MainHomePage />}  />
-          <Route path="/cart" element={<CartPage /> }  />
-          <Route path="/detail/:id" element={<BookDetail />}  />
+          <Route path="/me" element={<Profile />}  exact/>
+          <Route path="/home" element={<MainHomePage />} exact />
+          <Route path="/cart" element={<CartPage /> } exact />
+          <Route path="/detail/:id" element={<BookDetail />} exact />
           <Route path="*" element={<PageError />} />
-          <Route path="/me/update" element={<UpdateProfile />} />
+          <Route path="/me/update" element={<UpdateProfile />} exact />
         </Routes>
         <Footer />
       </div>

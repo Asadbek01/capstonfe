@@ -31,6 +31,7 @@ export const InitialState ={
         isAuth: false,
         error: null,
     },
+    
 }
 
 const MixtureReducer = combineReducers({
@@ -38,7 +39,6 @@ const MixtureReducer = combineReducers({
     bookWithSpecificId: BookDetailReducer,
     cart: CartPageBooks,
     user: userReducer ,
-    // userProfile: userProfileUpdate
 })
 
 const configureStore = createStore(

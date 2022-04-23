@@ -18,10 +18,11 @@ import { FiShoppingCart } from "react-icons/fi";
 import { Books } from "./Books";
 // import '../../assets/'
 
-export const MyNavbar = ({ userMe }) => {
+export const MyNavbar = () => {
   const cartLength = useSelector((state) => state.cart.cartBooks.length);
   const isAuth = useSelector(state=> state.user.isAuth)
   const SearchedBooks = useSelector((state) => state.book.stock);
+  const userMe = useSelector((state) => state.user.loggedUser);
 
   const [SearchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState("");
@@ -91,7 +92,7 @@ export const MyNavbar = ({ userMe }) => {
                     variant="outline-secondary"
                     id="dropdown-basic-button"
                     className="ml-2"
-                    title={category || ""}
+                    title={category || "Category"}
                   >
                     {categories.map((category) => (
                       <Dropdown.Item
