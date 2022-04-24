@@ -41,7 +41,7 @@ function App() {
           <Route path="/detail/:id" element={<BookDetail />} exact />
           <Route path="*" element={<PageError />} />
           <Route path="/me/update" element={<UpdateProfile />} exact />
-          <Route path="/dashboard" element={<Dashboard />} exact />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
         <Footer />
       </div>
