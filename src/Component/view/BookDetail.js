@@ -9,45 +9,42 @@ import { useParams } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 
 const BookDetail = () => {
-
-// getting state from redux Store
-  const BookWithSpesificId = useSelector( (state) => state.bookWithSpecificId.bookWithId);
+  // getting state from redux Store
+  const BookWithSpesificId = useSelector(
+    (state) => state.bookWithSpecificId.bookWithId
+  );
   const cartLength = useSelector((state) => state.cart.cartBooks.length);
   const books = useSelector((state) => state.book.stock);
 
-// useState
-const [ quantity, setQuantity] = useState(1)
+  // useState
+  const [quantity, setQuantity] = useState(1);
 
-// Assigning
+  // Assigning
   const dispatch = useDispatch();
   const params = useParams();
-  
+
   //  getting BookDetail
   useEffect(() => {
     dispatch(getBooksDetail(params.id));
   }, [dispatch, params.id]);
 
-  
   const addToCartHandler = () => {
-    
-    dispatch(addToCartAction(params.id, quantity))
-  
-  } 
+    dispatch(addToCartAction(params.id, quantity));
+  };
 
-const increaseQuantity = () => {
- const count = document.querySelector(".count")
- if(count.valueAsNumber >= BookWithSpesificId.stock ) return
-   const  qty = count.valueAsNumber + 1
-   setQuantity(qty)
- 
-}
+  const increaseQuantity = () => {
+    const count = document.querySelector(".count");
+    if (count.valueAsNumber >= BookWithSpesificId.stock) return;
+    const qty = count.valueAsNumber + 1;
+    setQuantity(qty);
+  };
 
-const decreaseQuantity = () =>{
-  const count = document.querySelector(".count")
-  if(count.valueAsNumber <= 1 ) return
-    const  qty = count.valueAsNumber - 1
-    setQuantity(qty)
-}
+  const decreaseQuantity = () => {
+    const count = document.querySelector(".count");
+    if (count.valueAsNumber <= 1) return;
+    const qty = count.valueAsNumber - 1;
+    setQuantity(qty);
+  };
 
   return (
     <div className="container container-fluid">
@@ -97,7 +94,6 @@ const decreaseQuantity = () =>{
             <span
               className="btn btn-primary plus ml-1"
               onClick={increaseQuantity}
-              
             >
               +
             </span>
@@ -108,10 +104,18 @@ const decreaseQuantity = () =>{
               Status:{" "}
               <span
                 className={
-                  BookWithSpesificId.stock > 0 ? "text-success ml-2" : "text-danger ml-2 "
+                  BookWithSpesificId.stock > 0
+                    ? "text-success ml-2"
+                    : "text-danger ml-2 "
                 }
               >
-                {BookWithSpesificId.stock > 0 ? <small style={{fontSize: "16px", fontFamily: "monospace"}}>In Stock ({BookWithSpesificId.stock})</small> : "out Of stock"}
+                {BookWithSpesificId.stock > 0 ? (
+                  <small style={{ fontSize: "16px", fontFamily: "monospace" }}>
+                    In Stock ({BookWithSpesificId.stock})
+                  </small>
+                ) : (
+                  "out Of stock"
+                )}
               </span>
             </p>
 
@@ -126,7 +130,7 @@ const decreaseQuantity = () =>{
               className="btn btn-primary mt-4"
               data-toggle="modal"
               data-target="#ratingModal"
-              disabled={BookWithSpesificId.stock ===0}
+              disabled={BookWithSpesificId.stock === 0}
               onClick={addToCartHandler}
             >
               Add To Cart

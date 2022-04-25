@@ -23,22 +23,21 @@ export const USER_LOAD = "USER_LOAD";
 export const USER_LOAD_ERROR = "USER_LOAD_ERROR";
 export const GET_CATEGORY_BOOKS = "GET_CATEGORY_BOOKS";
 export const ERROR_CATEGORY_BOOKS = "ERROR_CATEGORY_BOOKS";
-export const USER_LOG_OUT_FAIL = 'USER_LOG_OUT_FAIL'
-export const USER_LOG_OUT ='USER_LOG_OUT'
-export const USER_PROFILE_UPDATE_ERROR = "USER_PROFILE_UPDATE_ERROR"
-export const USER_PROFILE_UPDATE = "USER_PROFILE_UPDATE"
-export const USER_PROFILE_RESET = "USERUSER_PROFILE_RESETUPDATE"
-export const INCREASE_QUANTITY= 'INCREASE_QUANTITY'
-
-
-
+export const USER_LOG_OUT_FAIL = "USER_LOG_OUT_FAIL";
+export const USER_LOG_OUT = "USER_LOG_OUT";
+export const USER_PROFILE_UPDATE_ERROR = "USER_PROFILE_UPDATE_ERROR";
+export const USER_PROFILE_UPDATE = "USER_PROFILE_UPDATE";
+export const USER_PROFILE_RESET = "USERUSER_PROFILE_RESETUPDATE";
+export const INCREASE_QUANTITY = "INCREASE_QUANTITY";
+export const ADMIN_IS_ASKING_ALL_USERS = "ADMIN_IS_ASKING_ALL_USERS";
+export const ADMIN_CANT_GET_ALL_USERS = "ADMIN_CANT_GET_ALL_USERS";
 
 // export const addToCartAction = (bookToAdd, quantity) => ({
 //   type: ADD_TO_CART,
 //   payload: bookToAdd, quantity
-  
+
 // });
-export const addToCartAction = (id, quantity,) => {
+export const addToCartAction = (id, quantity) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get("http://localhost:3002/books/" + id);
@@ -54,22 +53,19 @@ export const addToCartAction = (id, quantity,) => {
           category: data.category,
           images: data.images[0].imgUrl,
           numReviews: data.numReviews,
-          quantity
-        }
+          quantity,
+        },
       });
-      
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 };
 export const removeFromCartAction = (index) => ({
   type: REMOVE_FROM_CART,
   payload: index,
 });
-export const LogOutUser = (logout) => ({  
+export const LogOutUser = (logout) => ({
   type: USER_LOG_OUT,
-  payload: logout, 
-  
+  payload: logout,
 });
 
 export const getBooks = (SearchQuery, currentPage = 1, category) => {
@@ -80,7 +76,7 @@ export const getBooks = (SearchQuery, currentPage = 1, category) => {
         baselink = `http://localhost:3002/books?search=${SearchQuery}&page=${currentPage}&category=${category}`;
       }
       const { data } = await axios.get(baselink);
-      
+
       dispatch({
         type: GET_BOOKS,
         payload: data,
@@ -124,9 +120,8 @@ export const getBooksDetail = (id) => {
 
       dispatch({
         type: GET_BOOKS_DETAIL,
-        payload: data
+        payload: data,
       });
-
     } catch (error) {
       dispatch({
         type: GET_BOOKS_DETAIL_ERROR,
@@ -135,7 +130,6 @@ export const getBooksDetail = (id) => {
     }
   };
 };
-
 
 export const Register = (userDetails) => {
   return async (dispatch) => {
@@ -150,9 +144,9 @@ export const Register = (userDetails) => {
         userDetails,
         config
       );
-      let token = data.accessToken
-      window.localStorage.setItem("MyToken", 'Bearer ' + token)
-            dispatch({
+      let token = data.accessToken;
+      window.localStorage.setItem("MyToken", "Bearer " + token);
+      dispatch({
         type: USER_REGISTER,
         payload: data,
       });
@@ -165,27 +159,23 @@ export const Register = (userDetails) => {
   };
 };
 
-
-
-
 //  Login
 
 export const Login = (userDetails) => {
-  
   return async (dispatch) => {
     try {
-          const config = {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
+      const config = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
       };
       const { data } = await axios.post(
         "http://localhost:3002/users/login",
         userDetails,
         config
-        );
-      window.localStorage.setItem("MyToken" , data.accessToken)
+      );
+      window.localStorage.setItem("MyToken", data.accessToken);
       dispatch({
         type: USER_LOGIN,
         payload: data,
@@ -199,18 +189,17 @@ export const Login = (userDetails) => {
   };
 };
 
-
 // Update User
 
 export const updateProfile = (userDetails) => {
   return async (dispatch) => {
     try {
-      const token = localStorage.getItem("MyToken")
+      const token = localStorage.getItem("MyToken");
       const config = {
         headers: {
           method: "PUT",
           "Content-Type": "multipart/form-data",
-          Authorization: token
+          Authorization: token,
         },
       };
       const { data } = await axios.put(
@@ -218,8 +207,8 @@ export const updateProfile = (userDetails) => {
         userDetails,
         config
       );
-      window.localStorage.getItem("MyToken")
-            dispatch({
+      window.localStorage.getItem("MyToken");
+      dispatch({
         type: USER_PROFILE_UPDATE,
         payload: data.success,
       });
@@ -236,11 +225,10 @@ export const updateProfile = (userDetails) => {
 export const LoadUser = () => {
   return async (dispatch) => {
     try {
-      let users =   window.localStorage.getItem('MyToken');
+      let users = window.localStorage.getItem("MyToken");
       const config = {
         headers: {
-          Authorization:
-          users
+          Authorization: users,
         },
       };
 
@@ -261,9 +249,27 @@ export const LoadUser = () => {
   };
 };
 
+// Admin Is gonna take all Users
+
+export const getAllUsers = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3002/users/");
+
+      dispatch({
+        type: ADMIN_IS_ASKING_ALL_USERS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ADMIN_CANT_GET_ALL_USERS,
+        payload: error.message,
+      });
+    }
+  };
+};
+
 // logout user
-
-
 
 export const ClearErrors = () => {
   return async (dispatch) => {

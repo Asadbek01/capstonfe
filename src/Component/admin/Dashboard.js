@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Sidebar from "./SideBarAdmin";
+import "../admin/admin.css";
+import { getAllUsers, getBooks } from "../../redux/action";
+import { useDispatch, useSelector } from "react-redux";
 export const Dashboard = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const products = useSelector((state) => state.books.stock);
-  // // const  users  = useSelector(state => state.allUsers)
+  const books = useSelector((state) => state.book.stock);
+  const users = useSelector((state) => state.user.allUsers);
+  console.log(users);
   // const { orders, totalAmount, loading } = useSelector(
   //   (state) => state.allOrders
   // );
@@ -18,11 +22,11 @@ export const Dashboard = () => {
   //   }
   // });
 
-  // useEffect(() => {
-  //   dispatch(getAdminProducts());
-  //   dispatch(allOrders());
-  //   dispatch(allUsers());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getBooks());
+    //   dispatch(allOrders());
+    dispatch(getAllUsers());
+  }, [dispatch]);
 
   return (
     <>
@@ -35,8 +39,11 @@ export const Dashboard = () => {
             <h1 className="my-4 text-white">Dashboard</h1>
             <div className="row pr-4">
               <div className="col-xl-12 col-sm-12 mb-3">
-                <div className="card text-white bg-primary o-hidden h-100">
-                  <div className="card-body">
+                <div
+                  className="card text-white bg-primary o-hidden h-100 m-auto"
+                  style={{ width: "75%" }}
+                >
+                  <div className="card-body ">
                     <div className="text-center card-font-size">
                       Total Amount
                       <br /> <b>$4567</b>
@@ -51,8 +58,8 @@ export const Dashboard = () => {
                 <div className="card text-white bg-success o-hidden h-100">
                   <div className="card-body">
                     <div className="text-center card-font-size">
-                      Products
-                      <br /> <b>56</b>
+                      Books
+                      <br /> <b>{books.totalBooks}</b>
                     </div>
                   </div>
                   <Link
@@ -92,7 +99,7 @@ export const Dashboard = () => {
                   <div className="card-body">
                     <div className="text-center card-font-size">
                       Users
-                      <br /> <b>45</b>
+                      <br /> <b>{users[1].length}</b>
                     </div>
                   </div>
                   <Link
