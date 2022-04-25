@@ -42,11 +42,11 @@
    background-color: #282828;
   padding: 1rem 1rem;
 }
-/* #dropdown-basic-button{
+#dropdown-basic-button{
   display: block;
   padding-left: 40px;
   
-} */
+}
 
 
 
@@ -177,7 +177,7 @@ footer {
 
   /* cart */
 
-/*   
+   
 
 .cart-item {
   margin: 1.8rem 0rem;
@@ -204,16 +204,12 @@ footer {
 
 #checkout_btn,
 .review-btn {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: blue;
   margin-top: 2rem;
   border-radius: 5rem;
 }
 
-#view_order_details {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
-}
+
 
 #order_summary {
   border: 1px solid #e3e3e3;
@@ -227,7 +223,7 @@ footer {
 }
   
 
- */
+
  
  /* ----- Global ----- */
  * {

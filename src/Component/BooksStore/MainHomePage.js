@@ -12,7 +12,7 @@ export const MainHomePage = () => {
   const books = useSelector((state) => state.book.stock);
   const page = useSelector((state) => state.book.pages);
   const totalBooks = useSelector((state) => state.book.totalBooks);
-  console.log("perpage ",totalBooks);
+  console.log("perpage ", totalBooks);
   const errorCode = useSelector((state) => state.book.errorCode);
   const isLoading = useSelector((state) => state.book.isLoading);
 
@@ -36,17 +36,15 @@ export const MainHomePage = () => {
 
   return (
     <>
-      <div className="container-fluid">
+      <div className="container fluid">
         <section id="products" className="container">
-    
-             
-          <h1 className="ml-3" id="products_heading">
-            Latest Books
-          </h1>
-      
           <div className="row">
             {errorCode && (
-              <Alert variant="danger" className="text-center" style={{ margin: "auto", width: "30%" }}>
+              <Alert
+                variant="danger"
+                className="text-center"
+                style={{ margin: "auto", width: "30%" }}
+              >
                 An error occurred: {errorCode}
               </Alert>
             )}
@@ -61,25 +59,6 @@ export const MainHomePage = () => {
                 <h2 className="mt-1 ml-3 text-white ">Loading...</h2>
               </div>
             )}
-            {/* {
-        isLoading &&  (        
-          
-            <div class="container">  
-            <div class="card">  
-            <div class="card-img skeleton">  
-            </div>  
-            <div class="card-body">  
-            <h2 class="card-title skeleton">  
-            </h2>  
-            <p class="card-intro skeleton">  
-            </p>  
-            </div>  
-            </div>  
-            
-            </div>   
-  
-  )
-  } */}
 
             {books.book &&
               books.book.map((book, i) => (
@@ -90,6 +69,17 @@ export const MainHomePage = () => {
                     changeBook={changeBook}
                     key={i.id}
                   />
+                  {/* {isLoading && (
+                    <div class="container">
+                      <div class="card">
+                        <div class="card-img skeleton"></div>
+                        <div class="card-body">
+                          <h2 class="card-title skeleton"></h2>
+                          <p class="card-intro skeleton"></p>
+                        </div>
+                      </div>
+                    </div>
+                  )} */}
                 </>
               ))}
           </div>

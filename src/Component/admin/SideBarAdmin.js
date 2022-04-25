@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className="sidebar-wrapper h-100">
+    <div className="sidebar-wrapper mt-n3">
       <nav id="sidebar">
         <ul className="list-unstyled components">
           <li>

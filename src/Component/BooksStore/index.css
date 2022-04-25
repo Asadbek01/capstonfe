@@ -13,8 +13,8 @@
     background-color: #171717;
 }
 .row .card {
-  width: 250px;
-  height: 350px;
+  width: 220px;
+  height: 260px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;}
   /* .card_book{
     /* box-shadow; */
@@ -44,7 +44,7 @@
 }
 
 .home .row .books-slider a img{
-  height: 25rem;
+  height: 21rem;
 }
 
 .home .row .books-slider a:hover img{

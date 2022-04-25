@@ -11,7 +11,7 @@ export const Books = ({ book, bookSelected, changeBook }) => {
   useEffect(() => {
     dispatch(getBooks());
   }, [dispatch]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
@@ -39,7 +39,7 @@ export const Books = ({ book, bookSelected, changeBook }) => {
             <img className="card-img-top mx-auto" src={book.images[0].imgUrl} />
             <div className="card-body d-flex flex-column ">
               <h5 className="card-title">
-                <Link to={`/detail/${book._id}`} className='text-secondary'>{book.title}</Link>
+                {/* <Link to={`/detail/${book._id}`} className='text-secondary'>{book.title}</Link> */}
               </h5>
               <div className="ratings mt-auto">
                 <div className="rating-outer">
@@ -60,7 +60,7 @@ export const Books = ({ book, bookSelected, changeBook }) => {
                   variant="outline-success"
                   className="ml-2"
                 >
-                  <li onClick={()=> navigate(`/detail/${book._id}`)}>View </li> 
+                  <li onClick={() => navigate(`/detail/${book._id}`)}>View </li>
                 </Button>
               </div>
             </div>
