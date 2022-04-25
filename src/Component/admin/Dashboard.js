@@ -99,7 +99,7 @@ export const Dashboard = () => {
                   <div className="card-body">
                     <div className="text-center card-font-size">
                       Users
-                      <br /> <b>{users[1].length}</b>
+                      <br /> <b>{users[1]?.length}</b>
                     </div>
                   </div>
                   <Link

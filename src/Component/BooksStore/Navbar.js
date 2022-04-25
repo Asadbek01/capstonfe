@@ -74,7 +74,7 @@ export const MyNavbar = () => {
 
         <div className="col-12 col-md-6 mt-2 mt-md-0">
           <form onSubmit={handleSubmit}>
-            <div className="input-group">
+            <div className="d-flex">
               <FormControl
                 type="text"
                 id="search_field"
@@ -84,17 +84,16 @@ export const MyNavbar = () => {
                 value={SearchQuery}
               />
 
-              <div className="input-group-append">
+              <div className="ml-2">
                 <DropdownButton
-                  menuAlign="right"
+                  menuAlign="right "
                   variant="outline-secondary"
-                  id="dropdown-basic-button"
-                  className="ml-2"
+                  className="d-flex pr-5"
                   title={category || "Category"}
                 >
                   {categories.map((category) => (
                     <Dropdown.Item
-                      className="text-capitalize"
+                      className="text-capitalize  ml-1"
                       key={category}
                       onChange={handleInputChange}
                       onClick={() => setCategory(category)}
@@ -114,6 +113,7 @@ export const MyNavbar = () => {
               style={{ position: "relative", right: "15%", marginTop: "px" }}
             >
               <FiShoppingCart
+                style={{ cursor: "pointer" }}
                 color="blue"
                 size={25}
                 onClick={() => navigate("/cart")}
