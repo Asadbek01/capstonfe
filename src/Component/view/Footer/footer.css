@@ -13,8 +13,7 @@ a {
   a, a:hover {
     text-decoration: none !important; }
 
-.content {
-  height: 50vh; }
+
 
 .footer-48201 {
   padding: 5rem 0;
@@ -60,7 +59,7 @@ a {
 footer {
   display: flex;
   background: #000;
-  min-height: 100vh;
+  min-height: 40vh;
   align-items: center;
   justify-content: center;
 }

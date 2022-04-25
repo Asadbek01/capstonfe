@@ -10,14 +10,19 @@ import {
   Jumbotron,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  Link,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { getBooks, LogOutUser } from "../../redux/action";
 import { Avatar } from "@material-ui/core";
 import { FiShoppingCart } from "react-icons/fi";
 import { Books } from "./Books";
-// import '../../assets/'
-
+import "../BooksStore/book.css";
 export const MyNavbar = () => {
   const cartLength = useSelector((state) => state.cart.cartBooks.length);
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -39,7 +44,7 @@ export const MyNavbar = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const location = useLocation();
   // prevent page refreshing
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,40 +77,42 @@ export const MyNavbar = () => {
           </div>
         </div>
 
-        <div className="col-12 col-md-6 mt-2 mt-md-0">
-          <form onSubmit={handleSubmit}>
-            <div className="d-flex">
-              <FormControl
-                type="text"
-                id="search_field"
-                className="form-control"
-                placeholder="Enter the book you want..."
-                onChange={(e) => handleInputChange(e)}
-                value={SearchQuery}
-              />
+        {location.pathname === "/home" && (
+          <div className="col-12 col-md-6 mt-2 mt-md-0">
+            <form onSubmit={handleSubmit}>
+              <div className="d-flex">
+                <FormControl
+                  type="text"
+                  id="search_field"
+                  className="form-control"
+                  placeholder="Enter the book you want..."
+                  onChange={(e) => handleInputChange(e)}
+                  value={SearchQuery}
+                />
 
-              <div className="ml-2">
-                <DropdownButton
-                  menuAlign="right "
-                  variant="outline-secondary"
-                  className="d-flex pr-5"
-                  title={category || "Category"}
-                >
-                  {categories.map((category) => (
-                    <Dropdown.Item
-                      className="text-capitalize  ml-1"
-                      key={category}
-                      onChange={handleInputChange}
-                      onClick={() => setCategory(category)}
-                    >
-                      {category}
-                    </Dropdown.Item>
-                  ))}
-                </DropdownButton>
+                <div>
+                  <DropdownButton
+                    menuAlign="right "
+                    variant="outline-secondary"
+                    className="d-flex ml-2 pr-5"
+                    title={category || "Category"}
+                  >
+                    {categories.map((category) => (
+                      <Dropdown.Item
+                        className="text-capitalize  ml-1"
+                        key={category}
+                        onChange={handleInputChange}
+                        onClick={() => setCategory(category)}
+                      >
+                        {category}
+                      </Dropdown.Item>
+                    ))}
+                  </DropdownButton>
+                </div>
               </div>
-            </div>
-          </form>
-        </div>
+            </form>
+          </div>
+        )}
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
           {isAuth ? (
@@ -197,8 +204,8 @@ export const MyNavbar = () => {
         </div>
       </nav>
       <div className="container-fluid">
-        <section id="products" className="container my-2">
-          <div className="row">
+        <section id="products" className="container my-1">
+          <div className="row ml-1">
             {SearchedBooks.book
               ?.filter((book) => {
                 if (!SearchQuery) return false;

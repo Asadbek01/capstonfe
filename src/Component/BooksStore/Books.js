@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getBooks } from "../../redux/action";
 import { HeartFill } from "react-bootstrap-icons";
+import "../BooksStore/book.css";
 export const Books = ({ book, bookSelected, changeBook }) => {
   const isLoading = useSelector((state) => state.book.isLoading);
 
@@ -27,7 +28,7 @@ export const Books = ({ book, bookSelected, changeBook }) => {
           </div>
         </div>
       )}
-      <div className="col-sm-12 col-md-6 col-lg-3 my-3">
+      <div className="col-sm-6 col-md-4 col-lg-3 my-3">
         <div
           className={
             bookSelected?.id === book.id ? "border-thick mt-3" : "mt-3"

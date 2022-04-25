@@ -1,9 +1,5 @@
 import "./App.css";
-import "./Component/BooksStore/index.css";
-import "./Component/view/Footer/index.css";
 import { MainHomePage } from "./Component/BooksStore/MainHomePage";
-// import '../../css/MainHomePage.css'
-
 import { MyNavbar } from "./Component/BooksStore/Navbar";
 import { CartPage } from "./Component/BooksStore/CartPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";

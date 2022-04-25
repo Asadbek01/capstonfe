@@ -16,9 +16,7 @@
   width: 220px;
   height: 260px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;}
-  /* .card_book{
-    /* box-shadow; */
-    /* home */
+
     .home{
       background: url(../../../public/assets/image/banner-bg.jpg) no-repeat;
   background-size: cover;
@@ -30,7 +28,6 @@
   display:flex;
   align-items: center;
   flex-wrap: wrap;
-  gap:1.5rem;
 }
 
 .home .row .content{
@@ -69,17 +66,12 @@
 }
 
 
-
-
-/* footer */
-
 /* Book Detail images */
 .LoginImage{
   position: relative;
   width: 100px;
     border-radius: 100%;
     margin-left: 40%;
-  
   }
  #login_btn{
    position: absolute;
@@ -148,85 +140,12 @@
     margin-top: 9rem;
   }
 
-  
 
-  /* *, *:after, *:before {  
-    box-sizing: border-box;  
-   }  
-   body {  
-    font-family: "Inter", sans-serif;  
-    background-color: #f2f5f7;  
-   }  
-   .card {  
-    display: flex;  
-    flex-direction: column;  
-    flex-basis: 300px;  
-    flex-shrink: 0;  
-    flex-grow: 0;  
-    max-width: 100%;  
-    background-color: #FFF;  
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.15);  
-    border-radius: 10px;  
-    overflow: hidden;  
-    margin: 1rem;  
-   }  
-     .card-img {  
-    padding-bottom: 56.25%;  
-   }
-    
-   .card-body {  
-    padding: 1.5rem;  
-   }  
-   .card-title {  
-    font-size: 1.25rem;  
-    line-height: 1.33;  
-    font-weight: 700;  
-   }  
-   .card-title.skeleton {  
-    min-height: 28px;  
-    border-radius: 4px;  
-   }  
-   
-   .card-intro.skeleton {  
-    min-height: 72px;  
-    border-radius: 4px;  
-   }  
-   .skeleton {  
-    background-color: #e2e5e7;  
-    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));  
-    background-size: 40px 100%;  
-    background-repeat: no-repeat;  
-    background-position: left -40px top 0;  
-    -webkit-animation: shine 1s ease infinite;  
-        animation: shine 1s ease infinite;  
-   }  
-   @-webkit-keyframes shine {  
-    to {  
-     background-position: right -40px top 0;  
-    }  
-   }  
-   @keyframes shine {  
-    to {  
-     background-position: right -40px top 0;  
-    }  
-   }  
-   .container {  
-    
-    display: flex;  
-    align-items: center;  
-    justify-content: center;  
-    flex-wrap: wrap;  
-   }  
-
-   */
   /* profile */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=latin,latin-ext);
 * {
   box-sizing: border-box;
 }
-
-
-
 
 ul, li {
   list-style: none;
@@ -236,14 +155,6 @@ ul, li {
 .i-block {
   display: inline-block;
 }
-
-/* .pull-left {
-  float: left;
-} */
-
-/* .pull-right {
-  float: right;
-} */
 
 
 .profile {
@@ -349,8 +260,6 @@ ul, li {
   transform: scale(1);
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
 }
-
-
 
 /* avatar */
 .avatar img {
