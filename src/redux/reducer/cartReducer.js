@@ -1,4 +1,4 @@
-import { ADD_TO_CART, GET_ALL_BOOKS_IN_CART, GET_ERROR_BOOKS_IN_CART, REMOVE_FROM_CART } from "../action";
+import { ADD_TO_CART, GET_ALL_BOOKS_IN_CART, GET_ERROR_BOOKS_IN_CART, REMOVE_FROM_CART, SAVE_INFO_SHIPPING } from "../action";
 import { InitialState } from "../store";
 
 export const CartPageBooks = (state = InitialState.cart, action) => {
@@ -24,6 +24,11 @@ export const CartPageBooks = (state = InitialState.cart, action) => {
           ...state,
           cartBooks: state.cartBooks.filter((book, i) => i !== action.payload),
         };
+        case SAVE_INFO_SHIPPING:
+          return{
+          ...state,
+          shippingInfo: action.payload
+        }
   
       default:
         return state;

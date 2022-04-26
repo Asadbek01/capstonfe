@@ -115,3 +115,13 @@
   .card-font-size {
     font-size: 1.5rem;
   }
+  .table.table-hover tbody tr:hover {
+    color: white;
+    cursor: pointer
+  }
+  .table thead   {
+    color:white
+  }
+  .table tbody tr   {
+    color:wheat
+  }

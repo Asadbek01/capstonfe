@@ -21,6 +21,7 @@ export const InitialState = {
   cart: {
     cartBooks: [],
     errorCode: null,
+    shippingInfo: {}
   },
   user: {
     allUsers: [],

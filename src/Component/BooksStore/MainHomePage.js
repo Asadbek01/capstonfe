@@ -9,8 +9,8 @@ export const MainHomePage = () => {
   const [bookSelected, setBookSelected] = useState(null);
 
   const books = useSelector((state) => state.book.stock);
-  const page = useSelector((state) => state.book.pages);
-  const totalBooks = useSelector((state) => state.book.totalBooks);
+  const page = useSelector((state) => state.book.stock);
+  const totalBooks = useSelector((state) => state.book.stock);
   console.log("perpage ", totalBooks);
   const errorCode = useSelector((state) => state.book.errorCode);
   const isLoading = useSelector((state) => state.book.isLoading);
@@ -20,14 +20,10 @@ export const MainHomePage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getBooks());
-  }, []);
+    dispatch(getBooks(currentPage));
+  }, [dispatch, currentPage]);
 
   const changeBook = (book) => setBookSelected(book);
-  // // Get Current books
-  // const indexOfLastBook = currentPage * bookPerPage
-  // const indexOfFirstBook = indexOfLastBook * bookPerPage
-  // const currentBook = books.slice(indexOfFirstBook, indexOfLastBook)
 
   function setCurrentPageNo(pageNumber) {
     setCurrentPage(pageNumber);
@@ -80,8 +76,12 @@ export const MainHomePage = () => {
           itemsCountPerPage={page}
           totalItemsCount={totalBooks}
           onChange={setCurrentPageNo}
-          itemClass={"page-item"}
-          linkClass={"page-link"}
+          nextPageText={"Next"}
+          prevPageText={"Prev"}
+          firstPageText={"First"}
+          lastPageText={"Last"}
+          linkClass="page-link"
+          itemClass="page-item"
         />
       </div>
     </>

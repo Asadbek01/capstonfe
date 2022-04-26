@@ -16,7 +16,7 @@ import { ClearErrors, Login } from "../../redux/action/index.js";
 import { useDispatch, useSelector } from "react-redux";
 
 
-const UserLogin = () => {
+const UserLogin = ({location }) => {
   const navigate = useNavigate();
 
   const [userError, setUserError] = useState(false);

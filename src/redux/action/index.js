@@ -31,6 +31,9 @@ export const USER_PROFILE_RESET = "USERUSER_PROFILE_RESETUPDATE";
 export const INCREASE_QUANTITY = "INCREASE_QUANTITY";
 export const ADMIN_IS_ASKING_ALL_USERS = "ADMIN_IS_ASKING_ALL_USERS";
 export const ADMIN_CANT_GET_ALL_USERS = "ADMIN_CANT_GET_ALL_USERS";
+export const ADMIN_GET_ALL_PRODUCTS = "ADMIN_GET_ALL_PRODUCTS";
+export const ADMIN_GET_ALL_PRODUCTS_ERROR = "ADMIN_GET_ALL_PRODUCTS_ERROR";
+export const SAVE_INFO_SHIPPING = "SAVE_INFO_SHIPPING";
 
 // export const addToCartAction = (bookToAdd, quantity) => ({
 //   type: ADD_TO_CART,
@@ -66,6 +69,10 @@ export const removeFromCartAction = (index) => ({
 export const LogOutUser = (logout) => ({
   type: USER_LOG_OUT,
   payload: logout,
+});
+export const SaveshipppingInfo = (data) => ({
+  type: SAVE_INFO_SHIPPING,
+  payload: data,
 });
 
 export const getBooks = (SearchQuery, currentPage = 1, category) => {
@@ -107,6 +114,24 @@ export const getBooks = (SearchQuery, currentPage = 1, category) => {
       });
       dispatch({
         type: ERROR_CATEGORY_BOOKS,
+        payload: error.message,
+      });
+    }
+  };
+};
+export const getAdminBooks = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3002/books/admin");
+      console.log(data);
+
+      dispatch({
+        type: ADMIN_GET_ALL_PRODUCTS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ADMIN_GET_ALL_PRODUCTS_ERROR,
         payload: error.message,
       });
     }

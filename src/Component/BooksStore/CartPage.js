@@ -28,7 +28,7 @@ export const CartPage = () => {
   };
 
   const checkoutHandler = () => {
-    history("/login?redirect=shipping");
+    history("/shipping");
   };
 
   return (

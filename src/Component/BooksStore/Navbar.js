@@ -68,11 +68,10 @@ export const MyNavbar = () => {
         <div className="col-12 col-md-3">
           <div className="navbar-brand">
             <img
-              src="./assets/logo_nav-1.png"
-              className=" responsive logo_img ml-5"
+              src="https://i.ibb.co/C6FZX5z/logo-nav-1.png" alt="logo-nav-1" border="0"
+               className=" responsive logo_img ml-5"
               onClick={() => navigate("/home")}
               style={{ cursor: "pointer" }}
-              alt="logo"
             />
           </div>
         </div>

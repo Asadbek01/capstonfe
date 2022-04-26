@@ -16,6 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Profile } from "./Component/user/Profile";
 import UpdateProfile from "./Component/user/UpdateUser";
 import { Dashboard } from "./Component/admin/Dashboard";
+import { BookList } from "./Component/admin/BookList";
+import { Shipping } from "./Component/BooksStore/Shipping";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -38,6 +40,9 @@ function App() {
           <Route path="*" element={<PageError />} />
           <Route path="/me/update" element={<UpdateProfile />} exact />
           <Route path="/dashboard" element={<Dashboard />} exact />
+          <Route path="/books/admin" element={<BookList />} exact />
+          <Route path="/shipping" element={<Shipping />} exact />
+
         </Routes>
         <Footer />
       </div>

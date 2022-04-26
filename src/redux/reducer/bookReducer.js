@@ -11,21 +11,29 @@ import {
   REMOVE_FROM_CART,
   GET_CATEGORY_BOOKS,
   INCREASE_QUANTITY,
+  ADMIN_GET_ALL_PRODUCTS,
+  ADMIN_GET_ALL_PRODUCTS_ERROR,
 } from "../action";
 import { InitialState } from "../store";
 
 export const BookReducer = (state = InitialState.book, action) => {
   switch (action.type) {
     case GET_BOOKS:
-      case GET_SEARCHED_BOOKS:
-        case GET_CATEGORY_BOOKS:
+    case GET_SEARCHED_BOOKS:
+    case GET_CATEGORY_BOOKS:
+      return {
+        ...state,
+        stock: action.payload,
+        totalBooks: action.payload.totalBooks,
+        pages: action.payload.pages,
+      };
+    case ADMIN_GET_ALL_PRODUCTS:
       return {
         ...state,
         stock: action.payload,
       };
-      
-
     case GET_BOOKS_ERROR:
+    case ADMIN_GET_ALL_PRODUCTS_ERROR:
       return {
         ...state,
         errorCode: action.payload,
@@ -63,11 +71,11 @@ export const BookDetailReducer = (
   }
 };
 
-// const insceraseQnty =(state= InitialState.cart, action) => 
+// const insceraseQnty =(state= InitialState.cart, action) =>
 // {
 //   switch (action.type) {
 //     case INCREASE_QUANTITY:
-  
+
 //           const item =action.payload
 //           const isItemExist = state.cartBooks.findIndex(i=>i.id === item.id)
 

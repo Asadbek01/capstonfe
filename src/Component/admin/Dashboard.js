@@ -15,12 +15,12 @@ export const Dashboard = () => {
   //   (state) => state.allOrders
   // );
 
-  // let outOfStock = 0;
-  // products.forEach((product) => {
-  //   if (product.stock === 0) {
-  //     outOfStock += 1;
-  //   }
-  // });
+  let outOfStock = 0;
+  books.book && books.book.forEach((book) => {
+    if (book.stock === 0) {
+      outOfStock += 1;
+    }
+  });
 
   useEffect(() => {
     dispatch(getBooks());
@@ -40,7 +40,7 @@ export const Dashboard = () => {
             <div className="col-xl-12 col-sm-12 mb-3">
               <div
                 className="card text-white bg-primary o-hidden h-100 m-auto"
-                style={{ width: "75%" }}
+                style={{ width: "100%" }}
               >
                 <div className="card-body ">
                   <div className="text-center card-font-size">
@@ -61,9 +61,9 @@ export const Dashboard = () => {
                     <br /> <b>{books.totalBooks}</b>
                   </div>
                 </div>
-                <Link
+                <Link to={''}
                   className="card-footer text-white clearfix small z-1"
-                  to="/admin/products"
+                  
                 >
                   <span className="float-left">View Details</span>
                   <span className="float-right">
@@ -92,6 +92,7 @@ export const Dashboard = () => {
                 </Link>
               </div>
             </div>
+            
 
             <div className="col-xl-3 col-sm-6 mb-3">
               <div className="card text-white bg-info o-hidden h-100">
@@ -118,7 +119,7 @@ export const Dashboard = () => {
                 <div className="card-body">
                   <div className="text-center card-font-size">
                     Out of Stock
-                    <br /> <b>4</b>
+                    <br /> <b>{outOfStock}</b>
                   </div>
                 </div>
               </div>

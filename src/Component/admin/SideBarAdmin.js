@@ -11,10 +11,9 @@ const Sidebar = () => {
               <i className="fa fa-tachometer"></i> Dashboard
             </Link>
           </li>
-
+     
           <li>
-            <a
-              href="#productSubmenu"
+            <a href="books/admin"
               data-toggle="collapse"
               aria-expanded="false"
               className="dropdown-toggle"
@@ -23,25 +22,25 @@ const Sidebar = () => {
             </a>
             <ul className="collapse list-unstyled" id="productSubmenu">
               <li>
-                <Link to="/admin/products">
+                <a href="books/admin">
                   <i className="fa fa-clipboard"></i> All
-                </Link>
+                </a>
               </li>
 
               <li>
-                <Link to="/admin/product">
+                <a href="books/admin">
                   <i className="fa fa-plus"></i> Create
-                </Link>
+                </a>
               </li>
             </ul>
-          </li>
+          </li> 
+ 
 
           <li>
             <Link to="/admin/orders">
               <i className="fa fa-shopping-basket"></i> Orders
             </Link>
           </li>
-
           <li>
             <Link to="/admin/users">
               <i className="fa fa-users"></i> Users
@@ -54,7 +53,9 @@ const Sidebar = () => {
             </Link>
           </li>
         </ul>
+        
       </nav>
+      
     </div>
   );
 };
