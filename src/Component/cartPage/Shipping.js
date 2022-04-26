@@ -1,18 +1,27 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import CheckoutSteps from "./checkout.js";
 import {countries} from "countries-list"
 import { useDispatch, useSelector } from "react-redux";
 import { SaveshipppingInfo } from "../../redux/action";
 
-export const Shipping = () => {
-    const shippingInfo = useSelector(state=> state.cart.shippingInfo)
-    
-    const [adress, setAdress]= useState(shippingInfo.adress)
-    const [city, setcity]= useState(shippingInfo.city)
-    const [postalCode, setpostalCode]= useState(shippingInfo.postalCode)
-    const [phoneNo, setphoneNo]= useState(shippingInfo.phoneNo)
-    const [country, setcountry]= useState(shippingInfo.country)
 
+export const Shipping = () => {
+    // const shippingInfo = useSelector(state=> state.cart.shippingInfo)
+    
+    const [shipping, setshipping] = useState({
+        adress: '',
+        city: '',
+        postalCode: '',
+        phoneNo: '',
+        country: ''
+      })
+    // const [adress, setAdress]= useState(shippingInfo.adress)
+    // const [city, setcity]= useState(shippingInfo.city)
+    // const [postalCode, setpostalCode]= useState(shippingInfo.postalCode)
+    // const [phoneNo, setphoneNo]= useState(shippingInfo.phoneNo)
+    // const [country, setcountry]= useState(shippingInfo.country)
+   const  {adress, city, country, postalCode, phoneNo} = shipping
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -21,11 +30,16 @@ export const Shipping = () => {
 
     const submitHandler =(e) =>{
         e.preventDefault()
-        dispatch(SaveshipppingInfo({adress, city, country, postalCode, phoneNo}))
+        dispatch(SaveshipppingInfo(shipping))
         navigate('/confirm')
     }
+    const handleInput = (e) =>{
+        setshipping({...shipping, [e.target.name]:  e.target.value})
+      }
 
   return (
+      <>
+      <CheckoutSteps shipping />
     <div className="row wrapper d-flex">
     <div className="col-10 col-lg-5 m-auto text-white">
         <form className="shadow-lg">
@@ -36,10 +50,11 @@ export const Shipping = () => {
                     type="text"
                     id="address_field"
                     className="form-control"
+                    name="adress"
                     value={adress}
-                    onChange={(e)=> setAdress(e.target.value)}
+                    onChange={handleInput}
                     required
-                />
+                    />
             </div>
 
             <div className="form-group">
@@ -49,9 +64,10 @@ export const Shipping = () => {
                     id="city_field"
                     className="form-control"
                     value={city}
-                    onChange={(e)=> setcity(e.target.value)}
+                    name="city"
+                    onChange={handleInput}
                     required
-                />
+                    />
             </div>
 
             <div className="form-group">
@@ -61,9 +77,10 @@ export const Shipping = () => {
                     id="phone_field"
                     className="form-control"
                     value={phoneNo}
-                    onChange={(e)=> setphoneNo(e.target.value)}
+                    name="phoneNo"
+                    onChange={handleInput}
                     required
-                />
+                    />
             </div>
 
             <div className="form-group">
@@ -73,7 +90,8 @@ export const Shipping = () => {
                     id="postal_code_field"
                     className="form-control"
                     value={postalCode}
-                    onChange={(e)=> setpostalCode(e.target.value)}
+                    name="postalCode"
+                    onChange={handleInput}
                     required
                 />
             </div>
@@ -84,15 +102,16 @@ export const Shipping = () => {
                     id="country_field"
                     className="form-control"
                     value={country}
-                    onChange={(e)=> setcountry(e.target.value)}
+                    name="country"
+                    onChange={handleInput}
                     required
-                >
+                    >
                     {countriesList && countriesList.map(country=>(
                         <option key={country.name}>
                             {country.name}
                         </option>
 
-                    ))
+))
 }
 
                 </select>
@@ -102,10 +121,13 @@ export const Shipping = () => {
                 id="shipping_btn"
                 type="submit"
                 className="btn btn-block py-3 btn-primary"
-            >
+                >
                 CONTINUE
                 </button>
         </form>
     </div>
-</div>  )
+</div> 
+
+                </>
+ )
 }
