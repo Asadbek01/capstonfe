@@ -6,6 +6,7 @@ import { SaveshipppingInfo } from "../../redux/action";
 
 export const Shipping = () => {
     const shippingInfo = useSelector(state=> state.cart.shippingInfo)
+    
     const [adress, setAdress]= useState(shippingInfo.adress)
     const [city, setcity]= useState(shippingInfo.city)
     const [postalCode, setpostalCode]= useState(shippingInfo.postalCode)

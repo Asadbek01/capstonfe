@@ -1,7 +1,7 @@
 import "./App.css";
 import { MainHomePage } from "./Component/BooksStore/MainHomePage";
 import { MyNavbar } from "./Component/BooksStore/Navbar";
-import { CartPage } from "./Component/BooksStore/CartPage";
+import { CartPage } from "./Component/cartPage/CartPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignUp from "./Component/user/SignUpPage";
 import UserLogin from "./Component/user/LoginPage";
@@ -17,7 +17,7 @@ import { Profile } from "./Component/user/Profile";
 import UpdateProfile from "./Component/user/UpdateUser";
 import { Dashboard } from "./Component/admin/Dashboard";
 import { BookList } from "./Component/admin/BookList";
-import { Shipping } from "./Component/BooksStore/Shipping";
+import { Shipping } from "./Component/cartPage/Shipping";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {

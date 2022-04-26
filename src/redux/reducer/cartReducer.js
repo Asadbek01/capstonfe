@@ -27,7 +27,7 @@ export const CartPageBooks = (state = InitialState.cart, action) => {
         case SAVE_INFO_SHIPPING:
           return{
           ...state,
-          shippingInfo: action.payload
+          shippingInfo: [...state.shippingInfo,action.payload]
         }
   
       default:
