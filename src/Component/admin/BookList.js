@@ -88,9 +88,8 @@ export const BookList = () => {
         <div className="col-12 col-md-2">
           <Sidebar />
         </div>
-        <div className="col-12 col-md-10">
+        <div className="col-12 col-md-10 mt-n2">
           <>
-            <h1 className="my-5 text-white">All Books</h1>
             {isLoading && (
               <div className="d-flex m-auto">
                 <Spinner
