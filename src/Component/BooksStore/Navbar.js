@@ -23,7 +23,7 @@ import { Avatar } from "@material-ui/core";
 import { FiShoppingCart } from "react-icons/fi";
 import { Books } from "./Books";
 import "../BooksStore/book.css";
-export const MyNavbar = () => {
+export const MyNavbar = ({search}) => {
   const cartLength = useSelector((state) => state.cart.cartBooks.length);
   const isAuth = useSelector((state) => state.user.isAuth);
   const SearchedBooks = useSelector((state) => state.book.stock);
@@ -48,6 +48,7 @@ export const MyNavbar = () => {
   // prevent page refreshing
   const handleSubmit = (e) => {
     e.preventDefault();
+    search(SearchQuery)
   };
   useEffect(() => {
     dispatch(getBooks(SearchQuery, category));
@@ -202,21 +203,13 @@ export const MyNavbar = () => {
           )}
         </div>
       </nav>
+      {SearchedBooks.book && SearchedBooks.book.length > 0 && (
       <div className="container-fluid">
+         <h2 className="text-white container ">{SearchedBooks.book? category : ""}</h2>
         <section id="products" className="container my-1">
           <div className="row ml-1">
-            {SearchedBooks.book
-              ?.filter((book) => {
-                if (!SearchQuery) return false;
-                if (
-                  book.title.toLowerCase().includes(SearchQuery.toLowerCase())
-                )
-                  return true;
-              })
-              .map((book) => (
-                <Books book={book} />
-              ))}
-            {SearchedBooks.book
+            
+                       {SearchedBooks.book
               ?.filter((book) => {
                 if (!category) return false;
                 if (
@@ -232,6 +225,7 @@ export const MyNavbar = () => {
           </div>
         </section>
       </div>
+      )}
     </>
   );
 };

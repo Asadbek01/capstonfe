@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBooks, getSearchedBooks } from "../../redux/action";
 import { Books } from "./Books";
-import { Alert, Button, Col, Jumbotron, Spinner } from "react-bootstrap";
+import { Alert, Button, Col, Jumbotron, Row, Spinner } from "react-bootstrap";
 import Pagination from "react-js-pagination";
 
-export const MainHomePage = () => {
+export const MainHomePage = ({searchedResult, categoryResult}) => {
   const [bookSelected, setBookSelected] = useState(null);
 
   const books = useSelector((state) => state.book.stock);
@@ -54,7 +54,21 @@ export const MainHomePage = () => {
                 <h2 className="mt-1 ml-3 text-white ">Loading...</h2>
               </div>
             )}
-
+             {searchedResult.book && searchedResult.book.length > 0 && (
+          <Row>
+            <Col xs={12}>
+              <div id="searchResults">
+                <h2 className="text-white">Search Results</h2>
+                <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4">
+                  {searchedResult.book && searchedResult.book.map((book) => (
+                    <Books book={book} key={book.id} />
+                  ))}
+                  </Row>
+                     </div>
+            </Col>
+          </Row>
+          )}
+           
             {books.book &&
               books.book.map((book, i) => (
                 <>
@@ -64,6 +78,7 @@ export const MainHomePage = () => {
                     changeBook={changeBook}
                     key={i.id}
                   />
+                  
                 </>
               ))}
           </div>
