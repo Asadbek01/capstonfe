@@ -4,16 +4,13 @@ import {
   GET_BOOKS_LOADING,
   GET_BOOKS_DETAIL,
   GET_BOOKS_DETAIL_ERROR,
-  ADD_TO_CART,
   GET_SEARCHED_BOOKS,
-  GET_ALL_BOOKS_IN_CART,
-  GET_ERROR_BOOKS_IN_CART,
-  REMOVE_FROM_CART,
   GET_CATEGORY_BOOKS,
-  INCREASE_QUANTITY,
   ADMIN_GET_ALL_PRODUCTS,
   ADMIN_GET_ALL_PRODUCTS_ERROR,
   NEW_PRODUCT_PROCCESS,
+  NEW_PRODUCT_PROCCESS_ERROR,
+  CLEAR_ERRORS,
 } from "../action";
 import { InitialState } from "../store";
 
@@ -33,6 +30,8 @@ export const BookReducer = (state = InitialState.book, action) => {
         ...state,
         stock: action.payload,
       };
+
+     
     case GET_BOOKS_ERROR:
     case ADMIN_GET_ALL_PRODUCTS_ERROR:
       return {
@@ -50,19 +49,40 @@ export const BookReducer = (state = InitialState.book, action) => {
   }
 };
 
-export const newBooksAdmin = (state = InitialState.book, action) => {
+export const newBookReducer = (state = InitialState.newBook, action) => {
   switch (action.type) {
-  case NEW_PRODUCT_PROCCESS:
-    return {
-      ...state,
-      isLoading: false,
-      adminBook: [...state.adminBook, action.payload]
-    }
 
-default :
-return state;
-  }
+    case NEW_PRODUCT_PROCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        adminBook: action.payload,
+      };
+
+      case NEW_PRODUCT_PROCCESS_ERROR:
+          return {
+              ...state,
+              error: action.payload,
+              adminBook: []
+          }
+
+      // case NEW_PRODUCT_RESET:
+      //     return {
+      //         ...state,
+      //         success: false
+      //     }
+
+      case CLEAR_ERRORS:
+          return {
+              ...state,
+              errorCode: null
+          }
+
+          default:
+            return state;
+        }
 }
+
 export const BookDetailReducer = (
   state = InitialState.bookWithSpecificId,
   action
@@ -85,13 +105,3 @@ export const BookDetailReducer = (
   }
 };
 
-// const insceraseQnty =(state= InitialState.cart, action) =>
-// {
-//   switch (action.type) {
-//     case INCREASE_QUANTITY:
-
-//           const item =action.payload
-//           const isItemExist = state.cartBooks.findIndex(i=>i.id === item.id)
-
-//   }
-// }

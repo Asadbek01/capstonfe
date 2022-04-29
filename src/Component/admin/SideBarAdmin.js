@@ -5,35 +5,29 @@ const Sidebar = () => {
   return (
     <div className="sidebar-wrapper mt-n2">
       <nav id="sidebar">
-        <ul className="list-unstyled components">
+        <ul className="list-unstyled mt-n1" style={{height: "100vh"}}>
           <li>
             <Link to="/dashboard">
               <i className="fa fa-tachometer"></i> Dashboard
             </Link>
           </li>
      
-          <li>
-            <a href="books/admin"
-              data-toggle="collapse"
-              aria-expanded="false"
-              className="dropdown-toggle"
-            >
-              <i className="fa fa-book"></i> Books
-            </a>
-            <ul className="collapse list-unstyled" id="productSubmenu">
+        
+          
+          
               <li>
                 <a href="books/admin">
-                  <i className="fa fa-clipboard"></i> All
+              <i className="fa fa-book"></i> Books
                 </a>
               </li>
 
               <li>
-                <a href="books/admin">
+                <a href="book/admin">
                   <i className="fa fa-plus"></i> Create
                 </a>
               </li>
-            </ul>
-          </li> 
+            
+          
  
 
           <li>
@@ -52,6 +46,28 @@ const Sidebar = () => {
               <i className="fa fa-star"></i> Reviews
             </Link>
           </li>
+
+          <li>
+            <Link to="/dashboard">
+              {/* <i className="fa fa-tachometer"></i> Dashboard */}
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard">
+              {/* <i className="fa fa-tachometer"></i> Dashboard */}
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard">
+              {/* <i className="fa fa-tachometer"></i> Dashboard */}
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard">
+              {/* <i className="fa fa-tachometer"></i> Dashboard */}
+            </Link>
+          </li>
+
         </ul>
         
       </nav>

@@ -36,7 +36,7 @@ export const ADMIN_GET_ALL_PRODUCTS_ERROR = "ADMIN_GET_ALL_PRODUCTS_ERROR";
 export const SAVE_INFO_SHIPPING = "SAVE_INFO_SHIPPING";
 
 export const NEW_PRODUCT_PROCCESS = "NEW_PRODUCT_PROCCESS"
-export const NEW_PRODUCT_PROCCESS_ERROR = "NEW_PRODUCT_PROCCESS"
+export const NEW_PRODUCT_PROCCESS_ERROR = "NEW_PRODUCT_PROCCESS_ERROR"
 
 
 export const addToCartAction = (id, quantity) => {
@@ -138,11 +138,11 @@ export const getBooks = (SearchQuery, currentPage = 1, category) => {
     }
   };
 };
+
 export const getAdminBooks = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get("http://localhost:3002/books/admin");
-      console.log(data);
 
       dispatch({
         type: ADMIN_GET_ALL_PRODUCTS,
@@ -151,30 +151,6 @@ export const getAdminBooks = () => {
     } catch (error) {
       dispatch({
         type: ADMIN_GET_ALL_PRODUCTS_ERROR,
-        payload: error.message,
-      });
-    }
-  };
-};
-export const createdBooksByAdmin = (newProductData) => {
-  return async (dispatch) => {
-    try {
-      const config ={
-        method: "PUT",
-        headers: {
-          'Content-Type': 'application/json'
-        } 
-      }
-
-      const { data } = await axios.get(`http://localhost:3002/books/new`, newProductData, config);
-
-      dispatch({
-        type: NEW_PRODUCT_PROCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: NEW_PRODUCT_PROCCESS_ERROR,
         payload: error.message,
       });
     }
@@ -198,7 +174,30 @@ export const getBooksDetail = (id) => {
     }
   };
 };
+export const createdBooksByAdmin = (newProductData) => {
+  return async (dispatch) => {
+    try {
+      const config ={
+        headers: {
+          'Content-Type': 'application/json'
+        } 
+      }
+      const { data } = await axios.post("http://localhost:3002/books/new", newProductData, config);
 
+  /*    dispatch({
+        type: NEW_PRODUCT_PROCCESS,
+        payload: data.success
+      });
+*/
+    } catch (error) {
+      console.log("ERROR: ", error)
+      dispatch({
+        type: NEW_PRODUCT_PROCCESS_ERROR,
+        payload: error.message,
+      });
+    }
+  };
+};
 export const Register = (userDetails) => {
   return async (dispatch) => {
     try {

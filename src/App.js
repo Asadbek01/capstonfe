@@ -12,15 +12,14 @@ import BookDetail from "./Component/view/BookDetail";
 import { LoadUser } from "./redux/action";
 import store from "./redux/store";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Profile } from "./Component/user/Profile";
 import UpdateProfile from "./Component/user/UpdateUser";
 import { Dashboard } from "./Component/admin/Dashboard";
 import { BookList } from "./Component/admin/BookList";
 import { Shipping } from "./Component/cartPage/Shipping";
+import { NewAdminBook } from "./Component/admin/NewAdminBook"
 function App() {
   const [searchedResult, setSearchedResult] = useState([])
-  const dispatch = useDispatch();
   useEffect(() => {
     store.dispatch(LoadUser());
   }, []);
@@ -55,7 +54,7 @@ const Search = async(string) =>{
           <Route path="/dashboard" element={<Dashboard />} exact />
           <Route path="/books/admin" element={<BookList />} exact />
           <Route path="/shipping" element={<Shipping />} exact />
-
+          <Route path="/book/admin" element={<NewAdminBook />}  />
         </Routes>
         <Footer />
       </div>

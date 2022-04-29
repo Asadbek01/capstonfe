@@ -31,7 +31,7 @@ export const Dashboard = () => {
   return (
     <>
       <div className="row">
-        <div className="col-12 col-md-2">
+        <div className="col-12 col-md-2 mb-n5 " style={{height: "93vh"}}>
           <Sidebar />
         </div>
         <div className="col-12 col-md-10">
@@ -45,7 +45,7 @@ export const Dashboard = () => {
                 <div className="card-body ">
                   <div className="text-center card-font-size">
                     Total Amount
-                    <br /> <b>$4567</b>
+                    <br /> <b>$257</b>
                   </div>
                 </div>
               </div>
@@ -61,7 +61,7 @@ export const Dashboard = () => {
                     <br /> <b>{books.totalBooks}</b>
                   </div>
                 </div>
-                <Link to={''}
+                <Link to={'/books/admin'}
                   className="card-footer text-white clearfix small z-1"
                   
                 >
@@ -78,7 +78,7 @@ export const Dashboard = () => {
                 <div className="card-body">
                   <div className="text-center card-font-size">
                     Orders
-                    <br /> <b>125</b>
+                    <br /> <b>3</b>
                   </div>
                 </div>
                 <Link
