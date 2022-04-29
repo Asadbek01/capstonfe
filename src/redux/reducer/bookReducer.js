@@ -13,6 +13,7 @@ import {
   INCREASE_QUANTITY,
   ADMIN_GET_ALL_PRODUCTS,
   ADMIN_GET_ALL_PRODUCTS_ERROR,
+  NEW_PRODUCT_PROCCESS,
 } from "../action";
 import { InitialState } from "../store";
 
@@ -49,6 +50,19 @@ export const BookReducer = (state = InitialState.book, action) => {
   }
 };
 
+export const newBooksAdmin = (state = InitialState.book, action) => {
+  switch (action.type) {
+  case NEW_PRODUCT_PROCCESS:
+    return {
+      ...state,
+      isLoading: false,
+      adminBook: [...state.adminBook, action.payload]
+    }
+
+default :
+return state;
+  }
+}
 export const BookDetailReducer = (
   state = InitialState.bookWithSpecificId,
   action

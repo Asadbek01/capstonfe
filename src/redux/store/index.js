@@ -12,6 +12,7 @@ export const InitialState = {
     category: [],
     errorCode: null,
     isLoading: true,
+    adminBooks: []
   },
 
   bookWithSpecificId: {

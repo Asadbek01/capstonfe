@@ -18,6 +18,7 @@
     transition: all 0.3s;
     height: 100vh;
   }
+  
    @media (max-width: 360px) {
     .sidebar-wrapper {
       display: flex;
@@ -116,12 +117,12 @@
     font-size: 1.5rem;
   }
   .table.table-hover tbody tr:hover {
-    color: white;
+    color: darkslategray;
     cursor: pointer
   }
   .table thead   {
     color:white
   }
   .table tbody tr   {
-    color:darkslategray
+    color:azure
   }

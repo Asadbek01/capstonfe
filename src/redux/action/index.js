@@ -35,11 +35,10 @@ export const ADMIN_GET_ALL_PRODUCTS = "ADMIN_GET_ALL_PRODUCTS";
 export const ADMIN_GET_ALL_PRODUCTS_ERROR = "ADMIN_GET_ALL_PRODUCTS_ERROR";
 export const SAVE_INFO_SHIPPING = "SAVE_INFO_SHIPPING";
 
-// export const addToCartAction = (bookToAdd, quantity) => ({
-//   type: ADD_TO_CART,
-//   payload: bookToAdd, quantity
+export const NEW_PRODUCT_PROCCESS = "NEW_PRODUCT_PROCCESS"
+export const NEW_PRODUCT_PROCCESS_ERROR = "NEW_PRODUCT_PROCCESS"
 
-// });
+
 export const addToCartAction = (id, quantity) => {
   return async (dispatch) => {
     try {
@@ -152,6 +151,30 @@ export const getAdminBooks = () => {
     } catch (error) {
       dispatch({
         type: ADMIN_GET_ALL_PRODUCTS_ERROR,
+        payload: error.message,
+      });
+    }
+  };
+};
+export const createdBooksByAdmin = (newProductData) => {
+  return async (dispatch) => {
+    try {
+      const config ={
+        method: "PUT",
+        headers: {
+          'Content-Type': 'application/json'
+        } 
+      }
+
+      const { data } = await axios.get(`http://localhost:3002/books/new`, newProductData, config);
+
+      dispatch({
+        type: NEW_PRODUCT_PROCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: NEW_PRODUCT_PROCCESS_ERROR,
         payload: error.message,
       });
     }

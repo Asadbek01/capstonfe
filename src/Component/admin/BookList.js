@@ -88,7 +88,7 @@ export const BookList = () => {
         <div className="col-12 col-md-2">
           <Sidebar />
         </div>
-        <div className="col-12 col-md-10 mt-n2">
+        <div className="col-12 col-md-10 mb-n5">
           <>
             {isLoading && (
               <div className="d-flex m-auto">
@@ -101,13 +101,16 @@ export const BookList = () => {
                 <h2 className="mt-1 ml-3 text-white ">Loading...</h2>
               </div>
             )}
+             <div className="row">
+
             <MDBDataTable
               data={setBooks()}
-              className="px-3 text-white"
+              className="px-3 text-white mb-n5"
               bordered
               striped
               hover
             />
+             </div>
           </>
         </div>
       </div>
