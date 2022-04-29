@@ -74,6 +74,26 @@ export const SaveshipppingInfo = (data) => ({
   type: SAVE_INFO_SHIPPING,
   payload: data,
 });
+export const SaveshipppingInfoWithThunk = (detail) => {
+  return async (dispatch, getState) => {
+    
+    console.log('this book has been added with redux-thunk')
+    console.log("here's my state currently", getState())
+    // for example, we could even do an async fetch here...
+    try {
+      dispatch({
+        type: SAVE_INFO_SHIPPING,
+        payload: detail,
+      })
+      
+    } catch (error) {
+      
+    console.log(error)
+    }
+      // this means the cart is full
+    }
+  }
+
 
 export const getBooks = (SearchQuery, currentPage = 1, category) => {
   return async (dispatch) => {

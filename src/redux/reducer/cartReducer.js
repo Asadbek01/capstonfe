@@ -18,18 +18,18 @@ export const CartPageBooks = (state = InitialState.cart, action) => {
             ...state,
             cartBooks: [...state.cartBooks, item]
           }
-          }
+        }
+        case SAVE_INFO_SHIPPING:
+          return {
+          ...state,
+          shippingInfo: [state.shippingInfo ,action.payload]
+        }
+  
       case REMOVE_FROM_CART:
         return {
           ...state,
           cartBooks: state.cartBooks.filter((book, i) => i !== action.payload),
         };
-        case SAVE_INFO_SHIPPING:
-          return{
-          ...state,
-          shippingInfo: [...state.shippingInfo,action.payload]
-        }
-  
       default:
         return state;
     }

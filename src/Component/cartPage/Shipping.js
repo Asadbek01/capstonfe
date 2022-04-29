@@ -3,13 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import CheckoutSteps from "./checkout.js";
 import {countries} from "countries-list"
 import { useDispatch, useSelector } from "react-redux";
-import { SaveshipppingInfo } from "../../redux/action";
+import { SaveshipppingInfo, SaveshipppingInfoWithThunk } from "../../redux/action";
 
 
 export const Shipping = () => {
     // const shippingInfo = useSelector(state=> state.cart.shippingInfo)
     
-    const [shipping, setshipping] = useState({
+    const [shippingDetails, setshippingDetails] = useState({
         adress: '',
         city: '',
         postalCode: '',
@@ -21,7 +21,7 @@ export const Shipping = () => {
     // const [postalCode, setpostalCode]= useState(shippingInfo.postalCode)
     // const [phoneNo, setphoneNo]= useState(shippingInfo.phoneNo)
     // const [country, setcountry]= useState(shippingInfo.country)
-   const  {adress, city, country, postalCode, phoneNo} = shipping
+   const  {adress, city, country, postalCode, phoneNo} = shippingDetails
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -30,11 +30,11 @@ export const Shipping = () => {
 
     const submitHandler =(e) =>{
         e.preventDefault()
-        dispatch(SaveshipppingInfo(shipping))
+        dispatch(SaveshipppingInfo(shippingDetails))
         navigate('/confirm')
     }
     const handleInput = (e) =>{
-        setshipping({...shipping, [e.target.name]:  e.target.value})
+        setshippingDetails({...shippingDetails, [e.target.name]:  e.target.value})
       }
 
   return (

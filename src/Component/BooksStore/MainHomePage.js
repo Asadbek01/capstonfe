@@ -37,21 +37,21 @@ export const MainHomePage = ({searchedResult, categoryResult}) => {
             {errorCode && (
               <Alert
                 variant="danger"
-                className="text-center"
+                className="text-center mt-3"
                 style={{ margin: "auto", width: "30%" }}
               >
                 An error occurred: {errorCode}
               </Alert>
             )}
             {isLoading && (
-              <div className="d-flex m-auto">
+              <div className="d-flex m-auto ">
                 <Spinner
-                  style={{ margin: "auto", fontSize: "20px" }}
+                  style={{ margin: "auto", fontSize: "20px", marginTop: "43px"}}
                   animation="border"
                   role="status"
                   variant="primary"
                 />
-                <h2 className="mt-1 ml-3 text-white ">Loading...</h2>
+                <h2 className="mt-5 ml-3 text-white ">Loading...</h2>
               </div>
             )}
              {searchedResult.book && searchedResult.book.length > 0 && (

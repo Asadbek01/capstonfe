@@ -97,7 +97,7 @@ const UpdateProfile = () => {
                                 <div>
                                     <figure className='avatar mr-3 item-rtl'>
                                         <img
-                                            src={avatarPreview}
+                                            src={avatarPreview ? avatarPreview : ""}
                                             alt='Avatar Preview'
                                              style={{width: "150px", height: "100px", borderRadius:"50%"}}
                                        />
