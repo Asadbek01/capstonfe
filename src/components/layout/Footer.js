@@ -1,9 +1,11 @@
-import React from 'react'
-import "../layout/footer.css"
+import React from "react";
+import "../layout/footer.css";
+import { BsInstagram, BsTelegram, BsTwitter, BsLinkedin } from "react-icons/bs";
+
 const Footer = () => {
-    return (
-        <>
-            <footer className="footer-48201">
+  return (
+    <>
+      <footer className="footer-48201">
         <div className="container">
           <div className="row">
             <div className="col-md-4 pr-md-5">
@@ -118,8 +120,8 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-        </>
-    )
-}
+    </>
+  );
+};
 
-export default Footer
+export default Footer;
