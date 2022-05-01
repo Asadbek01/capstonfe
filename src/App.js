@@ -1,65 +1,120 @@
-import "./App.css";
-import { MainHomePage } from "./Component/BooksStore/MainHomePage";
-import { MyNavbar } from "./Component/BooksStore/Navbar";
-import { CartPage } from "./Component/cartPage/CartPage";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SignUp from "./Component/user/SignUpPage";
-import UserLogin from "./Component/user/LoginPage";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Footer } from "./Component/view/Footer/Footer";
-import { PageError } from "./Component/view/error/PageError";
-import BookDetail from "./Component/view/BookDetail";
-import { LoadUser } from "./redux/action";
-import store from "./redux/store";
-import { useEffect, useState } from "react";
-import { Profile } from "./Component/user/Profile";
-import UpdateProfile from "./Component/user/UpdateUser";
-import { Dashboard } from "./Component/admin/Dashboard";
-import { BookList } from "./Component/admin/BookList";
-import { Shipping } from "./Component/cartPage/Shipping";
-import { NewAdminBook } from "./Component/admin/NewAdminBook"
+import React, { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+import Header from './components/layout/Header'
+import Footer from './components/layout/Footer'
+
+import Home from './components/Home'
+import ProductDetails from './components/product/ProductDetails'
+
+// Cart Imports
+import Cart from './components/cart/Cart'
+import Shipping from './components/cart/Shipping'
+import ConfirmOrder from './components/cart/ConfirmOrder'
+import Payment from './components/cart/Payment'
+import OrderSuccess from './components/cart/OrderSuccess'
+
+// Order Imports
+import ListOrders from './components/order/ListOrders'
+import OrderDetails from './components/order/OrderDetails'
+
+// Auth or User imports
+import Login from './components/user/Login'
+import Register from './components/user/Register'
+import Profile from './components/user/Profile'
+import UpdateProfile from './components/user/UpdateProfile'
+import UpdatePassword from './components/user/UpdatePassword'
+import ForgotPassword from './components/user/ForgotPassword'
+import NewPassword from './components/user/NewPassword'
+
+// Admin Imports
+import Dashboard from './components/admin/Dashboard'
+import ProductsList from './components/admin/ProductsList'
+import NewProduct from './components/admin/NewProduct'
+import UpdateProduct from './components/admin/UpdateProduct'
+import OrdersList from './components/admin/OrdersList'
+import ProcessOrder from './components/admin/ProcessOrder'
+import UsersList from './components/admin/UsersList'
+import UpdateUser from './components/admin/UpdateUser'
+import ProductReviews from './components/admin/ProductReviews'
+
+
+import ProtectedRoute from './components/route/ProtectedRoute'
+import { loadUser } from './actions/userActions'
+import { useSelector } from 'react-redux'
+import store from './store'
+import axios from 'axios'
+
+// Payment
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
+
 function App() {
-  const [searchedResult, setSearchedResult] = useState([])
+
+  const [stripeApiKey, setStripeApiKey] = useState('');
+
   useEffect(() => {
-    store.dispatch(LoadUser());
-  }, []);
+    store.dispatch(loadUser())
 
-const Search = async(string) =>{
-  if (string.length > 2) {
-    try {
-      let response = await fetch(`http://localhost:3002/books?search=${string}`)
-      let data =  await response.json()
-      setSearchedResult(data)
-    
-} catch(error){
-  console.log(error)
-}
-  }
-}
-  
+    async function getStripApiKey() {
+      const { data } = await axios.get('/api/v1/stripeapi');
+
+      setStripeApiKey(data.stripeApiKey)
+    }
+
+    getStripApiKey();
+
+  }, [])
+
+  const { user, isAuthenticated, loading } = useSelector(state => state.auth)
+
   return (
-    <BrowserRouter>
+    <Router>
       <div className="App">
-        <MyNavbar search = {Search}/>
+        <Header />
+        <div className="container container-fluid">
+          <Route path="/" component={Home} exact />
+          <Route path="/search/:keyword" component={Home} />
+          <Route path="/product/:id" component={ProductDetails} exact />
 
-        <Routes>
-          <Route path="/" element={<UserLogin />} exact />
-          <Route path="/signUp" element={<SignUp />} />
-          <Route path="/me" element={<Profile />} exact />
-          <Route path="/home" element={<MainHomePage searchedResult={searchedResult} />} exact />
-          <Route path="/cart" element={<CartPage />} exact />
-          <Route path="/detail/:id" element={<BookDetail />} exact />
-          <Route path="*" element={<PageError />} />
-          <Route path="/me/update" element={<UpdateProfile />} exact />
-          <Route path="/dashboard" element={<Dashboard />} exact />
-          <Route path="/books/admin" element={<BookList />} exact />
-          <Route path="/shipping" element={<Shipping />} exact />
-          <Route path="/book/admin" element={<NewAdminBook />}  />
-        </Routes>
-        <Footer />
+          <Route path="/cart" component={Cart} exact />
+          <ProtectedRoute path="/shipping" component={Shipping} />
+          <ProtectedRoute path="/confirm" component={ConfirmOrder} exact />
+          <ProtectedRoute path="/success" component={OrderSuccess} />
+          {stripeApiKey &&
+            <Elements stripe={loadStripe(stripeApiKey)}>
+              <ProtectedRoute path="/payment" component={Payment} />
+            </Elements>
+          }
+
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/password/forgot" component={ForgotPassword} exact />
+          <Route path="/password/reset/:token" component={NewPassword} exact />
+          <ProtectedRoute path="/me" component={Profile} exact />
+          <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
+          <ProtectedRoute path="/password/update" component={UpdatePassword} exact />
+
+          <ProtectedRoute path="/orders/me" component={ListOrders} exact />
+          <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
+        </div>
+
+        <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact />
+        <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductsList} exact />
+        <ProtectedRoute path="/admin/product" isAdmin={true} component={NewProduct} exact />
+        <ProtectedRoute path="/admin/product/:id" isAdmin={true} component={UpdateProduct} exact />
+        <ProtectedRoute path="/admin/orders" isAdmin={true} component={OrdersList} exact />
+        <ProtectedRoute path="/admin/order/:id" isAdmin={true} component={ProcessOrder} exact />
+        <ProtectedRoute path="/admin/users" isAdmin={true} component={UsersList} exact />
+        <ProtectedRoute path="/admin/user/:id" isAdmin={true} component={UpdateUser} exact />
+        <ProtectedRoute path="/admin/reviews" isAdmin={true} component={ProductReviews} exact />
+
+        {!loading && (!isAuthenticated || user.role !== 'admin') && (
+          <Footer />
+        )}
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
 
-export default App
+export default App;
