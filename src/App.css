@@ -452,28 +452,19 @@ nav {
   margin-left: 1.5rem;
 }
 
-.update-btn {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
-  color: white;
-}
-
-.update-btn:hover {
-  color: white;
-}
 
 /* Pagination */
 .page-item.active .page-link {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color:#282828;
+  border-color:#282828
 }
 
 .page-link {
-  color: #fa9c23;
+  color: #282828;
 }
 
 .page-link:hover {
-  color: #fa9c23;
+  color: blue;
 }
 
 /* Admin Sidebar */

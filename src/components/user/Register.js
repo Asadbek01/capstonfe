@@ -1,6 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
-
-import MetaData from "../layout/MetaData";
+import React, { useState, useEffect } from "react";
 
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,7 +50,7 @@ const Register = ({ history }) => {
   };
 
   const onChange = (e) => {
-    if (e.target.name === "PrettyPages") {
+    if (e.target.name === "avatar") {
       const reader = new FileReader();
 
       reader.onload = () => {
@@ -69,7 +67,7 @@ const Register = ({ history }) => {
   };
 
   return (
-    <Fragment>
+    <>
       <div className="row wrapper">
         <div className="col-10 col-lg-5">
           <form
@@ -154,7 +152,7 @@ const Register = ({ history }) => {
           </form>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 

@@ -35,31 +35,34 @@ const Profile = () => {
             </div>
 
             <div className="col-12 col-md-5">
-              <h4 className="text-dark"> Full Name</h4>
-              <p>{user.name}</p>
+              <h3 className="text-dark"> Full Name</h3>
+              <p className="text-secondary">{user.name}</p>
 
-              <h4 className="text-dark">Email Address</h4>
-              <p>{user.email}</p>
+              <h3 className="text-dark">Email Address</h3>
+              <p className="text-secondary">{user.email}</p>
 
-              <h4 className="text-dark">Joined On</h4>
-              <p>{String(user.createdAt).substring(0, 10)}</p>
+              <h3 className="text-dark">Joined On</h3>
+              <p className="text-secondary">
+                {String(user.createdAt).substring(0, 10)}
+              </p>
 
-              {user.role !== "admin" && (
+              <div className="mb-5">
+                {user.role !== "admin" && (
+                  <Link
+                    to="/orders/me"
+                    className="btn btn-outline-danger btn-block mt-5"
+                  >
+                    My Orders
+                  </Link>
+                )}
+
                 <Link
-                  to="/orders/me"
-                  className="btn btn-block mt-5"
-                  variant="outline-danger"
+                  to="/password/update"
+                  className="btn btn-outline-primary btn-block mt-3"
                 >
-                  My Orders
+                  Change Password
                 </Link>
-              )}
-
-              <Link
-                to="/password/update"
-                className="btn btn-outline-primary btn-block mt-3"
-              >
-                Change Password
-              </Link>
+              </div>
             </div>
           </div>
         </Fragment>
