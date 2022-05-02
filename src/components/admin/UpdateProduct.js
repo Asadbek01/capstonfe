@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
 
-import MetaData from "../layout/MetaData";
 import Sidebar from "./Sidebar";
 
 import { useAlert } from "react-alert";
@@ -121,7 +120,6 @@ const UpdateProduct = ({ match, history }) => {
 
   return (
     <>
-      <MetaData title={"Update Product"} />
       <div className="row">
         <div className="col-12 col-md-2">
           <Sidebar />
