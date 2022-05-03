@@ -73,16 +73,14 @@ nav {
   margin-top: 1.8rem;
 }
 
-.card {
-  height: 100%;
-}
+
 
 .card-title a {
-  color: #2e2e2e;
+  color: #282828;
 }
 
 .card-title a:hover {
-  color: #fa9c23;
+  color:#232f3e;
   text-decoration: none;
 }
 
@@ -100,11 +98,14 @@ nav {
   width: 200px;
   height: 150px;
 }
+/* .price_view{
 
+} */
 .ratings {
   font-size: 1.2rem;
   color: #fdcc0d;
 }
+
 
 #no_of_reviews {
   font-size: 0.85rem;
@@ -161,11 +162,6 @@ nav {
   padding: 0.5rem 2rem;
 }
 
-#product_seller {
-  color: grey;
-  font-size: 0.9rem;
-}
-
 #stock_status {
   font-size: 1.1rem;
   font-weight: bold;
@@ -181,9 +177,10 @@ nav {
 }
 
 #product_image {
-  margin-top: 9rem;
+  margin-top: 3rem;
 }
-
+ 
+ 
 /* Loader */
 .loader {
   margin-left: auto;

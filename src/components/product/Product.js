@@ -12,7 +12,7 @@ const Product = ({ product, col }) => {
             <Link to={`/product/${product._id}`}>{product.title}</Link>
           </h5>
 
-          <div className="d-flex">
+          <div className="d-flex price_view">
             <Button
               style={{ width: "50%" }}
               variant="outline-danger"
@@ -23,7 +23,7 @@ const Product = ({ product, col }) => {
             <Button
               style={{ width: "50%" }}
               variant="outline-success"
-              className="ml-2"
+              className=" btn ml-2"
             >
               <Link to={`/product/${product._id}`} className="btn btn-block">
                 View

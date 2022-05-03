@@ -44,7 +44,7 @@ const Home = ({ match }) => {
   } = useSelector((state) => state.products);
   console.log(products);
 
-  const keyword = params.keyword;
+  const keyword = match.params.keyword;
 
   useEffect(() => {
     if (error) {
@@ -67,7 +67,7 @@ const Home = ({ match }) => {
     <>
       {loading && <Loader />}
       <h1 id="products_heading">Latest Products</h1>
-
+      {/* 
       {keyword && (
         <div className="col-6 col-md-3 mt-5 mb-5">
           <div className="px-5">
@@ -115,7 +115,7 @@ const Home = ({ match }) => {
             <hr className="my-3" />
           </div>
         </div>
-      )}
+      )} */}
 
       <div className="col-6 col-md-9">
         <div className="row">

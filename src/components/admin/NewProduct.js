@@ -7,6 +7,7 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { newProduct, clearErrors } from "../../actions/productActions";
 import { NEW_PRODUCT_RESET } from "../../constants/productConstants";
+import { Alert } from "react-bootstrap";
 
 const NewProduct = ({ history }) => {
   const [title, settitle] = useState("");
@@ -28,20 +29,19 @@ const NewProduct = ({ history }) => {
     "Computer-Science",
   ];
 
-  const alert = useAlert();
   const dispatch = useDispatch();
 
   const { loading, error, success } = useSelector((state) => state.newProduct);
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      <Alert variant={"danger"}>{error.message}</Alert>;
       dispatch(clearErrors());
     }
 
     if (success) {
       history.push("/admin/products");
-      alert.success("Book created successfully");
+      <Alert variant={"success"}>Book created successfully</Alert>;
       dispatch({ type: NEW_PRODUCT_RESET });
     }
   }, [dispatch, alert, error, success, history]);

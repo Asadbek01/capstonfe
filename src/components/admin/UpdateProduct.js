@@ -134,7 +134,6 @@ const UpdateProduct = ({ match, history }) => {
                 encType="multipart/form-data"
               >
                 <h1 className="mb-4">Update Product</h1>
-
                 <div className="form-group">
                   <label htmlFor="name_field">Title</label>
                   <input
@@ -145,7 +144,6 @@ const UpdateProduct = ({ match, history }) => {
                     onChange={(e) => settitle(e.target.value)}
                   />
                 </div>
-
                 <div className="form-group">
                   <label htmlFor="price_field">Price</label>
                   <input
