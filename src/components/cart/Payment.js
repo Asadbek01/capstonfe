@@ -115,7 +115,7 @@ const Payment = ({ history }) => {
       }
     } catch (error) {
       document.querySelector("#pay_btn").disabled = false;
-      alert.error(error.response.data.message);
+      alert.error(error.response.data.errMessage);
     }
   };
 
@@ -157,7 +157,11 @@ const Payment = ({ history }) => {
               />
             </div>
 
-            <button id="pay_btn" type="submit" className="btn btn-block py-3">
+            <button
+              id="pay_btn"
+              type="submit"
+              className=" btn-primary btn btn-block py-3"
+            >
               Pay {` - ${orderInfo && orderInfo.totalPrice}`}
             </button>
           </form>
