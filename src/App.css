@@ -98,9 +98,40 @@ nav {
   width: 200px;
   height: 150px;
 }
-/* .price_view{
 
-} */
+#products {
+  display: grid;
+  margin: auto;
+  padding: 2.5em 0;
+  min-width: 600px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.card-title a {
+  color: #2e2e2e;
+}
+
+.card-title a:hover {
+  color:gray;
+  text-decoration: none;
+}
+
+.card-body {
+  padding:20px;
+}
+
+.card-text {
+  font-size: 1.4rem;
+}
+
+
+
+.card-img-top {
+  width: 200px;
+  height: 150px;
+}
+
 .ratings {
   font-size: 1.2rem;
   color: #fdcc0d;

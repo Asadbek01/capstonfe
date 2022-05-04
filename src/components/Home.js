@@ -67,7 +67,7 @@ const Home = ({ match }) => {
     <>
       {loading && <Loader />}
       <h1 id="products_heading">Latest Products</h1>
-      {/* 
+
       {keyword && (
         <div className="col-6 col-md-3 mt-5 mb-5">
           <div className="px-5">
@@ -115,14 +115,19 @@ const Home = ({ match }) => {
             <hr className="my-3" />
           </div>
         </div>
-      )} */}
-
-      <div className="col-6 col-md-9">
-        <div className="row">
-          {products?.map((product) => (
-            <Product key={product._id} product={product} col={4} />
-          ))}
-        </div>
+      )}
+      <div className="container fluid">
+        <section id="products" className="container">
+          <div className="row">
+            <div className="col-6 col-md-9">
+              <div className="row">
+                {products?.map((product) => (
+                  <Product key={product._id} product={product} col={4} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
       {resPerPage <= count && (

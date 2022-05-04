@@ -14,8 +14,12 @@ const OrderSuccess = () => {
             height="150"
           />
 
-          <h2>Your Order has been placed successfully.</h2>
-          <Link to="/orders/me" type="button" className=" mt-3 btn btn-primary">
+          <h2>Your Order paymnet has been paid successfully.</h2>
+          <Link
+            to="/orders/me"
+            type="button"
+            className=" mt-3 mb-5 btn btn-primary"
+          >
             Go to Orders
           </Link>
         </div>
