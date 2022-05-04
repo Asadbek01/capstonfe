@@ -2,17 +2,17 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const Product = ({ product }) => {
+const Product = ({ product, col }) => {
   return (
-    <div className={`col-sm-12 col-md-6 col-lg-4 my-3`}>
-      <div className="card">
+    <div className={`col-sm-12 col-md-6 col-lg-${col} my-3`}>
+      <div className="card p-3 rounded">
         <img className="card-img-top mx-auto" src={product.images[0].url} />
         <div className="card-body d-flex flex-column">
           <h5 className="card-title">
             <Link to={`/product/${product._id}`}>{product.title}</Link>
           </h5>
 
-          <div className="d-flex price_view ml-n2">
+          <div className="d-flex price_view">
             <Button
               style={{ width: "50%" }}
               variant="outline-danger"

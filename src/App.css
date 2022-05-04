@@ -73,7 +73,7 @@ nav {
   margin-top: 1.8rem;
 }
 
-
+/* 
 
 .card-title a {
   color: #282828;
@@ -90,7 +90,7 @@ nav {
 
 .card-text {
   font-size: 1.4rem;
-}
+} */
 
 
 
@@ -119,6 +119,7 @@ nav {
 
 .card-body {
   padding:20px;
+
 }
 
 .card-text {
@@ -128,8 +129,9 @@ nav {
 
 
 .card-img-top {
-  width: 200px;
+  width:  130px;
   height: 150px;
+  object-fit: cover;
 }
 
 .ratings {
