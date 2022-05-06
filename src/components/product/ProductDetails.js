@@ -132,7 +132,7 @@ const ProductDetails = ({ match }) => {
           <MetaData title={product.name} />
           <div className="row d-flex justify-content-around">
             <div className="col-12 col-lg-5 img-fluid" id="product_image">
-              <Carousel pause="hover">
+              {/* <Carousel pause="hover">
                 {product.images &&
                   product.images.map((image) => (
                     <Carousel.Item key={image.public_id}>
@@ -144,7 +144,13 @@ const ProductDetails = ({ match }) => {
                       />
                     </Carousel.Item>
                   ))}
-              </Carousel>
+              </Carousel> */}
+              <img
+                className="d-block "
+                style={{ width: "60%" }}
+                src={product.images && product.images[0].url}
+                alt={product.title}
+              />
             </div>
 
             <div className="col-12 col-lg-5 mt-5">

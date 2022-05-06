@@ -5,31 +5,33 @@ import { Link } from "react-router-dom";
 const Product = ({ product, col }) => {
   return (
     <div className={`col-sm-12 col-md-6 col-lg-${col} my-3`}>
-      <div className="card p-3 rounded">
-        <img className="card-img-top mx-auto" src={product.images[0].url} />
+      <div className="card h-100 rounded">
+        <img
+          className="card-img-top mx-auto my-2"
+          src={product.images[0].url}
+        />
         <div className="card-body d-flex flex-column">
           <h5 className="card-title">
             <Link to={`/product/${product._id}`}>{product.title}</Link>
           </h5>
-
-          <div className="d-flex price_view">
-            <Button
-              style={{ width: "50%" }}
-              variant="outline-danger"
-              className="ml-2"
-            >
-              ${product.price}
-            </Button>
-            <Button
-              style={{ width: "50%" }}
-              variant="outline-success"
-              className=" btn ml-2"
-            >
-              <Link to={`/product/${product._id}`} className="btn btn-block">
-                View
-              </Link>
-            </Button>
-          </div>
+        </div>
+        <div className="d-flex price_view mx-3 mt-n3 mb-4">
+          <Button
+            style={{ width: "50%" }}
+            variant="outline-danger"
+            className="ml-2"
+          >
+            ${product.price}
+          </Button>
+          <Button
+            style={{ width: "50%" }}
+            variant="outline-success"
+            className=" btn ml-2"
+          >
+            <Link to={`/product/${product._id}`} className="btn btn-block">
+              View
+            </Link>
+          </Button>
         </div>
       </div>
     </div>

@@ -65,7 +65,7 @@ const Home = ({ match }) => {
 
   return (
     <>
-      {loading && <Loader />}
+      {loading ? <Loader /> : ""}
       <h1 id="products_heading">Latest Products</h1>
 
       {keyword && (
@@ -119,14 +119,10 @@ const Home = ({ match }) => {
       <div className="container fluid">
         <section id="products" className="container">
           <div className="row">
-            {/* <div className="col-6 col-md-9 "> */}
-            {/* <div className="row"> */}
             {products?.map((product) => (
               <Product key={product._id} product={product} col={3} />
             ))}
           </div>
-          {/* </div> */}
-          {/* </div> */}
         </section>
       </div>
 
@@ -137,8 +133,6 @@ const Home = ({ match }) => {
             itemsCountPerPage={resPerPage}
             totalItemsCount={productsCount}
             onChange={setCurrentPageNo}
-            // nextPageText={"Next"}
-            // prevPageText={"Prev"}
             lastPageText={"Last"}
             itemClass="page-item"
             linkClass="page-link"
