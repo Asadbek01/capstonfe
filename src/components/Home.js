@@ -36,13 +36,12 @@ const Home = ({ match }) => {
 
   const {
     loading,
-    products,
     error,
     productsCount,
     resPerPage,
     filteredProductsCount,
   } = useSelector((state) => state.products);
-  console.log(products);
+  const products = useSelector((state) => state.products);
 
   const keyword = match.params.keyword;
 
@@ -119,7 +118,7 @@ const Home = ({ match }) => {
       <div className="container fluid">
         <section id="products" className="container">
           <div className="row">
-            {products?.map((product) => (
+            {products.products?.map((product) => (
               <Product key={product._id} product={product} col={3} />
             ))}
           </div>
