@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader";
 import Sidebar from "./Sidebar";
-
+import { ResponsivePieCanvas } from "@nivo/pie";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getAdminProducts } from "../../actions/productActions";
 import { allOrders } from "../../actions/orderActions";
 import { allUsers } from "../../actions/userActions";
+import { data } from "./data";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,15 @@ const Dashboard = () => {
   const { orders, totalAmount, loading } = useSelector(
     (state) => state.allOrders
   );
+  const categories = [
+    "History",
+    "Poetry",
+    "Philosophy",
+    "Religion",
+    "Fiction",
+    "Comedy",
+    "Computer-Science",
+  ];
 
   let outOfStock = 0;
   products.forEach((product) => {
@@ -50,8 +60,8 @@ const Dashboard = () => {
               <div className="row pr-4">
                 <div className="col-xl-12 col-sm-12 mb-3">
                   <div
-                    className="card text-white border-primary o-hidden h-100 m-auto"
-                    style={{ border: "3px solid", width: "85%" }}
+                    className="card text-white border-primary o-hidden h-100 ml-auto"
+                    style={{ border: "3px solid", width: "20%" }}
                   >
                     <div className="card-body text-dark">
                       <div className="text-center card-font-size">
@@ -62,6 +72,115 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
+              <div className="container h-50 mb-2">
+                <ResponsivePieCanvas
+                  data={data}
+                  margin={{ top: 40, right: 200, bottom: 40, left: 80 }}
+                  innerRadius={0.5}
+                  padAngle={0.7}
+                  cornerRadius={3}
+                  activeOuterRadiusOffset={8}
+                  colors={{ scheme: "paired" }}
+                  borderColor={{
+                    from: "color",
+                    modifiers: [["darker", 0.6]],
+                  }}
+                  arcLinkLabelsSkipAngle={10}
+                  arcLinkLabelsTextColor="#333333"
+                  arcLinkLabelsThickness={2}
+                  arcLinkLabelsColor={{ from: "color" }}
+                  arcLabelsSkipAngle={10}
+                  arcLabelsTextColor="#333333"
+                  defs={[
+                    {
+                      id: "dots",
+                      type: "patternDots",
+                      background: "inherit",
+                      color: "rgba(255, 255, 255, 0.3)",
+                      size: 4,
+                      padding: 1,
+                      stagger: true,
+                    },
+                    {
+                      id: "lines",
+                      type: "patternLines",
+                      background: "inherit",
+                      color: "rgba(255, 255, 255, 0.3)",
+                      rotation: -45,
+                      lineWidth: 6,
+                      spacing: 10,
+                    },
+                  ]}
+                  fill={[
+                    {
+                      match: {
+                        id: "History",
+                      },
+                      id: "dots",
+                    },
+                    {
+                      match: {
+                        id: "c",
+                      },
+                      id: "dots",
+                    },
+                    {
+                      match: {
+                        id: "go",
+                      },
+                      id: "dots",
+                    },
+                    {
+                      match: {
+                        id: "python",
+                      },
+                      id: "dots",
+                    },
+                    {
+                      match: {
+                        id: "scala",
+                      },
+                      id: "lines",
+                    },
+                    {
+                      match: {
+                        id: "lisp",
+                      },
+                      id: "lines",
+                    },
+                    {
+                      match: {
+                        id: "elixir",
+                      },
+                      id: "lines",
+                    },
+                    {
+                      match: {
+                        id: "javascript",
+                      },
+                      id: "lines",
+                    },
+                  ]}
+                  legends={[
+                    {
+                      anchor: "right",
+                      direction: "column",
+                      justify: false,
+                      translateX: 140,
+                      translateY: 0,
+                      itemsSpacing: 2,
+                      itemWidth: 60,
+                      itemHeight: 14,
+                      itemTextColor: "#999",
+                      itemDirection: "left-to-right",
+                      itemOpacity: 1,
+                      symbolSize: 14,
+                      symbolShape: "circle",
+                    },
+                  ]}
+                />
+              </div>
+              {/* ))} */}
 
               <div className="row pr-4">
                 <div className="col-xl-3 col-sm-6 mb-3">

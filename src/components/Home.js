@@ -64,79 +64,96 @@ const Home = ({ match }) => {
 
   return (
     <>
-      {loading ? <Loader /> : ""}
-      <h1 id="products_heading">Latest Products</h1>
-
-      {keyword && (
-        <div className="col-6 col-md-3 mt-5 mb-5">
-          <div className="px-5">
-            <Range
-              marks={{
-                1: `$1`,
-                1000: `$1000`,
-              }}
-              min={1}
-              max={1000}
-              defaultValue={[1, 1000]}
-              tipFormatter={(value) => `$${value}`}
-              tipProps={{
-                placement: "top",
-                visible: true,
-              }}
-              value={price}
-              onChange={(price) => setPrice(price)}
-            />
-
-            <hr className="my-5" />
-
-            <div className="mt-5">
-              <h4 className="mb-3">Categories</h4>
-
-              <ul className="pl-0">
-                {categories &&
-                  categories.map((category) => (
-                    <div className="div-box">
-                      <li
-                        style={{
-                          cursor: "pointer",
-                          listStyleType: "none",
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <h1 id="products_heading">Latest Products</h1>
+          <section id="products" className="container mt-5">
+            <div className="row">
+              {keyword ? (
+                <>
+                  <div className="col-6 col-md-3 mt-5 mb-5">
+                    <div className="px-5">
+                      <Range
+                        marks={{
+                          1: `$1`,
+                          1000: `$1000`,
                         }}
-                        key={category}
-                        onClick={() => setCategory(category)}
-                      >
-                        {category}
-                      </li>
+                        min={1}
+                        max={1000}
+                        defaultValue={[1, 1000]}
+                        tipFormatter={(value) => `$${value}`}
+                        tipProps={{
+                          placement: "top",
+                          visible: true,
+                        }}
+                        value={price}
+                        onChange={(price) => setPrice(price)}
+                      />
+
+                      <hr className="my-5" />
+
+                      <div className="mt-5">
+                        <h4 className="mb-3">Categories</h4>
+
+                        <ul className="pl-0">
+                          {categories &&
+                            categories.map((category) => (
+                              <div className="div-box">
+                                <li
+                                  style={{
+                                    cursor: "pointer",
+                                    listStyleType: "none",
+                                  }}
+                                  key={category}
+                                  onClick={() => setCategory(category)}
+                                >
+                                  {category}
+                                </li>
+                              </div>
+                            ))}
+                        </ul>
+                      </div>
                     </div>
-                  ))}
-              </ul>
+                  </div>
+
+                  <div className="col-6 col-md-9">
+                    <div className="row">
+                      {products.products.map((product) => (
+                        <Product key={product._id} product={product} col={4} />
+                      ))}
+                    </div>
+                  </div>
+                </>
+              ) : (
+                // <div className="container ">
+                // <section id="products" className="">
+                //   <div className="row">
+                products.products?.map((product) => (
+                  <Product key={product._id} product={product} col={3} />
+                ))
+                //     </div>
+                //   </section>
+                // </div>
+              )}
             </div>
+          </section>
 
-            <hr className="my-3" />
-          </div>
-        </div>
-      )}
-      <div className="container fluid">
-        <section id="products" className="container">
-          <div className="row">
-            {products.products?.map((product) => (
-              <Product key={product._id} product={product} col={3} />
-            ))}
-          </div>
-        </section>
-      </div>
-
-      {resPerPage <= count && (
-        <div className="d-flex justify-content-center mt-5">
-          <Pagination
-            activePage={currentPage}
-            itemsCountPerPage={resPerPage}
-            totalItemsCount={productsCount}
-            onChange={setCurrentPageNo}
-            lastPageText={"Last"}
-            itemClass="page-item"
-            linkClass="page-link"
-          />
-        </div>
+          {resPerPage <= count && (
+            <div className="d-flex justify-content-center mt-5">
+              <Pagination
+                activePage={currentPage}
+                itemsCountPerPage={resPerPage}
+                totalItemsCount={productsCount}
+                onChange={setCurrentPageNo}
+                lastPageText={"Last"}
+                itemClass="page-item"
+                linkClass="page-link"
+              />
+            </div>
+          )}
+        </>
       )}
     </>
   );
