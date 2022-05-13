@@ -32,7 +32,7 @@ const Header = () => {
                 src="https://i.ibb.co/C6FZX5z/logo-nav-1.png"
                 alt="logo-nav-1"
                 border="0"
-                className=" responsive logo_img ml-5"
+                className="responsive logo_img ml-5"
               />
             </Link>
           </div>
