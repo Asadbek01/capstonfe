@@ -9,7 +9,7 @@ body {
 }
 
 nav {
-  background-color: #282828;
+  background-color: #7d6b80;
  padding: 1rem 1rem;
 }
 .logo_img{
@@ -517,7 +517,7 @@ nav {
 #sidebar {
   min-width: 100%;
   max-width: 100%;
-  background: #282828;
+  background:#7d6b80;
   color: #fff;
   transition: all 0.3s;
 }

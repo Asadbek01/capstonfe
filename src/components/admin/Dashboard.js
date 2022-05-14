@@ -50,7 +50,7 @@ const Dashboard = () => {
           <Sidebar />
         </div>
 
-        <div className="col-12 col-md-10">
+        <div className="col-12 col-md-10 dashboard">
           <h1 className="my-4">Dashboard</h1>
 
           {loading ? (
