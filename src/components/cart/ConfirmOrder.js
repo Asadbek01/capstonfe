@@ -47,7 +47,8 @@ const ConfirmOrder = ({ history }) => {
             <b>Phone:</b> {shippingInfo.phoneNo}
           </p>
           <p className="mb-4">
-            <b>Address:</b>{" "}
+            <b>Address: </b>
+
             {`${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country}`}
           </p>
 

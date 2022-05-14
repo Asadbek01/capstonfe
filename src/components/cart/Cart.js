@@ -40,10 +40,10 @@ const Cart = ({ history }) => {
     <>
       <MetaData title={"Your Cart"} />
       {cartItems.length === 0 ? (
-        <h2 className="mt-5">Your Cart is Empty</h2>
+        <h2 className="mt-3">Your Cart is Empty</h2>
       ) : (
         <>
-          <h2 className="mt-5">
+          <h2 className="mt-3">
             Your Cart: <b>{cartItems.length} items</b>
           </h2>
 

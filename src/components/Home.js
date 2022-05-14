@@ -69,7 +69,7 @@ const Home = ({ match }) => {
       ) : (
         <>
           <h1 id="products_heading">Latest Products</h1>
-          <section id="products" className="container mt-5">
+          <section id="products" className="container ">
             <div className="row">
               {keyword ? (
                 <>
