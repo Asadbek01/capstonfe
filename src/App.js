@@ -154,8 +154,8 @@ function App() {
           component={ProductReviews}
           exact
         />
+        <Footer />
       </div>
-      {!loading && (!isAuthenticated || user.role !== "admin") && <Footer />}
     </Router>
   );
 }

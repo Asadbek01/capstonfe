@@ -72,10 +72,10 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <div className="container h-50 mb-2">
+              <div className="container mb-2" style={{ height: "44%" }}>
                 <ResponsivePieCanvas
                   data={data}
-                  margin={{ top: 40, right: 200, bottom: 40, left: 80 }}
+                  margin={{ top: 40, right: 250, bottom: 40, left: 80 }}
                   innerRadius={0.5}
                   padAngle={0.7}
                   cornerRadius={3}
@@ -120,43 +120,37 @@ const Dashboard = () => {
                     },
                     {
                       match: {
-                        id: "c",
+                        id: "Poetry",
                       },
                       id: "dots",
                     },
                     {
                       match: {
-                        id: "go",
+                        id: "Philosophy",
                       },
                       id: "dots",
                     },
                     {
                       match: {
-                        id: "python",
+                        id: "Religion",
                       },
                       id: "dots",
                     },
                     {
                       match: {
-                        id: "scala",
+                        id: "Fiction",
                       },
                       id: "lines",
                     },
                     {
                       match: {
-                        id: "lisp",
+                        id: "Comedy",
                       },
                       id: "lines",
                     },
                     {
                       match: {
-                        id: "elixir",
-                      },
-                      id: "lines",
-                    },
-                    {
-                      match: {
-                        id: "javascript",
+                        id: "Computer-Science",
                       },
                       id: "lines",
                     },
