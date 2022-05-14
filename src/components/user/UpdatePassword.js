@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import MetaData from "../layout/MetaData";
 
@@ -44,7 +44,7 @@ const UpdatePassword = ({ history }) => {
   };
 
   return (
-    <Fragment>
+    <>
       <MetaData title={"Change Password"} />
 
       <div className="row wrapper">
@@ -83,7 +83,7 @@ const UpdatePassword = ({ history }) => {
           </form>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 

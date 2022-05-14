@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MDBDataTable } from "mdbreact";
 
@@ -82,7 +82,7 @@ const ProductsList = ({ history }) => {
         price: `$${product.price}`,
         stock: product.stock,
         actions: (
-          <Fragment>
+          <>
             <Link
               to={`/admin/product/${product._id}`}
               className="btn btn-primary py-1 px-2"
@@ -95,7 +95,7 @@ const ProductsList = ({ history }) => {
             >
               <i className="fa fa-trash"></i>
             </button>
-          </Fragment>
+          </>
         ),
       });
     });
@@ -108,7 +108,7 @@ const ProductsList = ({ history }) => {
   };
 
   return (
-    <Fragment>
+    <>
       <MetaData title={"All Products"} />
       <div className="row">
         <div className="col-12 col-md-2">
@@ -116,7 +116,7 @@ const ProductsList = ({ history }) => {
         </div>
 
         <div className="col-12 col-md-10">
-          <Fragment>
+          <>
             <h1 className="my-5">All Products</h1>
 
             {loading ? (
@@ -130,10 +130,10 @@ const ProductsList = ({ history }) => {
                 hover
               />
             )}
-          </Fragment>
+          </>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -9,11 +9,11 @@ const Profile = () => {
   const { user, loading } = useSelector((state) => state.auth);
 
   return (
-    <Fragment>
+    <>
       {loading ? (
         <Loader />
       ) : (
-        <Fragment>
+        <>
           <MetaData title={"Your Profile"} />
 
           <h2 className="mt-5 ml-5">My Profile</h2>
@@ -65,9 +65,9 @@ const Profile = () => {
               </div>
             </div>
           </div>
-        </Fragment>
+        </>
       )}
-    </Fragment>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import MetaData from "../layout/MetaData";
@@ -37,12 +37,12 @@ const Cart = ({ history }) => {
   };
 
   return (
-    <Fragment>
+    <>
       <MetaData title={"Your Cart"} />
       {cartItems.length === 0 ? (
         <h2 className="mt-5">Your Cart is Empty</h2>
       ) : (
-        <Fragment>
+        <>
           <h2 className="mt-5">
             Your Cart: <b>{cartItems.length} items</b>
           </h2>
@@ -50,7 +50,7 @@ const Cart = ({ history }) => {
           <div className="row d-flex justify-content-between">
             <div className="col-12 col-lg-8">
               {cartItems.map((item) => (
-                <Fragment>
+                <>
                   <hr />
 
                   <div className="cart-item" key={item.product}>
@@ -125,7 +125,7 @@ const Cart = ({ history }) => {
                     </div>
                   </div>
                   <hr />
-                </Fragment>
+                </>
               ))}
             </div>
 
@@ -166,9 +166,9 @@ const Cart = ({ history }) => {
               </div>
             </div>
           </div>
-        </Fragment>
+        </>
       )}
-    </Fragment>
+    </>
   );
 };
 
