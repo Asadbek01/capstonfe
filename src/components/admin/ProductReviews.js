@@ -47,7 +47,7 @@ const ProductReviews = () => {
     }
   }, [dispatch, alert, error, productId, isDeleted, deleteError]);
 
-  const deleteReviewHandler = (id) => {
+  const deleteReviewHandler = (id, productId) => {
     dispatch(deleteReview(id, productId));
   };
 
@@ -97,7 +97,7 @@ const ProductReviews = () => {
         actions: (
           <button
             className="btn btn-danger py-1 px-2 ml-2"
-            onClick={() => deleteReviewHandler(review._id)}
+            onClick={() => deleteReviewHandler(review._id, productId)}
           >
             <i className="fa fa-trash"></i>
           </button>
