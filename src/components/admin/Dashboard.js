@@ -10,24 +10,60 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAdminProducts } from "../../actions/productActions";
 import { allOrders } from "../../actions/orderActions";
 import { allUsers } from "../../actions/userActions";
-import { data } from "./data";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
 
   const { products } = useSelector((state) => state.products);
+  const prod = useSelector((state) => state.products.products);
   const { users } = useSelector((state) => state.allUsers);
   const { orders, totalAmount, loading } = useSelector(
     (state) => state.allOrders
   );
-  const categories = [
-    "History",
-    "Poetry",
-    "Philosophy",
-    "Religion",
-    "Fiction",
-    "Comedy",
-    "Computer-Science",
+
+  const data = [
+    {
+      id: "History",
+      label: "History",
+      value: 5,
+      color: "hsl(149, 70%, 50%)",
+    },
+    {
+      id: "Poetry",
+      label: "Poetry",
+      value: 10,
+      color: "hsl(333, 70%, 50%)",
+    },
+    {
+      id: "Philosophy",
+      label: "Philosophy",
+      value: 10,
+      color: "hsl(189, 70%, 50%)",
+    },
+    {
+      id: "Religion",
+      label: "Religion",
+      value: 20,
+      color: "hsl(182, 70%, 50%)",
+    },
+    {
+      id: "Comedy",
+      label: "Comedy",
+      value: 30,
+      color: "hsl(115, 70%, 50%)",
+    },
+    {
+      id: "Fiction",
+      label: "Fiction",
+      value: 10,
+      color: "hsl(327, 70%, 50%)",
+    },
+    {
+      id: "Computer-Science",
+      label: "Computer-Science",
+      value: 15,
+      color: "hsl(350, 70%, 50%)",
+    },
   ];
 
   let outOfStock = 0;
