@@ -55,6 +55,7 @@ nav {
 #cart {
   font-size: 1rem;
   color: white;
+  /* height: 100vh !important; */
 }
 
 #cart_count {

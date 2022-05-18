@@ -31,37 +31,37 @@ const Dashboard = () => {
     {
       id: "Poetry",
       label: "Poetry",
-      value: 10,
+      value: 3,
       color: "hsl(333, 70%, 50%)",
     },
     {
       id: "Philosophy",
       label: "Philosophy",
-      value: 10,
+      value: 4,
       color: "hsl(189, 70%, 50%)",
     },
     {
       id: "Religion",
       label: "Religion",
-      value: 20,
+      value: 2,
       color: "hsl(182, 70%, 50%)",
     },
     {
       id: "Comedy",
       label: "Comedy",
-      value: 30,
+      value: 2,
       color: "hsl(115, 70%, 50%)",
     },
     {
       id: "Fiction",
       label: "Fiction",
-      value: 10,
+      value: 4,
       color: "hsl(327, 70%, 50%)",
     },
     {
       id: "Computer-Science",
       label: "Computer-Science",
-      value: 15,
+      value: 6,
       color: "hsl(350, 70%, 50%)",
     },
   ];

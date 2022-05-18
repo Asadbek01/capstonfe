@@ -6,6 +6,7 @@ import MetaData from "../layout/MetaData";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart, removeItemFromCart } from "../../actions/cartActions";
+import Footer from "../layout/Footer";
 
 const Cart = ({ history }) => {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const Cart = ({ history }) => {
             Your Cart: <b>{cartItems.length} items</b>
           </h2>
 
-          <div className="row d-flex justify-content-between">
+          <div className="row d-flex justify-content-between ">
             <div className="col-12 col-lg-8">
               {cartItems.map((item) => (
                 <>
