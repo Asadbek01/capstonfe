@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { Button } from "react-bootstrap";
 import MetaData from "../layout/MetaData";
 import Sidebar from "./Sidebar";
 
@@ -115,12 +115,12 @@ const UpdateUser = ({ history, match }) => {
                   </select>
                 </div>
 
-                <button
+                <Button
                   type="submit"
-                  className="btn update-btn btn-block mt-4 mb-3"
+                  className="btn-primary btn-block mt-4 mb-3"
                 >
                   Update
-                </button>
+                </Button>
               </form>
             </div>
           </div>
