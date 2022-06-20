@@ -3,7 +3,6 @@ import Pagination from "react-js-pagination";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
-import MetaData from "./layout/MetaData";
 import Product from "./product/Product";
 import Loader from "./layout/Loader";
 import { useParams } from "react-router-dom";
@@ -32,7 +31,6 @@ const Home = ({ match }) => {
 
   const alert = useAlert();
   const dispatch = useDispatch();
-  const params = useParams();
 
   const {
     loading,
@@ -68,7 +66,7 @@ const Home = ({ match }) => {
         <Loader />
       ) : (
         <>
-          <h1 id="products_heading">Latest Products</h1>
+          <h1 id="products_heading">Latest Books</h1>
           <section id="products" className="container ">
             <div className="row">
               {keyword ? (
